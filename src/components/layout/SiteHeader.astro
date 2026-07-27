@@ -1,0 +1,50 @@
+---
+import Icon from "../ui/Icon.astro";
+
+const navigation = [
+  { label: "Zusammen", href: "/zusammen" },
+  { label: "Genießen", href: "/geniessen" },
+  { label: "Ankommen", href: "/ankommen" },
+  { label: "Ordnen", href: "/ordnen" },
+  { label: "Feiern", href: "/feiern" },
+  { label: "Willkommen", href: "/willkommen" },
+  { label: "Post", href: "/post" },
+];
+
+interface Props { activePath?: string; }
+const { activePath } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/" aria-label="Domaće – Startseite">
+      <img class="brand__wordmark" src="/images/wordmark_domace.png" alt="Domaće" />
+      <span class="brand__tagline">ein Stück Zuhause.</span>
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        {navigation.map((item) => (
+          <li><a class:list={{ "is-active": item.href === activePath }} href={item.href} aria-current={item.href === activePath ? "page" : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a class="site-header__search" href="/suche" aria-label="Suche öffnen"><Icon name="search" size={20} /></a>
+  </div>
+</header>
+
+<style>
+  .site-header { background: var(--color-surface); border-bottom: var(--divider-thickness) solid var(--color-divider); }
+  .site-header__inner { align-items: center; display: grid; gap: var(--space-6); grid-template-columns: auto minmax(0, 1fr) auto; margin: 0 auto; max-width: var(--content-width); min-height: 7rem; padding: var(--space-4) var(--page-gutter); }
+  .brand { color: var(--color-espresso); display: inline-flex; flex-direction: column; text-decoration: none; width: fit-content; }
+  .brand__wordmark { display: block; max-width: clamp(8rem, 10vw, 10rem); width: 100%; }
+  .brand__tagline { font-family: var(--font-script); font-size: var(--text-sm); margin-top: var(--space-2); white-space: nowrap; }
+  .site-nav { justify-self: end; }
+  .site-nav ul { display: flex; gap: clamp(var(--space-4), 2.1vw, var(--space-8)); list-style: none; margin: 0; padding: 0; }
+  .site-nav a { color: var(--color-text); display: block; font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em; padding: var(--space-3) 0; position: relative; text-decoration: none; text-transform: uppercase; }
+  .site-nav a::after { background: var(--color-terracotta); bottom: 0; content: ""; height: 2px; left: 0; position: absolute; transform: scaleX(0); transform-origin: left; transition: transform var(--transition-base); width: 100%; }
+  .site-nav a:hover::after, .site-nav a.is-active::after { transform: scaleX(1); }
+  .site-nav a.is-active { color: var(--color-terracotta); }
+  .site-header__search { color: var(--color-text); justify-self: end; }
+  @media (max-width: 60rem) { .site-header__inner { grid-template-columns: 1fr auto; } .site-nav { grid-column: 1 / -1; grid-row: 2; justify-self: start; max-width: 100%; overflow-x: auto; } .site-nav ul { width: max-content; } }
+  @media (max-width: 34rem) { .site-header__inner { min-height: auto; } .brand__tagline { font-size: 0.68rem; } }
+</style>

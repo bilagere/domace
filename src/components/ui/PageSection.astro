@@ -1,0 +1,24 @@
+---
+import Container from "./Container.astro";
+
+interface Props {
+  spacing?: "none" | "compact" | "default" | "generous";
+  width?: "content" | "reading" | "narrow";
+  label?: string;
+  labelledBy?: string;
+  class?: string;
+}
+
+const { spacing = "default", width = "content", label, labelledBy, class: className } = Astro.props;
+---
+
+<section class:list={["page-section", `page-section--${spacing}`, className]} aria-label={label} aria-labelledby={labelledBy}>
+  <Container width={width}><slot /></Container>
+</section>
+
+<style>
+  .page-section { padding-block: var(--section-space); }
+  .page-section--none { padding-block: 0; }
+  .page-section--compact { padding-block: var(--space-8); }
+  .page-section--generous { padding-block: var(--section-space-generous); }
+</style>

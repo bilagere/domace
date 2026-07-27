@@ -1,0 +1,25 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  icon?: "mail" | "heart";
+  label: string;
+  caption?: string;
+}
+
+const { icon = "mail", label, caption } = Astro.props;
+---
+
+<span class="badge">
+  <span class="badge__content">
+    <Icon name={icon} size={28} />
+    <span class="badge__text"><span>{label}</span>{caption && <span>{caption}</span>}</span>
+  </span>
+</span>
+
+<style>
+  .badge { align-items: center; aspect-ratio: 1; background: var(--color-olive-dark); border-radius: 50%; color: var(--color-kalk); display: inline-flex; flex-direction: column; font-size: var(--text-xs); font-weight: 700; justify-content: center; letter-spacing: 0.08em; line-height: 1.25; padding: var(--space-4); text-align: center; text-transform: uppercase; width: 8.5rem; }
+  .badge__content { align-items: center; display: flex; flex-direction: column; transform: rotate(10deg); }
+  .badge :global(svg) { margin-bottom: var(--space-2); }
+  .badge__text { display: flex; flex-direction: column; }
+</style>

@@ -1,0 +1,53 @@
+---
+import Icon from "../ui/Icon.astro";
+import OptimizedImage from "../ui/OptimizedImage.astro";
+import type { ImageMetadata } from "astro";
+
+const categories = ["Zusammen", "Genießen", "Ankommen", "Ordnen", "Feiern"];
+const information = ["Willkommen", "Post", "Kontakt", "Impressum", "Datenschutz"];
+interface Props { gallery?: ImageMetadata[]; }
+const { gallery = [] } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="site-footer__main">
+    <div class="site-footer__brand">
+      <img class="site-footer__mark" src="/images/logo_c.png" alt="Domaće" />
+      <p>Domaće ist ein Ort für alle, die das gute Familienleben lieben. Danke, dass du hier bist.</p>
+      <div class="site-footer__social" aria-label="Soziale Medien">
+        <a href="#" aria-label="Instagram"><Icon name="instagram" size={16} /></a><a href="#" aria-label="Pinterest"><Icon name="pin" size={16} /></a><a href="#" aria-label="E-Mail"><Icon name="mail" size={16} /></a>
+      </div>
+    </div>
+    <div><p class="site-footer__label">Kategorien</p><ul>{categories.map((item) => <li><a href={`/${item.toLowerCase()}`}>{item}</a></li>)}</ul></div>
+    <div><p class="site-footer__label">Informationen</p><ul>{information.map((item) => <li><a href="#">{item}</a></li>)}</ul></div>
+    {gallery.length > 0 && (
+      <div class="site-footer__gallery">
+        {gallery.slice(0, 3).map((image) => (
+          <OptimizedImage src={image} alt="" widths={[160, 240, 320]} sizes="(max-width: 768px) 96px, 10vw" />
+        ))}
+      </div>
+    )}
+  </div>
+  <div class="site-footer__bottom"><span>© 2025 Domaće</span><span><Icon name="heart" size={15} /> Für das gute Familienleben.</span></div>
+</footer>
+
+<style>
+  .site-footer { background: var(--color-surface-muted); margin-top: var(--space-20); }
+  .site-footer__main { display: grid; gap: var(--space-8); grid-template-columns: 1.5fr 0.75fr 0.75fr 1fr; margin: 0 auto; max-width: var(--content-width); padding: var(--space-12) var(--page-gutter); }
+  .site-footer__brand { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3) var(--space-4); }
+  .site-footer__mark { align-self: start; grid-row: span 2; max-height: 3rem; width: 2.4rem; }
+  .site-footer p { font-size: var(--text-sm); margin: 0; }
+  .site-footer__label { color: var(--color-terracotta); font-size: var(--text-xs) !important; font-weight: 700; letter-spacing: var(--tracking-caps); margin-bottom: var(--space-3) !important; text-transform: uppercase; }
+  ul { list-style: none; margin: 0; padding: 0; } li + li { margin-top: var(--space-1); }
+  li a { color: var(--color-text); font-size: var(--text-sm); text-decoration: none; }
+  li a:hover { color: var(--color-terracotta); }
+  .site-footer__social { display: flex; gap: var(--space-3); grid-column: 2; }
+  .site-footer__social a { align-items: center; color: var(--color-text); display: flex; text-decoration: none; }
+  .site-footer__gallery { display: grid; gap: var(--space-2); grid-template-columns: repeat(3, minmax(0, 1fr)); min-width: 0; }
+  .site-footer__gallery :global(picture), .site-footer__gallery :global(img) { aspect-ratio: 1; min-width: 0; width: 100%; }
+  .site-footer__gallery :global(img) { object-fit: cover; }
+  .site-footer__bottom { align-items: center; background: var(--color-olive-dark); color: var(--color-kalk); display: flex; font-size: var(--text-xs); justify-content: space-between; padding: var(--space-3) max(var(--page-gutter), calc((100% - var(--content-width)) / 2)); }
+  .site-footer__bottom span { align-items: center; display: flex; gap: var(--space-2); }
+  @media (max-width: 48rem) { .site-footer__main { grid-template-columns: 1fr 1fr; } .site-footer__brand { grid-column: 1 / -1; } .site-footer__gallery { grid-column: 1 / -1; max-width: 18rem; } }
+  @media (max-width: 28rem) { .site-footer__main { grid-template-columns: 1fr; } .site-footer__bottom { align-items: flex-start; flex-direction: column; gap: var(--space-2); } }
+</style>

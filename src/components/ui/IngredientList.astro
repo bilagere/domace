@@ -1,0 +1,18 @@
+---
+interface Props { title?: string; intro?: string; items: string[]; note?: string; }
+const { title = "Zutaten", intro, items, note } = Astro.props;
+---
+
+<section class="ingredient-list">
+  <h2>{title}</h2>
+  {intro && <p class="ingredient-list__intro">{intro}</p>}
+  <ul>{items.map((item) => <li>{item}</li>)}</ul>
+  {note && <aside>{note}</aside>}
+</section>
+
+<style>
+  h2 { font-size: var(--text-lg); }
+  .ingredient-list__intro { font-size: var(--text-sm); margin-top: var(--space-4); }
+  ul { color: var(--color-text-muted); font-size: var(--text-sm); line-height: var(--leading-relaxed); margin: var(--space-3) 0 0; padding-left: 1.15rem; }
+  aside { background: var(--color-surface-muted); color: var(--color-text-muted); font-size: var(--text-sm); margin-top: var(--space-6); padding: var(--space-4); }
+</style>

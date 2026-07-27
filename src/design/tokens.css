@@ -1,0 +1,76 @@
+/* Domaće design language, derived from the supplied style guide. */
+:root {
+  --color-kalk: #f6f2ec;
+  --color-kalk-strong: #ece4da;
+  --color-espresso: #2e231d;
+  --color-olive: #7e8668;
+  --color-olive-dark: #596049;
+  --color-terracotta: #a94023;
+  --color-terracotta-dark: #84331b;
+  --color-pflaume: #503a47;
+  --color-gold: #a79068;
+
+  --color-surface: var(--color-kalk);
+  --color-surface-raised: #fffdfa;
+  --color-surface-muted: #f1e9e0;
+  --color-text: var(--color-espresso);
+  --color-text-muted: #655851;
+  --color-border: #dfd3c5;
+  --color-divider: var(--color-terracotta);
+  --color-action: var(--color-terracotta);
+  --color-action-hover: var(--color-terracotta-dark);
+  --color-focus: var(--color-olive-dark);
+
+  /* Brand fonts are defined in fonts.css; the remaining entries are fallbacks. */
+  --font-display: "Safira March", "Iowan Old Style", "Baskerville", Georgia, serif;
+  --font-sans: "Nunito", "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
+  --font-script: "Segoe Script", "Bradley Hand", cursive;
+
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.5rem, 2.1vw, 2rem);
+  --text-2xl: clamp(2.25rem, 4.6vw, 4.75rem);
+  --text-3xl: clamp(3rem, 6vw, 6.5rem);
+  --text-home-heading: clamp(2.25rem, 4vw, 3.5rem);
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --leading-tight: 1.04;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+  --tracking-caps: 0.1em;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --shadow-subtle: 0 12px 30px rgb(46 35 29 / 6%);
+  --content-width: 78rem;
+  --content-reading: 46rem;
+  --content-narrow: 36rem;
+  --page-gutter: clamp(1.25rem, 4vw, 4rem);
+  --section-space: var(--space-12);
+  --section-space-generous: var(--space-20);
+  --transition-base: 180ms ease;
+  --divider-thickness: 1px;
+  --divider-width: 10rem;
+  --control-height: 2.8rem;
+  --z-content: 1;
+  --z-overlay: 2;
+}

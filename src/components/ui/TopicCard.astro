@@ -1,0 +1,36 @@
+---
+import Icon from "./Icon.astro";
+import OptimizedImage from "./OptimizedImage.astro";
+import type { ImageMetadata } from "astro";
+type IconName = "users" | "leaf" | "cooking-pot" | "list-check" | "cake";
+interface Props { title: string; subtitle?: string; description: string; additionalDescription?: string; href: string; icon: IconName; image?: ImageMetadata; }
+const { title, subtitle, description, additionalDescription, href, icon, image } = Astro.props;
+---
+
+<article class="topic-card">
+  {image && <OptimizedImage src={image} alt="" widths={[240, 360, 480, 640]} sizes="(max-width: 544px) 50vw, (max-width: 1024px) 33vw, 20vw" />}
+  <div class="topic-card__body">
+    <div class="topic-card__heading">
+      <span class="topic-card__icon"><Icon name={icon} size={28} /></span>
+      <h3>{title}</h3>
+    </div>
+    {subtitle && <p class="topic-card__subtitle">{subtitle}</p>}
+    <p>{description}</p>
+    {additionalDescription && <p>{additionalDescription}</p>}
+    <a href={href}>Mehr entdecken <span aria-hidden="true">→</span></a>
+  </div>
+</article>
+
+<style>
+  .topic-card { display: flex; flex-direction: column; min-width: 0; }
+  :global(picture), :global(img) { aspect-ratio: 1; width: 100%; }
+  :global(img) { object-fit: cover; }
+  .topic-card__body { display: flex; flex: 1; flex-direction: column; padding-top: var(--space-4); }
+  .topic-card__heading { align-items: center; display: flex; gap: var(--space-3); min-width: 0; }
+  .topic-card__icon { color: var(--color-olive-dark); display: flex; flex: 0 0 auto; transform: translateY(-0.2rem); }
+  h3 { color: var(--color-olive-dark); font-size: var(--text-xl); margin: 0; min-width: 0; white-space: nowrap; }
+  .topic-card__subtitle { color: var(--color-text); font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 700; margin-top: var(--space-3); white-space: nowrap; }
+  p { font-size: var(--text-sm); margin-top: var(--space-2); }
+  a { color: var(--color-terracotta); display: inline-block; font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.04em; margin-top: auto; padding-top: var(--space-4); text-decoration: none; }
+  @media (max-width: 34rem) { h3, .topic-card__subtitle { white-space: normal; } }
+</style>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  width?: "content" | "reading" | "narrow";
+  class?: string;
+}
+
+const { width = "content", class: className } = Astro.props;
+---
+
+<div class:list={["container", `container--${width}`, className]}><slot /></div>
+
+<style>
+  .container { margin-inline: auto; padding-inline: var(--page-gutter); width: 100%; }
+  .container--content { max-width: calc(var(--content-width) + (var(--page-gutter) * 2)); }
+  .container--reading { max-width: calc(var(--content-reading) + (var(--page-gutter) * 2)); }
+  .container--narrow { max-width: calc(var(--content-narrow) + (var(--page-gutter) * 2)); }
+</style>

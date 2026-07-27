@@ -1,0 +1,20 @@
+---
+interface Props {
+  tone?: "terracotta" | "olive" | "current";
+  width?: "short" | "default" | "full";
+}
+
+const { tone = "terracotta", width = "default" } = Astro.props;
+---
+
+<span class:list={["divider", `divider--${tone}`, `divider--${width}`]} aria-hidden="true"></span>
+
+<style>
+  .divider { background: var(--color-divider); display: block; height: var(--divider-thickness); }
+  .divider--terracotta { background: var(--color-terracotta); }
+  .divider--olive { background: var(--color-olive-dark); }
+  .divider--current { background: currentColor; }
+  .divider--short { width: 5rem; }
+  .divider--default { width: var(--divider-width); }
+  .divider--full { width: 100%; }
+</style>

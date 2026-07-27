@@ -1,0 +1,17 @@
+---
+interface Props { label: string; tags: string[]; }
+const { label, tags } = Astro.props;
+---
+
+<section class="tag-list" aria-label={label}>
+  <p>{label}</p>
+  <ul>{tags.map((tag) => <li><a href={`?filter=${encodeURIComponent(tag)}`}>{tag}</a></li>)}</ul>
+</section>
+
+<style>
+  .tag-list + .tag-list { margin-top: var(--space-5); }
+  p { color: var(--color-terracotta); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
+  ul { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: var(--space-3) 0 0; padding: 0; }
+  a { border: 1px solid var(--color-border); color: var(--color-text); display: block; font-size: var(--text-xs); padding: var(--space-1) var(--space-2); text-decoration: none; }
+  a:hover { border-color: var(--color-terracotta); color: var(--color-terracotta); }
+</style>

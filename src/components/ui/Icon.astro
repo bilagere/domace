@@ -1,0 +1,64 @@
+---
+import {
+  ArrowRight,
+  Bookmark,
+  Cake,
+  Camera,
+  Clock,
+  CookingPot,
+  Heart,
+  Leaf,
+  ListChecks,
+  Mail,
+  MessageCircle,
+  Pin,
+  Printer,
+  Quote,
+  Search,
+  Share2,
+  Sparkles,
+  Star,
+  Users,
+} from "@lucide/astro";
+
+const icons = {
+  "arrow-right": ArrowRight,
+  bookmark: Bookmark,
+  cake: Cake,
+  clock: Clock,
+  "cooking-pot": CookingPot,
+  heart: Heart,
+  instagram: Camera,
+  leaf: Leaf,
+  "list-check": ListChecks,
+  mail: Mail,
+  "message-circle": MessageCircle,
+  pin: Pin,
+  printer: Printer,
+  quote: Quote,
+  search: Search,
+  "share-2": Share2,
+  sparkles: Sparkles,
+  star: Star,
+  users: Users,
+} as const;
+
+export type IconName = keyof typeof icons;
+
+interface Props {
+  name: IconName;
+  size?: number;
+  title?: string;
+}
+
+const { name, size = 20, title } = Astro.props;
+const LucideIcon = icons[name];
+---
+
+<LucideIcon
+  size={size}
+  strokeWidth={1.6}
+  aria-hidden={title ? undefined : "true"}
+  aria-label={title}
+  role={title ? "img" : undefined}
+/>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  asidePosition?: "start" | "end";
+  narrow?: boolean;
+}
+
+const { asidePosition = "end", narrow = false } = Astro.props;
+---
+
+<div class:list={["content-layout", `content-layout--aside-${asidePosition}`, { "content-layout--narrow": narrow }]}>
+  <aside class="content-layout__aside"><slot name="aside" /></aside>
+  <div class="content-layout__main"><slot /></div>
+</div>
+
+<style>
+  .content-layout { display: grid; gap: clamp(var(--space-8), 5vw, var(--space-16)); grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem); margin-inline: auto; max-width: var(--content-width); padding-inline: var(--page-gutter); }
+  .content-layout--aside-start { grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr); }
+  .content-layout--aside-start .content-layout__aside { grid-column: 1; }
+  .content-layout--aside-start .content-layout__main { grid-column: 2; }
+  .content-layout--narrow .content-layout__main { max-width: var(--content-reading); }
+  @media (max-width: 48rem) { .content-layout, .content-layout--aside-start { grid-template-columns: 1fr; } .content-layout--aside-start .content-layout__aside, .content-layout--aside-start .content-layout__main { grid-column: auto; } .content-layout__aside { order: 2; } }
+</style>

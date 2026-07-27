@@ -1,0 +1,35 @@
+---
+import OptimizedImage from "./OptimizedImage.astro";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  image: ImageMetadata;
+  imageAlt?: string;
+  reverse?: boolean;
+  tone?: "kalk" | "olive";
+  ratio?: "equal" | "media-40";
+  variant?: "default" | "newsletter";
+}
+const { image, imageAlt = "", reverse = false, tone = "kalk", ratio = "equal", variant = "default" } = Astro.props;
+---
+
+<section class:list={["media-text", `media-text--${tone}`, `media-text--${ratio}`, `media-text--${variant}`, { "media-text--reverse": reverse }]}>
+  <div class="media-text__media"><OptimizedImage src={image} alt={imageAlt} widths={[480, 720, 960, 1280]} sizes="(max-width: 704px) 100vw, 50vw" /></div>
+  <div class="media-text__content"><slot /></div>
+</section>
+
+<style>
+  .media-text { display: grid; grid-template-columns: 1fr 1fr; }
+  .media-text--media-40 { grid-template-columns: 40% 60%; }
+  .media-text--olive { background: var(--color-olive-dark); color: var(--color-kalk); }
+  .media-text--reverse .media-text__media { order: 2; }
+  .media-text__media { min-height: 24rem; }
+  .media-text__media :global(picture), .media-text__media :global(img) { height: 100%; width: 100%; }
+  .media-text__media :global(img) { object-fit: cover; }
+  .media-text__content { align-self: center; padding: clamp(var(--space-8), 7vw, var(--space-20)); }
+  .media-text--newsletter .media-text__content { padding: 0; }
+  .media-text--newsletter .media-text__media { min-height: 0; overflow: hidden; position: relative; }
+  .media-text--newsletter .media-text__media :global(picture) { inset: 0; position: absolute; }
+  .media-text--olive :global(p) { color: inherit; }
+  @media (max-width: 44rem) { .media-text { grid-template-columns: 1fr; } .media-text--reverse .media-text__media { order: 0; } .media-text__media { min-height: 18rem; } }
+</style>

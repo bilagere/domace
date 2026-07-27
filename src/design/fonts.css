@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "Safira March";
+  src: url("/fonts/SafiraMarch-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}

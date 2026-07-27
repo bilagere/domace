@@ -1,0 +1,18 @@
+---
+interface Props { name: string; date: string; avatar?: string; }
+const { name, date, avatar } = Astro.props;
+---
+
+<article class="comment-card">
+  {avatar ? <img src={avatar} alt="" /> : <span class="comment-card__avatar" aria-hidden="true">{name.charAt(0)}</span>}
+  <div><p class="comment-card__meta"><strong>{name}</strong><span>·</span>{date}</p><div class="comment-card__body"><slot /></div><a href="#antworten">Antworten</a></div>
+</article>
+
+<style>
+  .comment-card { display: grid; gap: var(--space-4); grid-template-columns: 2.75rem 1fr; }
+  img, .comment-card__avatar { aspect-ratio: 1; border-radius: 50%; object-fit: cover; width: 100%; }
+  .comment-card__avatar { align-items: center; background: var(--color-olive); color: var(--color-kalk); display: flex; justify-content: center; }
+  .comment-card__meta { display: flex; font-size: var(--text-sm); gap: var(--space-2); }
+  .comment-card__body :global(p) { color: var(--color-text); font-size: var(--text-sm); margin-top: var(--space-2); }
+  a { color: var(--color-terracotta); display: inline-block; font-size: var(--text-xs); font-weight: 700; margin-top: var(--space-2); text-decoration: none; }
+</style>

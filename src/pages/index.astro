@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EditorialHero from "../components/layout/EditorialHero.astro";
+import ArticleCard from "../components/ui/ArticleCard.astro";
+import Button from "../components/ui/Button.astro";
+import MediaText from "../components/ui/MediaText.astro";
+import NewsletterSignup from "../components/ui/NewsletterSignup.astro";
+import QuoteBanner from "../components/ui/QuoteBanner.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import TopicCard from "../components/ui/TopicCard.astro";
+import hero from "../assets/images/hero_homepage.png";
+import together from "../assets/images/together.png";
+import enjoy from "../assets/images/enjoy.png";
+import arrive from "../assets/images/ankommen_homepage.png";
+import organize from "../assets/images/organize.png";
+import celebrate from "../assets/images/celebrate.png";
+import familyLife from "../assets/images/entspanntes-familienleben.png";
+import focaccia from "../assets/images/focaccia.png";
+import newsletter from "../assets/images/newsletter-feature.png";
+import author from "../assets/images/Mara_Lukic.png";
+import quote from "../assets/images/quote-home.png";
+
+const images = {
+  hero,
+  together,
+  enjoy,
+  arrive,
+  organize,
+  celebrate,
+  familyLife,
+  focaccia,
+  planner: organize,
+  newsletter,
+  author,
+  quote,
+};
+
+const topics = [
+  { title: "Ankommen", subtitle: "Für ein Zuhause, das gut tut.", description: "Ideen für Zuhause, Garten und kleine Projekte, die Wärme, Ruhe und Persönlichkeit in den Alltag bringen.", href: "/ankommen", icon: "leaf" as const, image: images.arrive },
+  { title: "Genießen", subtitle: "Für Mahlzeiten, die verbinden.", description: "Von Familienküche über Brot bis zur Kaffeepause – für alle, die gutes Essen als Teil eines schönen Alltags sehen.", href: "/geniessen", icon: "cooking-pot" as const, image: images.enjoy },
+  { title: "Ordnen", subtitle: "Für einen Alltag, der leichter wird.", description: "Pläne, Routinen und einfache Systeme, die den Kopf entlasten und Zeit für das Wesentliche schaffen.", href: "/ordnen", icon: "list-check" as const, image: images.organize },
+  { title: "Zusammen", subtitle: "Für Beziehungen, die tragen.", description: "Alles was uns verbindet: Familie, Partnerschaft, Freundschaften und die Gedanken, die das Leben mit Kindern mit sich bringt.", href: "/zusammen", icon: "users" as const, image: images.together },
+  { title: "Feiern", subtitle: "Für Erinnerungen, die bleiben.", description: "Jahreszeiten, Feste und Rituale, die Erinnerungen schaffen und den Alltag ein bisschen schöner machen.", href: "/feiern", icon: "cake" as const, image: images.celebrate },
+];
+
+const newestPosts = [
+  { title: "Die 10 Dinge, die unser Familienleben ruhiger gemacht haben", excerpt: "Kleine Veränderungen, die einen großen Unterschied machen.", category: "Artikel", image: images.familyLife, href: "/ordnen/familienleben-ruhiger" },
+  { title: "Focaccia mit Rosmarin und Oliven", excerpt: "Außen knusprig, innen weich – unser Familienrezept, das immer geht.", category: "Rezept", image: images.focaccia, href: "/geniessen/focaccia", duration: "1 Std. 15 Min.", servings: "4 Portionen" },
+  { title: "Unser Wochenplan: So behalten wir den Überblick", excerpt: "Ein simples System, das uns durch die Woche trägt.", category: "Artikel", image: images.planner, href: "/ordnen/wochenplan" },
+];
+---
+
+<BaseLayout title="Domaće – Für das gute Familienleben." footerGallery={[images.arrive, images.newsletter, images.enjoy]}>
+  <EditorialHero variant="homepage" showTitleIcon={false}
+    eyebrow="Schön, dass du da bist."
+    title={`Weniger müssen.
+Mehr gemeinsam leben.`}
+    description="Ehrliche Gedanken, einfache Rezepte und praktische Ideen für einen Alltag mit mehr Ruhe, Genuss und gemeinsamer Zeit."
+    image={images.hero}
+    imageAlt="Heller Esstisch mit Blumen und Geschirr"
+    cta={{ label: "Domaće entdecken", href: "#neu" }}
+  />
+
+  <section class="section topic-section" aria-label="Domaće Themen">
+    <div class="topic-grid">
+      {topics.map((topic) => <TopicCard {...topic} />)}
+    </div>
+  </section>
+
+  <section class="section latest-section" id="neu" aria-labelledby="newest-heading">
+    <div class="section__heading-row">
+      <SectionHeading><span id="newest-heading">Neu auf Domaće</span></SectionHeading>
+      <Button href="/beitraege" variant="text" icon>Alle Beiträge ansehen</Button>
+    </div>
+    <div class="article-grid">
+      {newestPosts.map((post) => <ArticleCard {...post} />)}
+    </div>
+  </section>
+
+  <section class="newsletter-feature" aria-label="Newsletter">
+    <MediaText image={images.newsletter} imageAlt="Kaffeetasse auf einem hellen Holztisch" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact title="Schönes für den Alltag." description="Erhalte regelmäßig neue Beiträge, Rezepte und Ideen für das gute Familienleben direkt in dein Postfach." />
+    </MediaText>
+  </section>
+
+  <section class="quote-feature" aria-label="Leitsatz">
+    <QuoteBanner image={images.quote} imageAlt="Warmes Zuhause in sanften Pflaumen- und Erdtönen">
+      Für ein Familienleben,<br />an das man sich gerne erinnert.
+    </QuoteBanner>
+  </section>
+
+  <section class="author-section">
+    <MediaText image={images.author} imageAlt="Porträt von Mara mit einer Tasse" reverse>
+      <SectionHeading eyebrow="Willkommen bei Domaće">Ich bin Mara.</SectionHeading>
+      <div class="author-section__copy">
+        <p>Mama von zwei Mädchen, Ehefrau, Hausfrau, Gärtnerin, Bäckerin, Managerin, Genussmensch und noch vieles mehr. Domaće ist mein Herzensprojekt. Hier sammle ich Rezepte, Routinen, Ideen und kleine Rituale, die unseren Familienalltag leichter, schöner und entspannter machen.</p>
+        <p>Wenn auch du dir mehr Leichtigkeit im Alltag wünschst, bist du hier genau richtig. Ich freue mich, wenn du Teil der Domaće-Community wirst.</p>
+      </div>
+      <Button href="/willkommen" icon>Mehr über mich</Button>
+    </MediaText>
+  </section>
+</BaseLayout>
+
+<style>
+  .section { margin-inline: auto; max-width: var(--content-width); padding: var(--space-20) var(--page-gutter); }
+  .topic-section, .latest-section { padding-block: 0; }
+  .topic-section, .latest-section, .newsletter-feature, .quote-feature, .author-section { margin-top: var(--space-12); }
+  :global(.latest-section .section-heading h2), :global(.author-section .section-heading h2) { font-size: var(--text-home-heading); }
+  .topic-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .section__heading-row { align-items: end; display: flex; justify-content: space-between; margin-bottom: var(--space-8); }
+  .article-grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  :global(.site-footer) { margin-top: var(--space-12); }
+  .author-section__copy { font-size: var(--text-lg); margin: var(--space-6) 0; max-width: 36rem; }
+  .author-section__copy p + p { margin-top: var(--space-4); }
+  @media (max-width: 64rem) { .topic-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 46rem) { .article-grid { grid-template-columns: 1fr; } .section__heading-row { align-items: flex-start; flex-direction: column; gap: var(--space-4); } }
+  @media (max-width: 34rem) { .topic-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

@@ -1,0 +1,25 @@
+---
+import Icon from "./Icon.astro";
+
+type IconName = "clock" | "users" | "leaf";
+interface Item { icon: IconName; label: string; value?: string; }
+interface Props { items: Item[]; }
+const { items } = Astro.props;
+---
+
+<dl class="meta-list">
+  {items.map((item) => (
+    <div>
+      <dt><Icon name={item.icon} size={18} /></dt>
+      <dd>{item.label}{item.value && <><br /><strong>{item.value}</strong></>}</dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .meta-list { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-6); margin: 0; }
+  .meta-list div { align-items: center; display: flex; gap: var(--space-2); }
+  dt { color: var(--color-olive-dark); display: flex; }
+  dd { color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; }
+  strong { color: var(--color-text); font-weight: 500; }
+</style>

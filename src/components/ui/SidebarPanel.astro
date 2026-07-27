@@ -1,0 +1,25 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  tone?: "kalk" | "olive" | "plum";
+}
+const { eyebrow, title, tone = "kalk" } = Astro.props;
+---
+
+<section class:list={["sidebar-panel", `sidebar-panel--${tone}`]}>
+  {eyebrow && <p class="sidebar-panel__eyebrow">{eyebrow}</p>}
+  {title && <h2>{title}</h2>}
+  <div class="sidebar-panel__content"><slot /></div>
+</section>
+
+<style>
+  .sidebar-panel { background: var(--color-surface-muted); padding: var(--space-6); }
+  .sidebar-panel--olive { background: var(--color-olive-dark); color: var(--color-kalk); }
+  .sidebar-panel--plum { background: var(--color-pflaume); color: var(--color-kalk); }
+  .sidebar-panel__eyebrow { color: var(--color-terracotta); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
+  .sidebar-panel--olive .sidebar-panel__eyebrow, .sidebar-panel--plum .sidebar-panel__eyebrow { color: var(--color-gold); }
+  h2 { font-size: var(--text-xl); margin-top: var(--space-2); }
+  .sidebar-panel__content { margin-top: var(--space-4); }
+  .sidebar-panel--olive :global(p), .sidebar-panel--plum :global(p) { color: inherit; }
+</style>
