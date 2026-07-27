@@ -1,4 +1,6 @@
 ---
+import "@fontsource-variable/nunito";
+import "@fontsource-variable/nunito/wght-italic.css";
 import "../design/global.css";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
@@ -31,8 +33,9 @@ const {
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
     <SiteHeader activePath={activePath} />
-    <main><slot /></main>
+    <main id="main-content"><slot /></main>
     <SiteFooter gallery={footerGallery} />
   </body>
 </html>
