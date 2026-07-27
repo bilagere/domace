@@ -8,7 +8,15 @@ const { title, subtitle, description, additionalDescription, href, icon, image }
 ---
 
 <article class="topic-card">
-  {image && <OptimizedImage src={image} alt="" widths={[240, 360, 480, 640]} sizes="(max-width: 544px) 50vw, (max-width: 1024px) 33vw, 20vw" />}
+  {image && (
+    <OptimizedImage
+      class="topic-card__image"
+      src={image}
+      alt=""
+      widths={[240, 360, 480, 640]}
+      sizes="(max-width: 544px) 50vw, (max-width: 1024px) 33vw, 20vw"
+    />
+  )}
   <div class="topic-card__body">
     <div class="topic-card__heading">
       <span class="topic-card__icon"><Icon name={icon} size={28} /></span>
@@ -23,8 +31,8 @@ const { title, subtitle, description, additionalDescription, href, icon, image }
 
 <style>
   .topic-card { display: flex; flex-direction: column; min-width: 0; }
-  :global(picture), :global(img) { aspect-ratio: 1; width: 100%; }
-  :global(img) { object-fit: cover; }
+  .topic-card :global(picture.topic-card__image) { aspect-ratio: 1; flex: 0 0 auto; overflow: hidden; width: 100%; }
+  .topic-card :global(picture.topic-card__image img) { height: 100%; object-fit: cover; width: 100%; }
   .topic-card__body { display: flex; flex: 1; flex-direction: column; padding-top: var(--space-4); }
   .topic-card__heading { align-items: center; display: flex; gap: var(--space-3); min-width: 0; }
   .topic-card__icon { color: var(--color-olive-dark); display: flex; flex: 0 0 auto; transform: translateY(-0.2rem); }
