@@ -9,13 +9,15 @@ const { title, subtitle, description, additionalDescription, href, icon, image }
 
 <article class="topic-card">
   {image && (
-    <OptimizedImage
-      class="topic-card__image"
-      src={image}
-      alt=""
-      widths={[240, 360, 480, 640]}
-      sizes="(max-width: 544px) 50vw, (max-width: 1024px) 33vw, 20vw"
-    />
+    <div class="topic-card__media">
+      <OptimizedImage
+        class="topic-card__image"
+        src={image}
+        alt=""
+        widths={[240, 360, 480, 640]}
+        sizes="(max-width: 544px) 50vw, (max-width: 1024px) 33vw, 20vw"
+      />
+    </div>
   )}
   <div class="topic-card__body">
     <div class="topic-card__heading">
@@ -31,8 +33,10 @@ const { title, subtitle, description, additionalDescription, href, icon, image }
 
 <style>
   .topic-card { display: flex; flex-direction: column; min-width: 0; }
-  .topic-card :global(picture.topic-card__image) { aspect-ratio: 1; flex: 0 0 auto; overflow: hidden; width: 100%; }
-  .topic-card :global(picture.topic-card__image img) { height: 100%; object-fit: cover; width: 100%; }
+  .topic-card__media { aspect-ratio: 1; flex: 0 0 auto; min-width: 0; overflow: hidden; position: relative; width: 100%; }
+  .topic-card__media :global(picture.topic-card__image),
+  .topic-card__media :global(picture.topic-card__image img) { height: 100%; inset: 0; position: absolute; width: 100%; }
+  .topic-card__media :global(picture.topic-card__image img) { object-fit: cover; }
   .topic-card__body { display: flex; flex: 1; flex-direction: column; padding-top: var(--space-4); }
   .topic-card__heading { align-items: center; display: flex; gap: var(--space-3); min-width: 0; }
   .topic-card__icon { color: var(--color-olive-dark); display: flex; flex: 0 0 auto; transform: translateY(-0.2rem); }
