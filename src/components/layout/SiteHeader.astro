@@ -15,22 +15,57 @@ interface Props { activePath?: string; }
 const { activePath } = Astro.props;
 ---
 
-<header class="site-header">
+<header class="site-header" data-site-header>
   <div class="site-header__inner">
     <a class="brand" href="/" aria-label="Domaće – Startseite">
       <img class="brand__wordmark" src="/images/wordmark_domace.png" alt="Domaće" />
       <span class="brand__tagline">ein Stück Zuhause.</span>
     </a>
-    <nav class="site-nav" aria-label="Hauptnavigation">
+    <nav class="site-nav" id="primary-navigation" data-open="false" aria-label="Hauptnavigation">
       <ul>
         {navigation.map((item) => (
           <li><a class:list={{ "is-active": item.href === activePath }} href={item.href} aria-current={item.href === activePath ? "page" : undefined}>{item.label}</a></li>
         ))}
       </ul>
     </nav>
-    <a class="site-header__search" href="/suche" aria-label="Suche öffnen"><Icon name="search" size={20} /></a>
+    <div class="site-header__actions">
+      <a class="site-header__search" href="/suche" aria-label="Suche öffnen"><Icon name="search" size={20} /></a>
+      <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menü öffnen">
+        <span class="menu-toggle__open"><Icon name="menu" size={22} /></span>
+        <span class="menu-toggle__close"><Icon name="x" size={22} /></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const toggle = header?.querySelector<HTMLButtonElement>(".menu-toggle");
+  const navigation = header?.querySelector<HTMLElement>(".site-nav");
+
+  if (header && toggle && navigation) {
+    header.dataset.menuReady = "true";
+
+    const closeMenu = (restoreFocus = false) => {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Menü öffnen");
+      navigation.dataset.open = "false";
+      if (restoreFocus) toggle.focus();
+    };
+
+    toggle.addEventListener("click", () => {
+      const willOpen = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(willOpen));
+      toggle.setAttribute("aria-label", willOpen ? "Menü schließen" : "Menü öffnen");
+      navigation.dataset.open = String(willOpen);
+    });
+
+    navigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => closeMenu()));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") closeMenu(true);
+    });
+  }
+</script>
 
 <style>
   .site-header { background: var(--color-surface); border-bottom: var(--divider-thickness) solid var(--color-divider); }
@@ -44,7 +79,27 @@ const { activePath } = Astro.props;
   .site-nav a::after { background: var(--color-terracotta); bottom: 0; content: ""; height: 2px; left: 0; position: absolute; transform: scaleX(0); transform-origin: left; transition: transform var(--transition-base); width: 100%; }
   .site-nav a:hover::after, .site-nav a.is-active::after { transform: scaleX(1); }
   .site-nav a.is-active { color: var(--color-terracotta); }
-  .site-header__search { color: var(--color-text); justify-self: end; }
-  @media (max-width: 60rem) { .site-header__inner { grid-template-columns: 1fr auto; } .site-nav { grid-column: 1 / -1; grid-row: 2; justify-self: start; max-width: 100%; overflow-x: auto; } .site-nav ul { width: max-content; } }
-  @media (max-width: 34rem) { .site-header__inner { min-height: auto; } .brand__tagline { font-size: 0.68rem; } }
+  .site-header__actions { align-items: center; display: flex; gap: var(--space-2); justify-self: end; }
+  .site-header__search { align-items: center; color: var(--color-text); display: inline-flex; justify-content: center; min-height: var(--space-12); min-width: var(--space-12); }
+  .menu-toggle { align-items: center; background: transparent; border: 0; color: var(--color-text); cursor: pointer; display: none; justify-content: center; min-height: var(--space-12); min-width: var(--space-12); padding: 0; }
+  .menu-toggle__close { display: none; }
+  .menu-toggle[aria-expanded="true"] .menu-toggle__open { display: none; }
+  .menu-toggle[aria-expanded="true"] .menu-toggle__close { display: inline-flex; }
+  .site-header__search:hover, .menu-toggle:hover { color: var(--color-terracotta); }
+  .site-header__search:focus-visible, .menu-toggle:focus-visible, .site-nav a:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+
+  @media (max-width: 60rem) {
+    .site-header__inner { gap: var(--space-3); grid-template-columns: minmax(0, 1fr) auto; min-height: auto; }
+    .site-header__actions { grid-column: 2; grid-row: 1; }
+    .menu-toggle { display: inline-flex; }
+    .site-nav { background: var(--color-surface); grid-column: 1 / -1; grid-row: 2; justify-self: stretch; width: 100%; }
+    .site-nav[data-open="false"] { display: none; }
+    .site-nav ul { display: grid; gap: 0; width: 100%; }
+    .site-nav li + li { border-top: var(--divider-thickness) solid var(--color-divider); }
+    .site-nav a { padding: var(--space-4) 0; }
+  }
+
+  @media (max-width: 34rem) {
+    .brand__tagline { font-size: 0.68rem; }
+  }
 </style>

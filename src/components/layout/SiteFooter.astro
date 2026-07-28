@@ -13,7 +13,6 @@ const categories = [
 const information = [
   { label: "Willkommen", href: "/willkommen" },
   { label: "Post", href: "/post" },
-  { label: "Kontakt", href: "/kontakt" },
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
 ];
@@ -26,25 +25,30 @@ const { gallery = [] } = Astro.props;
     <div class="site-footer__brand">
       <img class="site-footer__mark" src="/images/logo_c.png" alt="Domaće" />
       <p>Domaće ist ein Ort für alle, die das gute Familienleben lieben. Danke, dass du hier bist.</p>
-      <div class="site-footer__social" aria-hidden="true">
-        <span><Icon name="instagram" size={16} /></span><span><Icon name="pin" size={16} /></span><span><Icon name="mail" size={16} /></span>
+      <div class="site-footer__social" aria-label="Domaće auf Social Media und per E-Mail">
+        <a href="https://www.instagram.com/domace.studio?igsh=MTM1cXU0YTUzYno5Yg==" aria-label="Domaće auf Instagram"><Icon name="instagram" size={16} /></a>
+        <a href="https://www.pinterest.com/" aria-label="Domaće auf Pinterest"><Icon name="pin" size={16} /></a>
+        <a href="mailto:hallo@domace.studio" aria-label="E-Mail an hallo@domace.studio"><Icon name="mail" size={16} /></a>
       </div>
     </div>
     <nav aria-label="Kategorien"><p class="site-footer__label">Kategorien</p><ul>{categories.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
     <nav aria-label="Informationen"><p class="site-footer__label">Informationen</p><ul>{information.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
     {gallery.length > 0 && (
-      <div class="site-footer__gallery">
-        {gallery.slice(0, 3).map((image) => (
-          <div class="site-footer__gallery-item">
-            <OptimizedImage
-              class="site-footer__gallery-image"
-              src={image}
-              alt=""
-              widths={[160, 240, 320]}
-              sizes="(max-width: 768px) 96px, 10vw"
-            />
-          </div>
-        ))}
+      <div class="site-footer__instagram">
+        <p class="site-footer__label">Neues auf Instagram</p>
+        <div class="site-footer__gallery">
+          {gallery.slice(0, 3).map((image, index) => (
+            <a class="site-footer__gallery-item" href="https://www.instagram.com/domace.studio?igsh=MTM1cXU0YTUzYno5Yg==" aria-label={`Instagram-Beitrag ${index + 1} ansehen`}>
+              <OptimizedImage
+                class="site-footer__gallery-image"
+                src={image}
+                alt=""
+                widths={[160, 240, 320]}
+                sizes="(max-width: 768px) 96px, 10vw"
+              />
+            </a>
+          ))}
+        </div>
       </div>
     )}
   </div>
@@ -62,12 +66,14 @@ const { gallery = [] } = Astro.props;
   li a { color: var(--color-text); font-size: var(--text-sm); text-decoration: none; }
   li a:hover { color: var(--color-terracotta); }
   .site-footer__social { display: flex; gap: var(--space-3); grid-column: 2; }
-  .site-footer__social span { align-items: center; color: var(--color-text); display: flex; }
+  .site-footer__social a { align-items: center; color: var(--color-text); display: flex; padding: var(--space-1); }
+  .site-footer__social a:hover { color: var(--color-terracotta); }
+  .site-footer__instagram { min-width: 0; }
   .site-footer__gallery { align-items: start; display: grid; gap: var(--space-2); grid-template-columns: repeat(3, minmax(0, 1fr)); min-width: 0; }
   .site-footer__gallery-item { aspect-ratio: 1; min-width: 0; overflow: hidden; position: relative; width: 100%; }
   .site-footer__bottom { align-items: center; background: var(--color-olive-dark); color: var(--color-kalk); display: flex; font-size: var(--text-xs); justify-content: space-between; padding: var(--space-3) max(var(--page-gutter), calc((100% - var(--content-width)) / 2)); }
   .site-footer__bottom span { align-items: center; display: flex; gap: var(--space-2); }
-  @media (max-width: 48rem) { .site-footer__main { grid-template-columns: 1fr 1fr; } .site-footer__brand { grid-column: 1 / -1; } .site-footer__gallery { grid-column: 1 / -1; max-width: 18rem; } }
+  @media (max-width: 48rem) { .site-footer__main { grid-template-columns: 1fr 1fr; } .site-footer__brand { grid-column: 1 / -1; } .site-footer__instagram { grid-column: 1 / -1; max-width: 18rem; } }
   @media (max-width: 28rem) { .site-footer__main { grid-template-columns: 1fr; } .site-footer__bottom { align-items: flex-start; flex-direction: column; gap: var(--space-2); } }
 </style>
 

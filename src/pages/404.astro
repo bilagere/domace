@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/ui/PageIntro.astro";
+import PageSection from "../components/ui/PageSection.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<BaseLayout title="Seite nicht gefunden – Domaće" description="Die gesuchte Seite konnte nicht gefunden werden.">
+  <PageIntro
+    eyebrow="Fehler 404"
+    title="Hier ist gerade nichts."
+    description="Vielleicht wurde die Seite verschoben oder der Link führt an den falschen Ort. Auf der Startseite findest du zurück zu allen aktuellen Inhalten."
+    align="center"
+  />
+  <PageSection width="narrow" spacing="generous">
+    <div class="not-found">
+      <p>Mach es dir nicht unnötig schwer – ein Klick bringt dich wieder nach Hause.</p>
+      <Button href="/" icon>Zur Startseite</Button>
+    </div>
+  </PageSection>
+</BaseLayout>
+
+<style>
+  .not-found { text-align: center; }
+  .not-found p { color: var(--color-text-muted); font-size: var(--text-lg); margin-bottom: var(--space-6); }
+</style>

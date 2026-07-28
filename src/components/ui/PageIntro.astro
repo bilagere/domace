@@ -1,0 +1,37 @@
+---
+import Container from "./Container.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+}
+
+const { eyebrow, title, description, align = "left" } = Astro.props;
+---
+
+<header class:list={["page-intro", `page-intro--${align}`]}>
+  <Container width="reading">
+    <SectionHeading eyebrow={eyebrow} centered={align === "center"} as="h1">{title}</SectionHeading>
+    {description && <p class="page-intro__description">{description}</p>}
+  </Container>
+</header>
+
+<style>
+  .page-intro {
+    background: var(--color-surface-muted);
+    padding-block: var(--space-16);
+  }
+  .page-intro--center { text-align: center; }
+  .page-intro--center :global(.divider) { margin-inline: auto; }
+  .page-intro__description {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-5);
+    max-width: var(--content-narrow);
+  }
+  .page-intro--center .page-intro__description { margin-inline: auto; }
+</style>

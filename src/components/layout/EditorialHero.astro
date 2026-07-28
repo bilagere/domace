@@ -16,17 +16,23 @@ interface Props {
   badge?: string;
   variant?: "default" | "homepage";
   showTitleIcon?: boolean;
+  narrowContent?: boolean;
 }
 
-const { eyebrow, title, description, image, imageAlt = "", cta, accent = "terracotta", badge, variant = "default", showTitleIcon = true } = Astro.props;
+const { eyebrow, title, description, image, imageAlt = "", cta, accent = "terracotta", badge, variant = "default", showTitleIcon = true, narrowContent = false } = Astro.props;
+const hasDescriptionSlot = Astro.slots.has("description");
 ---
 
-<section class:list={["editorial-hero", `editorial-hero--${accent}`, `editorial-hero--${variant}`]}>
+<section class:list={["editorial-hero", `editorial-hero--${accent}`, `editorial-hero--${variant}`, { "editorial-hero--narrow-content": narrowContent }]}>
   <div class="editorial-hero__content">
     {eyebrow && <p class="editorial-hero__eyebrow">{eyebrow}</p>}
     <h1>{title}{showTitleIcon && <> <Icon name="heart" size={30} /></>}</h1>
     <div class="editorial-hero__rule"><Divider tone={accent === "olive" ? "olive" : "terracotta"} /></div>
-    {description && <p class="editorial-hero__description">{description}</p>}
+    {hasDescriptionSlot ? (
+      <div class="editorial-hero__description"><slot name="description" /></div>
+    ) : description && (
+      <p class="editorial-hero__description">{description}</p>
+    )}
     {cta && <Button href={cta.href}>{cta.label}</Button>}
   </div>
   <div class="editorial-hero__media">
@@ -50,6 +56,7 @@ const { eyebrow, title, description, image, imageAlt = "", cta, accent = "terrac
   h1 :global(svg) { color: var(--color-terracotta); display: inline-block; margin-left: var(--space-2); vertical-align: 0.08em; }
   .editorial-hero__rule { margin: var(--space-6) 0; }
   .editorial-hero__description { font-size: var(--text-lg); max-width: 31rem; white-space: pre-line; }
+  .editorial-hero__description :global(p + p) { margin-top: var(--space-4); }
   .editorial-hero__description + :global(.button) { margin-top: var(--space-6); }
   .editorial-hero__media { min-height: 100%; position: relative; }
   .editorial-hero__media :global(picture), .editorial-hero__media :global(img) { height: 100%; width: 100%; }
@@ -60,6 +67,8 @@ const { eyebrow, title, description, image, imageAlt = "", cta, accent = "terrac
   .editorial-hero--homepage { display: block; isolation: isolate; margin: 0 auto; max-width: 80rem; min-height: clamp(31rem, 43vw, 35rem); overflow: hidden; position: relative; }
   .editorial-hero--homepage::after { background: linear-gradient(90deg, var(--color-surface-muted) 0%, rgb(241 233 224 / 97%) 27%, rgb(241 233 224 / 72%) 47%, rgb(241 233 224 / 0%) 67%); content: ""; inset: 0; pointer-events: none; position: absolute; z-index: 1; }
   .editorial-hero--homepage .editorial-hero__content { max-width: none; padding: clamp(2.5rem, 5vw, 4.5rem); position: relative; width: 60%; z-index: 2; }
+  .editorial-hero--homepage.editorial-hero--narrow-content .editorial-hero__content { width: 52%; }
+  .editorial-hero--narrow-content .editorial-hero__description { max-width: calc(var(--content-narrow) - var(--space-24)); }
   .editorial-hero--homepage h1 { font-size: var(--text-home-heading); white-space: pre-line; }
   .editorial-hero--homepage .editorial-hero__media { inset: 0; position: absolute; z-index: 0; }
   .editorial-hero--homepage .editorial-hero__media :global(img) { object-position: right center; }

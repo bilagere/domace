@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/ui/PageIntro.astro";
+import PageSection from "../components/ui/PageSection.astro";
+import ArticleProse from "../components/ui/ArticleProse.astro";
+---
+
+<BaseLayout title="Datenschutz – Domaće" description="Informationen zum Datenschutz bei Domaće.">
+  <PageIntro eyebrow="Rechtliches" title="Datenschutz" description="Informationen darüber, wie auf dieser Website personenbezogene Daten verarbeitet werden." />
+  <PageSection width="reading" spacing="generous">
+    <div class="legal-draft" role="note">
+      <strong>Redaktioneller Entwurf:</strong> Die Erklärung muss vor Veröffentlichung anhand der tatsächlich eingesetzten Dienste rechtlich geprüft werden.
+    </div>
+    <ArticleProse>
+      <h2>1. Verantwortliche Stelle</h2>
+      <p>
+        Mara Lukić<br />
+        Hodlerweg 21<br />
+        6010 Kriens, Schweiz<br />
+        E-Mail: <span class="placeholder">hallo@domace.studio</span>
+      </p>
+
+      <h2>2. Bereitstellung der Website</h2>
+      <p>Beim Aufruf dieser Website werden technisch erforderliche Verbindungsdaten verarbeitet. Dazu können insbesondere IP-Adresse, Zeitpunkt des Zugriffs, aufgerufene Seite, übertragene Datenmenge, Browsertyp und Betriebssystem gehören. Die Verarbeitung dient der sicheren und zuverlässigen Bereitstellung der Website.</p>
+
+      <h2>3. Hosting</h2>
+      <p>Diese Website wird über Cloudflare bereitgestellt. Dabei können technisch notwendige Daten auf Systemen von Cloudflare verarbeitet werden. Vor Veröffentlichung sind die konkrete Vertragsgrundlage, der eingesetzte Tarif sowie gegebenenfalls Informationen zu Übermittlungen in Drittländer zu prüfen und hier zu ergänzen.</p>
+
+      <h2>4. Kontaktaufnahme</h2>
+      <p>Wenn du Kontakt aufnimmst, werden die von dir übermittelten Angaben zur Bearbeitung deiner Anfrage verarbeitet. Die Daten werden gelöscht, sobald sie für diesen Zweck nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+
+      <h2>5. Newsletter</h2>
+      <p>Der Newsletter ist derzeit noch nicht an einen Versanddienst angebunden. Vor seiner Aktivierung müssen der verwendete Anbieter, das Anmeldeverfahren, die Rechtsgrundlage, Widerrufsmöglichkeiten und mögliche Erfolgsmessungen ergänzt werden.</p>
+
+      <h2>6. Cookies und externe Dienste</h2>
+      <p>Aktuell sind keine optionalen Analyse-, Marketing- oder Social-Media-Dienste dokumentiert. Sobald solche Dienste eingebunden werden, muss diese Erklärung vor deren Aktivierung aktualisiert und gegebenenfalls eine Einwilligung eingeholt werden.</p>
+
+      <h2>7. Deine Rechte</h2>
+      <p>Im Rahmen der gesetzlichen Voraussetzungen hast du insbesondere Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Außerdem besteht ein Beschwerderecht bei einer zuständigen Datenschutzaufsichtsbehörde.</p>
+
+      <h2>8. Stand dieser Erklärung</h2>
+      <p>Stand: Juli 2026</p>
+    </ArticleProse>
+  </PageSection>
+</BaseLayout>
+
+<style>
+  .legal-draft {
+    background: var(--color-surface-muted);
+    border-left: 2px solid var(--color-action);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+    padding: var(--space-4);
+  }
+  .placeholder { color: var(--color-action); font-weight: var(--font-weight-semibold); }
+</style>

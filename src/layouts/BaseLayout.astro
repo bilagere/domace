@@ -1,10 +1,13 @@
 ---
-import "@fontsource-variable/nunito";
-import "@fontsource-variable/nunito/wght-italic.css";
+import "@fontsource-variable/manrope";
+
 import "../design/global.css";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
 import type { ImageMetadata } from "astro";
+import instagramOne from "../assets/images/ankommen_homepage.png";
+import instagramTwo from "../assets/images/newsletter-feature.png";
+import instagramThree from "../assets/images/enjoy.png";
 
 interface Props {
   title: string;
@@ -17,7 +20,7 @@ const {
   title,
   description = "Domaće – für das gute Familienleben.",
   activePath,
-  footerGallery,
+  footerGallery = [instagramOne, instagramTwo, instagramThree],
 } = Astro.props;
 ---
 

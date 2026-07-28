@@ -23,7 +23,7 @@
 
   /* Brand fonts are defined in fonts.css; the remaining entries are fallbacks. */
   --font-display: "Safira March", "Iowan Old Style", "Baskerville", Georgia, serif;
-  --font-sans: "Nunito", "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Manrope", "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
   --font-script: "Segoe Script", "Bradley Hand", cursive;
 
   --text-xs: 0.6875rem;
