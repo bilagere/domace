@@ -1,0 +1,107 @@
+---
+import Button from "./Button.astro";
+import OptimizedImage from "./OptimizedImage.astro";
+import instagramImage from "../../assets/images/instagram.png";
+
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<aside class="instagram-discussion" aria-labelledby="instagram-discussion-title">
+  <div class="instagram-discussion__copy">
+    <p class="instagram-discussion__eyebrow">Schon ausprobiert?</p>
+    <h2 id="instagram-discussion-title">Erzähl mir davon!</h2>
+    <Button href={href} variant="secondary" icon external>Auf Instagram mitreden</Button>
+  </div>
+  <div class="instagram-discussion__media">
+    <OptimizedImage
+      class="instagram-discussion__image"
+      src={instagramImage}
+      alt="Ein Domaće-Moment als Einladung zum Austausch auf Instagram"
+      widths={[640, 960, 1280, 1600]}
+      sizes="(max-width: 768px) 100vw, 50vw"
+    />
+  </div>
+</aside>
+
+<style>
+  .instagram-discussion {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .instagram-discussion__copy {
+    align-items: flex-start;
+    background: var(--color-olive-dark);
+    color: var(--color-kalk);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 24rem;
+    padding: clamp(var(--space-8), 7vw, var(--space-20));
+  }
+
+  .instagram-discussion__eyebrow {
+    color: var(--color-kalk-strong);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: inherit;
+    font-size: var(--text-2xl);
+    margin: var(--space-1) 0 0;
+  }
+
+
+  .instagram-discussion__copy :global(.button) {
+    margin-top: var(--space-8);
+  }
+
+  .instagram-discussion__media {
+    min-height: 24rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+
+  .instagram-discussion__media :global(.instagram-discussion__image) {
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .instagram-discussion__media :global(.instagram-discussion__image > img) {
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+  .instagram-discussion :global(.button--secondary) {
+    border-color: var(--color-kalk);
+    color: var(--color-kalk);
+  }
+
+  .instagram-discussion :global(.button--secondary:hover) {
+    background: var(--color-kalk);
+    color: var(--color-olive-dark);
+  }
+
+  @media (max-width: 48rem) {
+    .instagram-discussion {
+      grid-template-columns: 1fr;
+    }
+
+    .instagram-discussion__copy,
+    .instagram-discussion__media {
+      min-height: 24rem;
+    }
+  }
+</style>

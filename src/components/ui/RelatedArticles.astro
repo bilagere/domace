@@ -1,0 +1,31 @@
+---
+import ArticleCard from "./ArticleCard.astro";
+import SectionHeading from "./SectionHeading.astro";
+import type { ArticlePreview } from "../../types/content";
+
+interface Props {
+  items: ArticlePreview[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="related-articles">
+  <SectionHeading eyebrow="Lust auf mehr?">Das könnte dir auch gefallen.</SectionHeading>
+  <div class="related-articles__grid">
+    {items.slice(0, 3).map((item) => <ArticleCard {...item} />)}
+  </div>
+</div>
+
+<style>
+  .related-articles__grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 48rem) {
+    .related-articles__grid { grid-template-columns: 1fr; }
+  }
+</style>

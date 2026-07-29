@@ -1,0 +1,166 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentWithSidebar from "./ContentWithSidebar.astro";
+import ArticleLead from "../ui/ArticleLead.astro";
+import ArticleProse from "../ui/ArticleProse.astro";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import IngredientList from "../ui/IngredientList.astro";
+import InstagramDiscussion from "../ui/InstagramDiscussion.astro";
+import MediaText from "../ui/MediaText.astro";
+import NewsletterSignup from "../ui/NewsletterSignup.astro";
+import NumberedSteps from "../ui/NumberedSteps.astro";
+import PageSection from "../ui/PageSection.astro";
+import RelatedArticles from "../ui/RelatedArticles.astro";
+import SidebarPanel from "../ui/SidebarPanel.astro";
+import type { ImageMetadata } from "astro";
+import type { ArticlePreview } from "../../types/content";
+import newsletter from "../../assets/images/newsletter-geniessen.png";
+
+interface MetaItem { icon: "clock" | "users" | "leaf"; label: string; value?: string; }
+interface Props {
+  pageTitle: string;
+  description: string;
+  category: string;
+  title: string;
+  summary: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  imagePlaceholder?: string;
+  meta: MetaItem[];
+  ingredients: string[];
+  ingredientNote?: string;
+  ingredientNoteTitle?: string;
+  tipTitle: string;
+  tipText: string;
+  steps: string[];
+  relatedItems: ArticlePreview[];
+  instagramUrl?: string;
+}
+
+const {
+  pageTitle,
+  description,
+  category,
+  title,
+  summary,
+  image,
+  imageAlt = "",
+  imagePlaceholder,
+  meta,
+  ingredients,
+  ingredientNote,
+  ingredientNoteTitle = "Zutaten-Tipp",
+  tipTitle,
+  tipText,
+  steps,
+  relatedItems,
+  instagramUrl = "https://www.instagram.com/domace.studio/",
+} = Astro.props;
+---
+
+<BaseLayout title={pageTitle} description={description} activePath="/geniessen" footerFlush>
+  <Container>
+    <ArticleLead
+      eyebrow={category}
+      title={title}
+      summary={summary}
+      image={image}
+      imageAlt={imageAlt}
+      imagePlaceholder={imagePlaceholder}
+      meta={meta}
+    />
+  </Container>
+
+  <section class="recipe-tools" aria-label="Rezeptaktionen">
+    <Container>
+      <Button class="print-recipe">Rezept drucken</Button>
+      <Button href="/geniessen" variant="text" icon>Mehr aus der Domaće-Küche</Button>
+    </Container>
+  </section>
+
+  <section class="recipe-body" aria-label={`${title} Rezept`}>
+    <ContentWithSidebar asidePosition="start">
+      <Fragment slot="aside">
+        <div id="zutaten">
+          <IngredientList items={ingredients} />
+        </div>
+        <SidebarPanel eyebrow="Gut zu wissen" tone="olive">
+          {ingredientNote && (
+            <section class="recipe-tip">
+              <h2>{ingredientNoteTitle}</h2>
+              <p>{ingredientNote}</p>
+            </section>
+          )}
+          <section class="recipe-tip">
+            <h2>{tipTitle}</h2>
+            <p>{tipText}</p>
+          </section>
+        </SidebarPanel>
+      </Fragment>
+
+      <ArticleProse>
+        <div class="recipe-intro">
+          <slot name="intro" />
+        </div>
+        <div id="zubereitung">
+          <NumberedSteps steps={steps} />
+        </div>
+        <div class="recipe-article">
+          <slot />
+        </div>
+      </ArticleProse>
+    </ContentWithSidebar>
+  </section>
+
+
+  <section class="instagram-feature" aria-label="Dialog auf Instagram">
+    <InstagramDiscussion href={instagramUrl} />
+  </section>
+
+  <section class="newsletter-feature" aria-label="Newsletter">
+    <MediaText image={newsletter} imageAlt="Ein warmer Gruß aus der Domaće-Küche" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact eyebrow="Gruß aus der Küche" title="Rezepte & Ideen für deinen Alltag." description="Erhalte regelmäßig neue Lieblingsrezepte, saisonale Ideen und kleine Genussmomente direkt in dein Postfach" />
+    </MediaText>
+  </section>
+
+  <PageSection spacing="compact" label="Lust auf mehr" class="related-content">
+    <RelatedArticles items={relatedItems} />
+  </PageSection>
+
+  <script>
+    const printButton = document.querySelector<HTMLButtonElement>(".print-recipe");
+    printButton?.addEventListener("click", () => window.print());
+  </script>
+</BaseLayout>
+
+<style>
+  .recipe-tools { padding-block: var(--space-6); }
+  .recipe-tools :global(.container) { align-items: center; display: flex; flex-wrap: wrap; gap: var(--space-5); }
+  .recipe-body { padding-block: var(--space-8); }
+  .recipe-body :global(.content-layout__aside) { display: grid; gap: var(--space-8); }
+  .recipe-body :global(.article-prose > p:first-child) { font-size: var(--text-lg); }
+  .recipe-body :global(.numbered-steps) { margin-top: var(--space-12); }
+  .recipe-body :global(.recipe-tip + .recipe-tip) { border-top: var(--divider-thickness) solid rgb(246 242 236 / 35%); margin-top: var(--space-5); padding-top: var(--space-5); }
+  .recipe-body :global(.recipe-tip h2) { color: inherit; font-size: var(--text-lg); }
+  .recipe-body :global(.recipe-tip p) { margin-top: var(--space-3); }
+  .newsletter-feature { margin-top: var(--space-8); }
+  @media (max-width: 48rem) {
+    .recipe-body :global(.content-layout__aside) { border-bottom: var(--divider-thickness) solid var(--color-border); border-top: 0; order: 0; padding-bottom: var(--space-8); padding-top: 0; }
+  }
+  @media print {
+    :global(.site-header), :global(.site-footer), .recipe-tools, :global(.newsletter), :global(.related-content), .instagram-feature { display: none !important; }
+    :global(.article-lead) { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
+    :global(.article-lead__content) { padding: var(--space-5) var(--space-6) var(--space-5) 0; }
+    :global(.article-lead__media) { height: 7.5cm; min-height: 0; }
+    :global(.article-lead h1) { font-size: var(--text-xl); }
+    :global(.article-lead__summary) { font-size: var(--text-base); margin-top: var(--space-3); }
+    :global(.article-lead__meta) { display: none !important; }
+    .recipe-body { padding: var(--space-8) 0 0; }
+    .recipe-body :global(.content-layout) { display: grid; gap: var(--space-6); grid-template-columns: 15rem 1fr; max-width: none; padding: 0; }
+    .recipe-body :global(.sidebar-panel) { display: none; }
+    .recipe-intro, .recipe-article { display: none !important; }
+    .recipe-body :global(.numbered-steps) { margin-top: 0; }
+    .recipe-body :global(.numbered-steps h2) { margin-top: 0; }
+  }
+</style>

@@ -14,6 +14,7 @@ interface Props {
   description?: string;
   activePath?: string;
   footerGallery?: ImageMetadata[];
+  footerFlush?: boolean;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   description = "Domaće – für das gute Familienleben.",
   activePath,
   footerGallery = [instagramOne, instagramTwo, instagramThree],
+  footerFlush = false,
 } = Astro.props;
 ---
 
@@ -39,6 +41,6 @@ const {
     <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
     <SiteHeader activePath={activePath} />
     <main id="main-content"><slot /></main>
-    <SiteFooter gallery={footerGallery} />
+    <SiteFooter gallery={footerGallery} flush={footerFlush} />
   </body>
 </html>

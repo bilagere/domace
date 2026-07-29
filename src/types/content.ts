@@ -4,7 +4,7 @@ export type ArticlePreview = {
   title: string;
   excerpt: string;
   category: string;
-  image: ImageMetadata;
+  image?: ImageMetadata;
   href: string;
   date?: string;
   duration?: string;

@@ -16,11 +16,11 @@ const information = [
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
 ];
-interface Props { gallery?: ImageMetadata[]; }
-const { gallery = [] } = Astro.props;
+interface Props { gallery?: ImageMetadata[]; flush?: boolean; }
+const { gallery = [], flush = false } = Astro.props;
 ---
 
-<footer class="site-footer">
+<footer class:list={["site-footer", { "site-footer--flush": flush }]}>
   <div class="site-footer__main">
     <div class="site-footer__brand">
       <img class="site-footer__mark" src="/images/logo_c.png" alt="Domaće" />
@@ -57,6 +57,7 @@ const { gallery = [] } = Astro.props;
 
 <style>
   .site-footer { background: var(--color-surface-muted); margin-top: var(--space-12); }
+  .site-footer--flush { margin-top: 0; }
   .site-footer__main { display: grid; gap: var(--space-8); grid-template-columns: 1.5fr 0.75fr 0.75fr 1fr; margin: 0 auto; max-width: var(--content-width); padding: var(--space-12) var(--page-gutter) var(--space-6); }
   .site-footer__brand { align-content: start; display: grid; grid-template-columns: auto 1fr; gap: var(--space-3) var(--space-4); }
   .site-footer__mark { align-self: start; grid-row: span 2; max-height: 3rem; width: 2.4rem; }

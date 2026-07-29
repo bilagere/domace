@@ -5,12 +5,14 @@ import FormField from "./FormField.astro";
 import Icon from "./Icon.astro";
 
 interface Props {
+  eyebrow?: string;
   title?: string;
   description?: string;
   compact?: boolean;
 }
 
 const {
+  eyebrow = "Post für dich",
   title = "Schönes für den Alltag.",
   description = "Erhalte regelmäßig neue Beiträge, Rezepte und Ideen direkt in dein Postfach.",
   compact = false,
@@ -21,7 +23,7 @@ const {
   <div class="newsletter__copy">
     <span class="newsletter__icon"><Icon name="mail" size={34} /></span>
     <div>
-      <p class="newsletter__eyebrow">Post für dich</p>
+      <p class="newsletter__eyebrow">{eyebrow}</p>
       <h2 id="newsletter-title">{title}</h2>
       <p>{description}</p>
     </div>

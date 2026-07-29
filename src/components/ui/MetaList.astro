@@ -3,11 +3,11 @@ import Icon from "./Icon.astro";
 
 type IconName = "clock" | "users" | "leaf";
 interface Item { icon: IconName; label: string; value?: string; }
-interface Props { items: Item[]; }
-const { items } = Astro.props;
+interface Props { items: Item[]; compact?: boolean; }
+const { items, compact = false } = Astro.props;
 ---
 
-<dl class="meta-list">
+<dl class:list={["meta-list", { "meta-list--compact": compact }]}>
   {items.map((item) => (
     <div>
       <dt><Icon name={item.icon} size={18} /></dt>
@@ -17,9 +17,19 @@ const { items } = Astro.props;
 </dl>
 
 <style>
-  .meta-list { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-6); margin: 0; }
-  .meta-list div { align-items: center; display: flex; gap: var(--space-2); }
-  dt { color: var(--color-olive-dark); display: flex; }
+  .meta-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); margin: 0; }
+  .meta-list div { align-items: center; display: flex; gap: var(--space-3); min-width: 0; padding-inline: var(--space-5); }
+  .meta-list div:first-child { padding-left: 0; }
+  .meta-list div + div { border-left: var(--divider-thickness) solid var(--color-border); }
+  .meta-list--compact { display: flex; flex-wrap: nowrap; }
+  .meta-list--compact div { flex: 0 1 auto; padding-inline: var(--space-3); }
+  dt { color: var(--color-olive-dark); display: flex; flex: 0 0 auto; }
   dd { color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; }
   strong { color: var(--color-text); font-weight: 500; }
+  @media (max-width: 40rem) {
+    .meta-list:not(.meta-list--compact) { grid-template-columns: 1fr; }
+    .meta-list:not(.meta-list--compact) div { padding: var(--space-4) 0; }
+    .meta-list:not(.meta-list--compact) div:first-child { padding-top: 0; }
+    .meta-list:not(.meta-list--compact) div + div { border-left: 0; border-top: var(--divider-thickness) solid var(--color-border); }
+  }
 </style>

@@ -6,15 +6,16 @@ interface Props {
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "text";
   icon?: boolean;
+  external?: boolean;
   class?: string;
 }
 
-const { href, type = "button", variant = "primary", icon = false, class: className } = Astro.props;
+const { href, type = "button", variant = "primary", icon = false, class: className, external = false } = Astro.props;
 const classes = `button button--${variant} ${className ?? ""}`;
 ---
 
 {href ? (
-  <a class={classes} href={href}>
+  <a class={classes} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
     <slot />
     {icon && <Icon name="arrow-right" size={16} />}
   </a>

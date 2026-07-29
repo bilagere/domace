@@ -1,0 +1,53 @@
+---
+import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import { relatedContent } from "../../data/relatedContent";
+import hugoEistee from "../../assets/images/geniessen-hugo-eistee.png";
+
+const ingredients = [
+  "1 l Wasser",
+  "5 Beutel Pfefferminztee",
+  "200 ml Holunderblütensirup",
+  "2 Bio-Limetten",
+  "4 Stängel frische Minze",
+  "Eiswürfel",
+];
+
+const steps = [
+  "Das Wasser aufkochen und in eine hitzebeständige Kanne gießen. Die Teebeutel hineingeben und den Pfefferminztee etwa acht Minuten ziehen lassen.",
+  "Die Teebeutel entfernen und den Tee vollständig abkühlen lassen. Anschließend bis zum Servieren kalt stellen.",
+  "Die Limetten heiß abwaschen, abtrocknen und in dünne Scheiben oder kleine Spalten schneiden.",
+  "Den Holunderblütensirup in den kalten Pfefferminztee rühren. Je nach Süße des Sirups zunächst etwas weniger verwenden und abschmecken.",
+  "Eiswürfel und Limetten auf vier Gläser verteilen. Den Hugo-Eistee eingießen und jedes Glas mit frischer Minze garnieren.",
+];
+---
+
+<RecipeLayout
+  pageTitle="Hugo-Eistee – Domaće"
+  description="Alkoholfreier Hugo-Eistee mit Pfefferminztee, Holunderblütensirup, Limette und frischer Minze."
+  category="Spaßgetränk"
+  title="Hugo-Eistee"
+  summary="Kühl, minzig und angenehm süß: Dieser alkoholfreie Hugo-Eistee bringt Holunderblüte, Limette und Pfefferminze in ein Glas und ist schnell für Gäste vorbereitet."
+  image={hugoEistee}
+  imageAlt="Hugo-Eistee mit Limette, Minze und Eiswürfeln"
+  meta={[
+    { icon: "clock", label: "Arbeitszeit", value: "15 Minuten" },
+    { icon: "clock", label: "Kühlzeit", value: "ca. 1 Stunde" },
+    { icon: "users", label: "Ergibt", value: "4 Gläser" },
+  ]}
+  ingredients={ingredients}
+  ingredientNote="Holunderblütensirup kann unterschiedlich süß sein. Taste dich deshalb beim Mischen langsam an die Menge heran."
+  tipTitle="Gut vorzubereiten."
+  tipText="Bereite den Tee schon am Morgen zu und stelle ihn kalt. Limette, Minze und Eis kommen erst kurz vor dem Servieren ins Glas."
+  steps={steps}
+  relatedItems={relatedContent.hugoEistee}
+>
+  <Fragment slot="intro">
+    <p>Hugo-Eistee ist die unkomplizierte, alkoholfreie Antwort auf warme Nachmittage: vertrauter Pfefferminztee trifft auf Holunderblüte, Limette und viel Eis.</p>
+    <h2>Ein Sommergetränk für alle</h2>
+    <p>Die große Kanne lässt sich entspannt vorbereiten und passt ebenso gut zum Familienessen wie zu einer Gartenrunde mit Gästen. Wer es weniger süß mag, nimmt etwas weniger Sirup und gibt einen Schuss Mineralwasser dazu.</p>
+  </Fragment>
+
+  <h2>Frisch servieren</h2>
+  <p>Gib Eis und Limette erst unmittelbar vor dem Einschenken in die Gläser. So bleibt der Eistee kalt, die Minze frisch und der Geschmack klar.</p>
+  <blockquote>Manchmal braucht ein Sommertag nur eine kalte Kanne in der Mitte des Tisches.</blockquote>
+</RecipeLayout>
