@@ -2,24 +2,29 @@
 import Button from "./Button.astro";
 import OptimizedImage from "./OptimizedImage.astro";
 import instagramImage from "../../assets/images/instagram.png";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   href: string;
+  eyebrow?: string;
+  title?: string;
+  tone?: "olive" | "plum";
+  image?: ImageMetadata;
 }
 
-const { href } = Astro.props;
+const { href, eyebrow = "Schon ausprobiert?", title = "Erzähl mir davon!", tone = "olive", image = instagramImage } = Astro.props;
 ---
 
-<aside class="instagram-discussion" aria-labelledby="instagram-discussion-title">
+<aside class:list={["instagram-discussion", `instagram-discussion--${tone}`]} aria-labelledby="instagram-discussion-title">
   <div class="instagram-discussion__copy">
-    <p class="instagram-discussion__eyebrow">Schon ausprobiert?</p>
-    <h2 id="instagram-discussion-title">Erzähl mir davon!</h2>
+    <p class="instagram-discussion__eyebrow">{eyebrow}</p>
+    <h2 id="instagram-discussion-title">{title}</h2>
     <Button href={href} variant="secondary" icon external>Auf Instagram mitreden</Button>
   </div>
   <div class="instagram-discussion__media">
     <OptimizedImage
       class="instagram-discussion__image"
-      src={instagramImage}
+      src={image}
       alt="Ein Domaće-Moment als Einladung zum Austausch auf Instagram"
       widths={[640, 960, 1280, 1600]}
       sizes="(max-width: 768px) 100vw, 50vw"
@@ -33,9 +38,15 @@ const { href } = Astro.props;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+
+  .instagram-discussion--plum {
+    --discussion-background: var(--color-pflaume);
+    --discussion-hover-color: var(--color-pflaume);
+  }
+
   .instagram-discussion__copy {
     align-items: flex-start;
-    background: var(--color-olive-dark);
+    background: var(--discussion-background, var(--color-olive-dark));
     color: var(--color-kalk);
     display: flex;
     flex-direction: column;
@@ -91,7 +102,7 @@ const { href } = Astro.props;
 
   .instagram-discussion :global(.button--secondary:hover) {
     background: var(--color-kalk);
-    color: var(--color-olive-dark);
+    color: var(--discussion-hover-color, var(--color-olive-dark));
   }
 
   @media (max-width: 48rem) {

@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleLead from "../ui/ArticleLead.astro";
+import ArticleProse from "../ui/ArticleProse.astro";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import InstagramDiscussion from "../ui/InstagramDiscussion.astro";
+import MediaText from "../ui/MediaText.astro";
+import NewsletterSignup from "../ui/NewsletterSignup.astro";
+import ContentWithSidebar from "./ContentWithSidebar.astro";
+import PageSection from "../ui/PageSection.astro";
+import RelatedArticles from "../ui/RelatedArticles.astro";
+import SidebarPanel from "../ui/SidebarPanel.astro";
+import type { ImageMetadata } from "astro";
+import type { ArticlePreview } from "../../types/content";
+import newsletterImage from "../../assets/images/newsletter-journal.png";
+import instagramJournalImage from "../../assets/images/instagram-journal.png";
+
+interface Props {
+  pageTitle: string;
+  description: string;
+  activePath: string;
+  category: string;
+  title: string;
+  summary: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  date: string;
+  readingTime: string;
+  shortSummary?: string;
+  relatedItems: ArticlePreview[];
+}
+
+const {
+  pageTitle,
+  description,
+  activePath,
+  category,
+  title,
+  summary,
+  image,
+  imageAlt,
+  date,
+  readingTime,
+  shortSummary = summary,
+  relatedItems,
+} = Astro.props;
+
+---
+
+<BaseLayout title={pageTitle} description={description} activePath={activePath} footerFlush>
+  <Container>
+    <ArticleLead
+      eyebrow={category}
+      title={title}
+      summary={summary}
+      image={image}
+      imageAlt={imageAlt}
+      contentAlign="start"
+      meta={[
+        { icon: "clock", label: date },
+        { icon: "clock", label: readingTime },
+      ]}
+    />
+  </Container>
+
+  <section class="article-tools" aria-label="Weitere Journalbeiträge">
+    <Container>
+      <Button href="/journal" variant="text" icon>Mehr aus dem Domaće-Journal</Button>
+    </Container>
+  </section>
+
+  <section class="article-shell" id="artikelanfang" aria-label={title}>
+    <ContentWithSidebar asidePosition="start">
+      <Fragment slot="aside">
+        <SidebarPanel eyebrow="Kurz gesagt" tone="plum">
+          <p>{shortSummary}</p>
+        </SidebarPanel>
+      </Fragment>
+      <ArticleProse><slot /></ArticleProse>
+    </ContentWithSidebar>
+  </section>
+
+  <section class="instagram-feature" aria-label="Dialog auf Instagram">
+    <InstagramDiscussion
+      href="https://www.instagram.com/domace.studio/"
+      eyebrow="Wie ist das bei dir?"
+      title="Erzähl mir davon!"
+      tone="plum"
+      image={instagramJournalImage}
+    />
+  </section>
+
+  <section class="newsletter-feature" aria-label="Newsletter">
+    <MediaText image={newsletterImage} imageAlt="Kaffeetasse auf einem hellen Holztisch" ratio="media-40" variant="newsletter">
+      <NewsletterSignup
+        compact
+        eyebrow="Zwischen den Zeilen."
+        title="Worte, die gut tun."
+        description="Neue Geschichten, ehrliche Gedanken und Inspiration für ein Familienleben, das sich nach Zuhause anfühlt."
+      />
+    </MediaText>
+  </section>
+
+  {relatedItems.length > 0 && (
+    <PageSection spacing="compact" label="Weitere Beiträge">
+      <RelatedArticles items={relatedItems} />
+    </PageSection>
+  )}
+</BaseLayout>
+
+<style>
+  .article-tools { padding-block: var(--space-6); }
+  .newsletter-feature { margin-top: var(--space-12); }
+  .article-shell { padding-block: var(--space-12); }
+  .article-shell :global(.article-prose) { max-width: calc(var(--content-reading) + var(--space-16)); }
+  .article-shell :global(.sidebar-panel__content p) { font-size: var(--text-base); line-height: var(--leading-relaxed); }
+  @media (max-width: 48rem) {
+    .article-shell :global(.content-layout__aside) { order: 0; }
+  }
+</style>
+

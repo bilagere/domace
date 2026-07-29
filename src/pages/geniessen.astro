@@ -13,7 +13,7 @@ import zimtschnecken from "../assets/images/geniessen-zimtschnecken.png";
 import newsletter from "../assets/images/newsletter-geniessen.png";
 import quote from "../assets/images/quote-geniessen.png";
 
-const recipeTags = ["Alle Beiträge", "Familienküche", "Brot & Gebäck", "Spaßgetränk", "Gastfreundschaft"];
+const recipeTags = ["Alle Beiträge", "Familienküche", "Brot & Gebäck", "Spaßgetränke", "Gastfreundschaft"];
 
 const recipes = [
   {
@@ -45,7 +45,7 @@ const recipes = [
   {
     title: "Hugo-Eistee",
     excerpt: "Pfefferminztee, Holunderblüte und Limette ergeben eine alkoholfreie Erfrischung für warme Tage.",
-    category: "Spaßgetränk",
+    category: "Spaßgetränke",
     image: hugoEistee,
     href: "/geniessen/hugo-eistee",
     duration: "15 Min.",
@@ -274,12 +274,14 @@ Gemeinsam genießen.`}
   .recipe-card[hidden], .recipe-empty[hidden], .recipe-pagination[hidden] { display: none; }
   .recipe-empty { margin-top: var(--space-8); }
   .recipe-pagination { margin-top: var(--space-8); }
-  .recipe-pagination-list { align-items: center; display: flex; gap: var(--space-2); justify-content: center; list-style: none; margin: 0; padding: 0; }
-  .recipe-page-button { align-items: center; appearance: none; background: transparent; border: 0; color: var(--color-text); cursor: pointer; display: inline-flex; font-family: var(--font-sans); font-size: var(--text-sm); height: var(--space-10); justify-content: center; min-width: var(--space-10); padding: var(--space-2); position: relative; transition: color var(--transition-base); }
-  .recipe-page-button::after { border: var(--divider-thickness) solid var(--color-action); content: ""; inset: 0; opacity: 0; position: absolute; transform: scale(0.82); transition: opacity var(--transition-base), transform var(--transition-base); }
+  .recipe-pagination-list { align-items: center; display: flex; gap: var(--space-3); justify-content: center; list-style: none; margin: 0; padding: 0; }
+  .recipe-page-button { align-items: center; appearance: none; background: transparent; border: 0; color: var(--color-text); cursor: pointer; display: inline-flex; font-family: var(--font-sans); font-size: var(--text-md); height: var(--space-10); justify-content: center; min-width: var(--space-8); padding: var(--space-2); position: relative; transition: color var(--transition-base); }
+  .recipe-page-button::after { background: var(--color-action); bottom: 0; content: ""; height: var(--divider-thickness); left: 50%; opacity: 0; position: absolute; transform: translateX(-50%) scaleX(0.35); transition: opacity var(--transition-base), transform var(--transition-base); width: var(--space-6); }
   .recipe-page-button:hover:not(:disabled) { color: var(--color-action-hover); }
+  .recipe-page-button:hover:not(:disabled)::after { opacity: 0.45; transform: translateX(-50%) scaleX(1); }
   .recipe-page-button[aria-current="page"] { color: var(--color-action); }
-  .recipe-page-button[aria-current="page"]::after { opacity: 1; transform: scale(1); }
+  .recipe-page-button[aria-current="page"]::after { opacity: 1; transform: translateX(-50%) scaleX(1); }
+  .recipe-pagination-list > li:first-child .recipe-page-button, .recipe-pagination-list > li:last-child .recipe-page-button { font-family: var(--font-sans); font-size: var(--text-lg); margin-inline: var(--space-2); }
   .recipe-page-button:disabled { cursor: default; opacity: 0.3; }
   .recipe-page-ellipsis { color: var(--color-text-muted); min-width: var(--space-6); text-align: center; }
   .quote-feature, .newsletter-feature { margin-top: var(--space-12); }

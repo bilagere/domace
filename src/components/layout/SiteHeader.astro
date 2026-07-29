@@ -2,13 +2,9 @@
 import Icon from "../ui/Icon.astro";
 
 const navigation = [
-  { label: "Ankommen", href: "/ankommen" },
-  { label: "Genießen", href: "/geniessen" },
-  { label: "Ordnen", href: "/ordnen" },
-  { label: "Zusammen", href: "/zusammen" },
-  { label: "Feiern", href: "/feiern" },
-  { label: "Willkommen", href: "/willkommen" },
-  { label: "Post", href: "/post" },
+  { label: "Journal", href: "/journal" },
+  { label: "Genuss", href: "/geniessen" },
+  { label: "Über Domaće", href: "/willkommen" },
 ];
 
 interface Props { activePath?: string; }
@@ -29,7 +25,6 @@ const { activePath } = Astro.props;
       </ul>
     </nav>
     <div class="site-header__actions">
-      <a class="site-header__search" href="/suche" aria-label="Suche öffnen"><Icon name="search" size={20} /></a>
       <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menü öffnen">
         <span class="menu-toggle__open"><Icon name="menu" size={22} /></span>
         <span class="menu-toggle__close"><Icon name="x" size={22} /></span>
@@ -80,13 +75,12 @@ const { activePath } = Astro.props;
   .site-nav a:hover::after, .site-nav a.is-active::after { transform: scaleX(1); }
   .site-nav a.is-active { color: var(--color-terracotta); }
   .site-header__actions { align-items: center; display: flex; gap: var(--space-2); justify-self: end; }
-  .site-header__search { align-items: center; color: var(--color-text); display: inline-flex; justify-content: center; min-height: var(--space-12); min-width: var(--space-12); }
   .menu-toggle { align-items: center; background: transparent; border: 0; color: var(--color-text); cursor: pointer; display: none; justify-content: center; min-height: var(--space-12); min-width: var(--space-12); padding: 0; }
   .menu-toggle__close { display: none; }
   .menu-toggle[aria-expanded="true"] .menu-toggle__open { display: none; }
   .menu-toggle[aria-expanded="true"] .menu-toggle__close { display: inline-flex; }
-  .site-header__search:hover, .menu-toggle:hover { color: var(--color-terracotta); }
-  .site-header__search:focus-visible, .menu-toggle:focus-visible, .site-nav a:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+  .menu-toggle:hover { color: var(--color-terracotta); }
+  .menu-toggle:focus-visible, .site-nav a:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 
   @media (max-width: 60rem) {
     .site-header__inner { gap: var(--space-3); grid-template-columns: minmax(0, 1fr) auto; min-height: auto; }

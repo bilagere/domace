@@ -1,0 +1,96 @@
+---
+import ArticleLayout from "../../components/layout/ArticleLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import familyLife from "../../assets/images/entspanntes-familienleben.png";
+import organize from "../../assets/images/organize.png";
+import morning from "../../../public/images/morning.png";
+
+const routines = [
+  {
+    title: "Den Morgen langsam beginnen",
+    text: "Bevor der Tag für alle beginnt, gehören die ersten Minuten nur mir: ein Tee, ein paar Seiten lesen, kurz schreiben. Diese kleine Pause verändert meinen ganzen Tag.",
+  },
+  {
+    title: "Ein gemeinsamer Wochenblick",
+    text: "Einmal pro Woche schauen wir gemeinsam auf Termine, Mahlzeiten und besondere Aufgaben. So bleiben Erwartungen sichtbar und nicht alles hängt an einer Person.",
+  },
+  {
+    title: "Die Küche am Abend zurücksetzen",
+    text: "Zehn ruhige Minuten reichen meist: Flächen frei, Spülmaschine an, Frühstück bereit. Der nächste Morgen beginnt dadurch spürbar freundlicher.",
+  },
+  {
+    title: "Übergänge bewusst gestalten",
+    text: "Nach Schule, Arbeit oder Betreuung brauchen wir erst ein Ankommen, bevor das Nächste beginnt. Ein Snack und ein kurzes Gespräch helfen mehr als ein voller Plan.",
+  },
+  {
+    title: "Einen Abend ohne Müssen lassen",
+    text: "Mindestens ein Abend bleibt frei von Erledigungen. Diese Lücke ist kein verlorener Termin, sondern ein fester Platz für Erholung und spontane Nähe.",
+  },
+];
+
+---
+
+<ArticleLayout
+  pageTitle="10 Dinge für ein ruhigeres Familienleben | Domaće"
+  description="Zehn einfache Routinen und Gedanken, die den Familienalltag leichter, ruhiger und verbundener machen."
+  activePath="/journal"
+  category="Ordnen"
+  title="Die 10 Dinge, die unser Familienleben ruhiger gemacht haben"
+  summary="Routinen geben unserem Alltag Struktur, ohne ihn starr zu machen. Sie nehmen Entscheidungen ab, schenken Ruhe und schaffen Raum für das, was wirklich zählt."
+  image={organize}
+  imageAlt="Notizbuch, Tasse und Blumen auf einem warmen Holztisch"
+  date="7. Mai 2025"
+  readingTime="8 Min. Lesezeit"
+  shortSummary="Nicht mehr schaffen, sondern weniger täglich neu entscheiden: Zehn kleine Routinen geben unserem Familienalltag Struktur, Ruhe und mehr Raum füreinander."
+  relatedItems={[]}
+>
+  <p>Als ich gemerkt habe, wie sehr mich ständiges Entscheiden und Planen ermüdet, habe ich begonnen, kleine Routinen in unseren Alltag zu integrieren. Nicht perfekt, nicht kompliziert – aber hilfreich.</p>
+  <p>Heute teile ich die Veränderungen, die bei uns den größten Unterschied gemacht haben. Vielleicht passt nicht jede davon zu deiner Familie. Nimm dir einfach das mit, was gerade entlastet.</p>
+
+  <h2 id="warum-routinen">1. Warum Routinen so viel verändern</h2>
+  <p>Gute Routinen sind keine engen Regeln. Sie sind Abkürzungen für wiederkehrende Entscheidungen. Wenn klar ist, wann wir die Woche besprechen oder wie der Morgen beginnt, muss niemand diese Abläufe jeden Tag neu verhandeln.</p>
+  <blockquote>Eine hilfreiche Routine schafft Halt – und lässt trotzdem Platz für das echte Leben.</blockquote>
+
+  <h2 id="alltagsroutinen">2. Unsere fünf wichtigsten Alltagsroutinen</h2>
+  <ol class="routine-list">
+    {routines.map((routine) => (
+      <li>
+        <h3>{routine.title}</h3>
+        <p>{routine.text}</p>
+      </li>
+    ))}
+  </ol>
+
+  <figure>
+    <OptimizedImage
+      src={familyLife}
+      alt="Ruhige Ecke mit natürlichen Materialien und gerahmtem Schriftzug"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) 100vw, 46rem"
+    />
+    <figcaption>Ein sichtbarer Platz für die Dinge, die den Alltag tragen.</figcaption>
+  </figure>
+
+  <h2 id="flexibel-bleiben">3. So bleiben Routinen leicht und flexibel</h2>
+  <p>Routinen sollen uns tragen, nicht einengen. Deshalb prüfen wir immer wieder, ob sie noch zu unserem Leben passen. In Ferien, stressigen Wochen oder neuen Lebensphasen darf ein Ablauf kleiner werden, pausieren oder sich ganz verändern.</p>
+  <p>Hilfreich ist eine einfache Frage: Macht uns diese Gewohnheit den Alltag leichter? Wenn die Antwort über längere Zeit nein lautet, darf sie gehen.</p>
+  <h2 id="kleine-schritte">4. Kleine Schritte, große Wirkung</h2>
+  <p>Du musst nicht zehn Dinge gleichzeitig verändern. Wähle eine Situation, die dich im Moment besonders viel Kraft kostet, und beginne dort mit dem kleinstmöglichen Schritt.</p>
+  <p>Vielleicht ist es ein vorbereiteter Frühstückstisch, ein gemeinsamer Blick in den Kalender oder zehn Minuten Ruhe, bevor alle aufstehen. Erst wenn dieser Schritt selbstverständlich geworden ist, kommt der nächste dazu.</p>
+
+  <figure>
+    <img src={morning.src} alt="Eine ruhige morgendliche Szene mit warmem Licht" loading="lazy" />
+  </figure>
+
+  <p id="kommentare">Welche kleine Routine tut eurer Familie gerade gut? Schreib sie dir auf – oft beginnt Veränderung genau dort, wo etwas bewusst wird.</p>
+  <span id="teilen"></span>
+  <span id="speichern"></span>
+</ArticleLayout>
+
+<style>
+  .routine-list { counter-reset: routines; list-style: none; margin: var(--space-6) 0 0; padding: 0; }
+  .routine-list li { counter-increment: routines; padding: var(--space-6) 0 var(--space-2) var(--space-12); position: relative; }
+  .routine-list li::before { align-items: center; background: var(--color-surface-muted); border-radius: 50%; color: var(--color-olive-dark); content: counter(routines); display: flex; font-family: var(--font-display); font-size: var(--text-lg); height: var(--space-8); justify-content: center; left: 0; position: absolute; top: var(--space-6); width: var(--space-8); }
+  .routine-list h3 { margin-top: 0; }
+  .routine-list p { margin-top: var(--space-2); }
+</style>

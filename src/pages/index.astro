@@ -29,7 +29,6 @@ const images = {
   celebrate,
   familyLife,
   focaccia,
-  planner: organize,
   newsletter,
   author,
   quote,
@@ -44,9 +43,8 @@ const topics = [
 ];
 
 const newestPosts = [
-  { title: "Die 10 Dinge, die unser Familienleben ruhiger gemacht haben", excerpt: "Kleine Veränderungen, die einen großen Unterschied machen.", category: "Artikel", image: images.familyLife, href: "/ordnen/familienleben-ruhiger" },
+  { title: "10 Dinge für einen ruhigeren Familienalltag", excerpt: "Kleine Veränderungen, die einen großen Unterschied machen.", category: "Artikel", image: images.familyLife, href: "/ordnen/familienleben-ruhiger" },
   { title: "Focaccia", excerpt: "Außen knusprig, innen weich – unser Familienrezept, das immer geht.", category: "Rezept", image: images.focaccia, href: "/geniessen/focaccia", duration: "20 Min.", servings: "4 Portionen" },
-  { title: "Unser Wochenplan: So behalten wir den Überblick", excerpt: "Ein simples System, das uns durch die Woche trägt.", category: "Artikel", image: images.planner, href: "/ordnen/wochenplan" },
 ];
 ---
 
@@ -70,7 +68,7 @@ Mehr gemeinsam leben.`}
   <section class="section latest-section" id="neu" aria-labelledby="newest-heading">
     <div class="section__heading-row">
       <SectionHeading><span id="newest-heading">Neu auf Domaće</span></SectionHeading>
-      <Button href="/beitraege" variant="text" icon>Alle Beiträge ansehen</Button>
+      <Button href="/journal" variant="text" icon>Alle Beiträge ansehen</Button>
     </div>
     <div class="article-grid">
       {newestPosts.map((post) => <ArticleCard {...post} />)}
