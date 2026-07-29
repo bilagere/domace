@@ -16,7 +16,7 @@ src/
     ui/           # wiederverwendbare UI- und Inhaltsbausteine
   design/         # Tokens, Schriften, Reset, globale Stile und Systemdokumentation
   layouts/        # BaseLayout importiert alle globalen Styles
-  pages/          # Astro-Routen; aktuell die Startseite
+  pages/          # Astro-Routen für Startseite, Journal, Kategorien, Artikel und Rezepte
   types/          # gemeinsame TypeScript-Typen
 public/
   images/         # produktive Bildassets
@@ -48,7 +48,7 @@ Die verbindliche Dokumentation liegt in `src/design/README.md`.
 
 ## Bild- und Markenassets
 
-- Nutze produktive Assets aus `public/images/` mit absolutem Pfad, z. B. `/images/hero_homepage.png`.
+- Importiere optimierte Inhaltsbilder bevorzugt aus `src/assets/images/`. Statische Markenassets und unverarbeitete Dateien liegen unter `public/`.
 - Wortmarke: `/images/wordmark_domace.png`; Submarke: `/images/logo_c.png`; Favicons liegen direkt in `public/`.
 - Die Display-Schrift `Safira March` liegt lokal unter `public/fonts/`. Nunito wird global geladen. Handschrift ist derzeit `Segoe Script`.
 - Neue generierte Bilder müssen zur warmen, natürlichen Domaće-Bildsprache passen: Kalk, Holz, Textilien, zurückhaltende Terracotta-, Oliv- und Pflaumentöne. Keine Olivenzweige als Standardmotiv verwenden.
@@ -76,7 +76,11 @@ astro dev stop
 ## Seiten und Navigation
 
 - `BaseLayout.astro` ist die einzige Quelle für globale Styles und die gemeinsame Kopf-/Fußzeile. Neue Seiten müssen es verwenden.
-- Navigation und Teaser verweisen bereits auf künftige Routen. Fehlende Seiten nicht stillschweigend durch Platzhalterseiten oder `#` ersetzen; Routen nur nach fachlicher Vorgabe ergänzen.
+- Die Hauptnavigation lautet `Journal`, `Genuss`, `Über Domaće`. Die zugehörigen Routen bleiben `/journal`, `/geniessen` und `/willkommen`.
+- Das Journal gliedert sich in `Alle Beiträge`, `Ankommen`, `Ordnen`, `Zusammen` und `Feiern`. Die Übersicht zeigt höchstens acht Beiträge pro Seite.
+- Journal-Karten dürfen einen kürzeren, scanbaren Titel als die zugehörige Artikeldetailseite verwenden. Beide Titel bewusst getrennt pflegen.
+- Nur Beiträge mit vorhandener Detailroute als Karte oder Empfehlung ausgeben. Keine Teaser auf noch nicht angelegte Seiten veröffentlichen.
+- Journalartikel verwenden `ArticleLayout.astro`, Rezepte `RecipeLayout.astro` und Themenübersichten `CategoryPage.astro`.
 - Bevor Inhalte wachsen, die Daten von Seitenkompositionen in Content Collections oder zentrale Datenmodule überführen.
 
 ## Qualitätsstandard
