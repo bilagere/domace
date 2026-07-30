@@ -8,9 +8,6 @@ import ArticleProse from "../components/ui/ArticleProse.astro";
 <BaseLayout title="Impressum – Domaće" description="Impressum und Anbieterkennzeichnung von Domaće.">
   <PageIntro eyebrow="Rechtliches" title="Impressum" description="Anbieterkennzeichnung und rechtliche Informationen zu Domaće." />
   <PageSection width="reading" spacing="generous">
-    <div class="legal-draft" role="note">
-      <strong>Angaben geprüft:</strong> Die Kontaktdaten werden mit der endgültigen Domain aktiviert.
-    </div>
     <ArticleProse>
       <h2>Anbieterin</h2>
       <p>
@@ -38,12 +35,5 @@ import ArticleProse from "../components/ui/ArticleProse.astro";
 </BaseLayout>
 
 <style>
-  .legal-draft {
-    background: var(--color-surface-muted);
-    border-left: 2px solid var(--color-action);
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-8);
-    padding: var(--space-4);
-  }
   .placeholder { color: var(--color-action); font-weight: var(--font-weight-semibold); }
 </style>
