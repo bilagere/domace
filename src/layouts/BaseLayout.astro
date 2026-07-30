@@ -53,6 +53,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <title>{title}</title>
+    <script
+      is:inline
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="8cc17624-efc9-44ae-80cb-fccc1b869eb3"
+      data-domains="domace.studio,www.domace.studio"
+      data-do-not-track="true"
+      data-performance="true"
+    ></script>
     <script is:inline type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
   </head>
   <body>
