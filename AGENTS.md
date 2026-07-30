@@ -52,6 +52,7 @@ Die verbindliche Dokumentation liegt in `src/design/README.md`.
 - Wortmarke: `/images/wordmark_domace.png`; Submarke: `/images/logo_c.png`; Favicons liegen direkt in `public/`.
 - Die Schriften `Bodoni Moda` und `Manrope` werden über Fontsource lokal ausgeliefert. Handschrift ist derzeit `Segoe Script`.
 - Neue generierte Bilder müssen zur warmen, natürlichen Domaće-Bildsprache passen: Kalk, Holz, Textilien, zurückhaltende Terracotta-, Oliv- und Pflaumentöne. Keine Olivenzweige als Standardmotiv verwenden.
+- Social-Sharing-Bilder werden über `BaseLayout.astro` auf 1200 × 630 Pixel zugeschnitten und als optimiertes JPG erzeugt. Journalartikel und Rezepte verwenden ihr jeweiliges Beitragsbild; ohne Bild gilt `src/assets/images/og-image.png` als Rückfall.
 
 ## Lokale Entwicklung und Prüfung
 
@@ -77,11 +78,17 @@ astro dev stop
 
 - `BaseLayout.astro` ist die einzige Quelle für globale Styles und die gemeinsame Kopf-/Fußzeile. Neue Seiten müssen es verwenden.
 - Die Hauptnavigation lautet `Journal`, `Genuss`, `Über Domaće`. Die zugehörigen Routen bleiben `/journal`, `/genuss` und `/willkommen`.
+- `/geniessen` ist eine veraltete Route und darf nicht erneut für interne Links verwendet werden. Die Weiterleitungen in `public/_redirects` auf `/genuss` müssen erhalten bleiben.
 - Das Journal gliedert sich in `Alle Beiträge`, `Ankommen`, `Ordnen`, `Zusammen` und `Feiern`. Die Übersicht zeigt höchstens acht Beiträge pro Seite.
 - Journal-Karten dürfen einen kürzeren, scanbaren Titel als die zugehörige Artikeldetailseite verwenden. Beide Titel bewusst getrennt pflegen.
 - Nur Beiträge mit vorhandener Detailroute als Karte oder Empfehlung ausgeben. Keine Teaser auf noch nicht angelegte Seiten veröffentlichen.
 - Journalartikel verwenden `ArticleLayout.astro`, Rezepte `RecipeLayout.astro` und Themenübersichten `CategoryPage.astro`.
 - Bevor Inhalte wachsen, die Daten von Seitenkompositionen in Content Collections oder zentrale Datenmodule überführen.
+
+## Deployment
+
+- Das GitHub-Repository ist mit Cloudflare verbunden. Ein Push auf `master` startet automatisch das Produktions-Deployment.
+- Vor dem Push den Produktions-Build ausführen. Nach dem Push prüfen, ob Cloudflare die neue Version unter `https://domace.studio` ausliefert.
 
 ## Qualitätsstandard
 
