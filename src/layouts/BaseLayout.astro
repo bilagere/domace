@@ -24,6 +24,8 @@ const {
   footerGallery = [instagramOne, instagramTwo, instagramThree],
   footerFlush = false,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -33,8 +35,19 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta property="og:site_name" content="Domaće" />
+    <meta property="og:locale" content="de_CH" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
   </head>
   <body>
