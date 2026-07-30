@@ -76,7 +76,7 @@ astro dev stop
 ## Seiten und Navigation
 
 - `BaseLayout.astro` ist die einzige Quelle für globale Styles und die gemeinsame Kopf-/Fußzeile. Neue Seiten müssen es verwenden.
-- Die Hauptnavigation lautet `Journal`, `Genuss`, `Über Domaće`. Die zugehörigen Routen bleiben `/journal`, `/geniessen` und `/willkommen`.
+- Die Hauptnavigation lautet `Journal`, `Genuss`, `Über Domaće`. Die zugehörigen Routen bleiben `/journal`, `/genuss` und `/willkommen`.
 - Das Journal gliedert sich in `Alle Beiträge`, `Ankommen`, `Ordnen`, `Zusammen` und `Feiern`. Die Übersicht zeigt höchstens acht Beiträge pro Seite.
 - Journal-Karten dürfen einen kürzeren, scanbaren Titel als die zugehörige Artikeldetailseite verwenden. Beide Titel bewusst getrennt pflegen.
 - Nur Beiträge mit vorhandener Detailroute als Karte oder Empfehlung ausgeben. Keine Teaser auf noch nicht angelegte Seiten veröffentlichen.

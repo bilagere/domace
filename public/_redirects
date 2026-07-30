@@ -1,0 +1,3 @@
+/geniessen /genuss 301
+/geniessen/ /genuss/ 301
+/geniessen/* /genuss/:splat 301

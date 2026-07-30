@@ -12,21 +12,21 @@ const recipes = {
     excerpt: "Außen knusprig, innen luftig – ein unkompliziertes Brot für den Familientisch.",
     category: "Brot & Gebäck",
     image: focaccia,
-    href: "/geniessen/focaccia",
+    href: "/genuss/focaccia",
   },
   hugoEistee: {
     title: "Hugo-Eistee",
     excerpt: "Eine alkoholfreie Erfrischung mit Holunderblüte, Limette und Minze.",
     category: "Spaßgetränk",
     image: hugoEistee,
-    href: "/geniessen/hugo-eistee",
+    href: "/genuss/hugo-eistee",
   },
   zimtschnecken: {
     title: "Zimtschnecken",
     excerpt: "Weiche Zimtschnecken für Kaffeepause, Besuch und gemütliche Nachmittage.",
     category: "Brot & Gebäck",
     image: zimtschnecken,
-    href: "/geniessen/zimtschnecken",
+    href: "/genuss/zimtschnecken",
   },
 } satisfies Record<string, ArticlePreview>;
 
