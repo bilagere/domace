@@ -50,7 +50,7 @@ Die verbindliche Dokumentation liegt in `src/design/README.md`.
 
 - Importiere optimierte Inhaltsbilder bevorzugt aus `src/assets/images/`. Statische Markenassets und unverarbeitete Dateien liegen unter `public/`.
 - Wortmarke: `/images/wordmark_domace.png`; Submarke: `/images/logo_c.png`; Favicons liegen direkt in `public/`.
-- Die Display-Schrift `Safira March` liegt lokal unter `public/fonts/`. Nunito wird global geladen. Handschrift ist derzeit `Segoe Script`.
+- Die Schriften `Bodoni Moda` und `Manrope` werden über Fontsource lokal ausgeliefert. Handschrift ist derzeit `Segoe Script`.
 - Neue generierte Bilder müssen zur warmen, natürlichen Domaće-Bildsprache passen: Kalk, Holz, Textilien, zurückhaltende Terracotta-, Oliv- und Pflaumentöne. Keine Olivenzweige als Standardmotiv verwenden.
 
 ## Lokale Entwicklung und Prüfung
