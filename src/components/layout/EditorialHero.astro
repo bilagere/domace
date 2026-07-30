@@ -82,6 +82,6 @@ const hasDescriptionSlot = Astro.slots.has("description");
   @media (max-width: 34rem) {
     .editorial-hero--homepage { min-height: 34rem; }
     .editorial-hero--homepage::after { background: linear-gradient(90deg, var(--color-surface-muted) 0%, rgb(241 233 224 / 94%) 55%, rgb(241 233 224 / 43%) 100%); }
-    .editorial-hero--homepage .editorial-hero__content { max-width: 21rem; padding: var(--space-10) var(--page-gutter); width: 78%; }
+    .editorial-hero--homepage .editorial-hero__content, .editorial-hero--homepage.editorial-hero--narrow-content .editorial-hero__content { max-width: none; padding: var(--space-10) var(--page-gutter); width: 92%; }
   }
 </style>

@@ -28,6 +28,14 @@ const recipes = {
     image: zimtschnecken,
     href: "/genuss/zimtschnecken",
   },
+  boeufStroganoff: {
+    title: "Boeuf Stroganoff",
+    excerpt: "Zartes Rindfleisch in cremiger Sauce – ein wärmendes Familiengericht für besondere Alltagstage.",
+    category: "Familienküche",
+    href: "/genuss/boeuf-stroganoff",
+    duration: "45 Min.",
+    servings: "4 Portionen",
+  },
 } satisfies Record<string, ArticlePreview>;
 
 const journalArticle = {
@@ -38,9 +46,16 @@ const journalArticle = {
   href: "/ordnen/familienleben-ruhiger",
 } satisfies ArticlePreview;
 
+export const latestContent = [
+  recipes.focaccia,
+  recipes.zimtschnecken,
+  recipes.boeufStroganoff,
+  recipes.hugoEistee,
+] satisfies ArticlePreview[];
+
 export const relatedContent = {
-  focaccia: [recipes.hugoEistee, recipes.zimtschnecken, journalArticle],
-  zimtschnecken: [recipes.hugoEistee, recipes.focaccia, journalArticle],
-  boeufStroganoff: [recipes.focaccia, recipes.zimtschnecken, journalArticle],
-  hugoEistee: [recipes.zimtschnecken, recipes.focaccia, journalArticle],
+  focaccia: [recipes.zimtschnecken, recipes.boeufStroganoff, recipes.hugoEistee, journalArticle],
+  zimtschnecken: [recipes.focaccia, recipes.boeufStroganoff, recipes.hugoEistee, journalArticle],
+  boeufStroganoff: [recipes.focaccia, recipes.zimtschnecken, recipes.hugoEistee, journalArticle],
+  hugoEistee: [recipes.focaccia, recipes.zimtschnecken, recipes.boeufStroganoff, journalArticle],
 } satisfies Record<string, ArticlePreview[]>;
