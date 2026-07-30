@@ -1,0 +1,335 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EditorialHero from "./EditorialHero.astro";
+import ArticleCard from "../ui/ArticleCard.astro";
+import MediaText from "../ui/MediaText.astro";
+import NewsletterSignup from "../ui/NewsletterSignup.astro";
+import PageSection from "../ui/PageSection.astro";
+import QuoteBanner from "../ui/QuoteBanner.astro";
+import heroEnjoy from "../../assets/images/hero-geniessen.png";
+import focaccia from "../../assets/images/focaccia.png";
+import hugoEistee from "../../assets/images/geniessen-hugo-eistee.png";
+import zimtschnecken from "../../assets/images/geniessen-zimtschnecken.png";
+import newsletter from "../../assets/images/newsletter-geniessen.png";
+import quote from "../../assets/images/quote-geniessen.png";
+
+export type RecipeCategory = "familienkueche" | "brot-gebaeck" | "spassgetraenke" | "gastfreundschaft";
+interface Props { activeCategory?: RecipeCategory; }
+const { activeCategory } = Astro.props;
+const recipeTags: ReadonlyArray<{ label: string; href: string; category?: RecipeCategory }> = [
+  { label: "Alle Beiträge", href: "/genuss" },
+  { label: "Familienküche", href: "/genuss/familienkueche", category: "familienkueche" },
+  { label: "Brot & Gebäck", href: "/genuss/brot-gebaeck", category: "brot-gebaeck" },
+  { label: "Spaßgetränke", href: "/genuss/spassgetraenke", category: "spassgetraenke" },
+  { label: "Gastfreundschaft", href: "/genuss/gastfreundschaft", category: "gastfreundschaft" },
+];
+const activeTag = activeCategory ? recipeTags.find((tag) => tag.category === activeCategory) : undefined;
+const initialFilter = activeTag?.label ?? "all";
+
+const recipes = [
+  {
+    title: "Focaccia",
+    excerpt: "Außen knusprig, innen luftig – ein unkompliziertes Brot für den Familientisch.",
+    category: "Brot & Gebäck",
+    image: focaccia,
+    href: "/genuss/focaccia",
+    duration: "20 Min.",
+    servings: "4–6 Portionen",
+  },
+  {
+    title: "Zimtschnecken",
+    excerpt: "Weiche Hefeschnecken mit Zimtfüllung für Kaffeepause, Besuch und gemütliche Nachmittage.",
+    category: "Brot & Gebäck",
+    image: zimtschnecken,
+    href: "/genuss/zimtschnecken",
+    duration: "30 Min.",
+    servings: "12 Stück",
+  },
+  {
+    title: "Boeuf Stroganoff",
+    excerpt: "Zartes Rindfleisch in cremiger Sauce – ein wärmendes Familiengericht für besondere Alltagstage.",
+    category: "Familienküche",
+    href: "/genuss/boeuf-stroganoff",
+    duration: "45 Min.",
+    servings: "4 Portionen",
+  },
+  {
+    title: "Hugo-Eistee",
+    excerpt: "Pfefferminztee, Holunderblüte und Limette ergeben eine alkoholfreie Erfrischung für warme Tage.",
+    category: "Spaßgetränke",
+    image: hugoEistee,
+    href: "/genuss/hugo-eistee",
+    duration: "15 Min.",
+    servings: "4 Gläser",
+  },
+];
+---
+
+<BaseLayout
+  title={activeTag ? `${activeTag.label} – Genuss – Domaće` : "Genießen – Domaće"}
+  description="Einfache Rezepte, Brot, Gebäck und kleine Genussmomente für das gute Familienleben."
+  activePath="/genuss"
+>
+  <EditorialHero
+    variant="homepage"
+    showTitleIcon={false}
+    eyebrow="Aus der Küche"
+    title={`Was kommt heute
+auf den Tisch?`}
+    image={heroEnjoy}
+    imageAlt="Frisch zubereitetes Essen auf einem warm gedeckten Tisch"
+  >
+    <Fragment slot="description">
+      <p>Kochen muss nicht kompliziert sein. Hier findest du alltagstaugliche Rezepte mit guten Zutaten, wenig Stress und ganz viel Geschmack – für gemeinsame Mahlzeiten, an die man sich gerne erinnert.</p>
+    </Fragment>
+  </EditorialHero>
+
+  <PageSection label="Rezepte" spacing="compact">
+    <nav class="recipe-tags" aria-label="Rezeptkategorien" data-recipe-active={initialFilter}>
+      <ul class="recipe-tag-list">
+        {recipeTags.map((tag) => {
+          const isActive = tag.category === activeCategory || (!tag.category && !activeCategory);
+          return (
+            <li>
+              <a
+                class:list={["recipe-tag-button", { active: isActive }]}
+                href={tag.href}
+                aria-current={isActive ? "page" : undefined}
+                data-recipe-filter={tag.category ? tag.label : "all"}
+                data-page-title={tag.category ? `${tag.label} – Genuss – Domaće` : "Genießen – Domaće"}
+              >
+                {tag.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+    <div class="recipe-grid">
+      {recipes.map((recipe) => (
+        <div class="recipe-card" data-recipe-category={recipe.category} hidden={activeTag ? recipe.category !== activeTag.label : false}>
+          <ArticleCard {...recipe} />
+        </div>
+      ))}
+    </div>
+    <p class="recipe-empty" hidden={activeTag ? recipes.some((recipe) => recipe.category === activeTag.label) : recipes.length > 0}>In dieser Kategorie folgen bald die ersten Rezepte.</p>
+    <nav class="recipe-pagination" aria-label="Rezeptseiten" hidden>
+      <ul class="recipe-pagination-list"></ul>
+    </nav>
+  </PageSection>
+
+  <section class="quote-feature" aria-label="Leitsatz">
+    <QuoteBanner image={quote} imageAlt="Frisch gebackenes Brot in warmer, natürlicher Atmosphäre">
+      Manche Erinnerungen riechen<br />nach frisch gebackenem Brot.
+    </QuoteBanner>
+  </section>
+
+  <section class="newsletter-feature" aria-label="Newsletter">
+    <MediaText image={newsletter} imageAlt="Ein warmer Gruß aus der Domaće-Küche" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact eyebrow="Gruß aus der Küche" title="Rezepte & Ideen für deinen Alltag." description="Erhalte regelmäßig neue Lieblingsrezepte, saisonale Ideen und kleine Genussmomente direkt in dein Postfach" />
+    </MediaText>
+  </section>
+</BaseLayout>
+
+<script>
+  const pageSize = 8;
+  const filterLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-recipe-filter]"));
+  const recipeCards = Array.from(document.querySelectorAll<HTMLElement>("[data-recipe-category]"));
+  const recipeGrid = document.querySelector<HTMLElement>(".recipe-grid");
+  const recipeNav = document.querySelector<HTMLElement>("[data-recipe-active]");
+  const emptyState = document.querySelector<HTMLElement>(".recipe-empty");
+  const pagination = document.querySelector<HTMLElement>(".recipe-pagination");
+  const paginationList = document.querySelector<HTMLUListElement>(".recipe-pagination-list");
+  let activeFilter = recipeNav?.dataset.recipeActive ?? "all";
+  let currentPage = 1;
+
+  const getPageItems = (totalPages: number) => {
+    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, index) => index + 1);
+
+    const pages = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
+    if (currentPage <= 3) [1, 2, 3].forEach((page) => pages.add(page));
+    if (currentPage >= totalPages - 2) [totalPages - 2, totalPages - 1, totalPages].forEach((page) => pages.add(page));
+
+    const validPages = [...pages].filter((page) => page >= 1 && page <= totalPages).sort((a, b) => a - b);
+    const items: Array<number | "ellipsis"> = [];
+    validPages.forEach((page, index) => {
+      if (index > 0 && page - validPages[index - 1] > 1) items.push("ellipsis");
+      items.push(page);
+    });
+    return items;
+  };
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let transitionInProgress = false;
+
+  const transitionRecipes = async (update: () => void, scrollAfter = false) => {
+    if (!recipeGrid || prefersReducedMotion) {
+      update();
+      if (scrollAfter) recipeGrid?.scrollIntoView({ behavior: "auto", block: "start" });
+      return;
+    }
+    if (transitionInProgress) return;
+    transitionInProgress = true;
+
+    const outgoing = recipeGrid.animate(
+      [
+        { opacity: 1, transform: "translateY(0)" },
+        { opacity: 0, transform: "translateY(0.5rem)" },
+      ],
+      { duration: 150, easing: "ease-in", fill: "forwards" },
+    );
+    await outgoing.finished.catch(() => undefined);
+    update();
+    outgoing.cancel();
+
+    const incomingCards = recipeCards.filter((card) => !card.hidden);
+    const animations = incomingCards.map((card, index) => card.animate(
+      [
+        { opacity: 0, transform: "translateY(0.75rem)" },
+        { opacity: 1, transform: "translateY(0)" },
+      ],
+      { duration: 300, delay: index * 45, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" },
+    ));
+    await Promise.all(animations.map((animation) => animation.finished.catch(() => undefined)));
+    animations.forEach((animation) => animation.cancel());
+    transitionInProgress = false;
+
+    if (scrollAfter) recipeGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const createPaginationButton = (label: string, page: number, options: { current?: boolean; disabled?: boolean; ariaLabel?: string } = {}) => {
+    const item = document.createElement("li");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "recipe-page-button";
+    button.textContent = label;
+    button.disabled = Boolean(options.disabled);
+    if (options.ariaLabel) button.setAttribute("aria-label", options.ariaLabel);
+    if (options.current) button.setAttribute("aria-current", "page");
+    button.addEventListener("click", () => {
+      void transitionRecipes(() => {
+        currentPage = page;
+        renderRecipes();
+      }, true);
+    });
+    item.append(button);
+    return item;
+  };
+
+  const renderPagination = (totalPages: number) => {
+    if (!pagination || !paginationList) return;
+    pagination.hidden = totalPages <= 1;
+    paginationList.replaceChildren();
+    if (totalPages <= 1) return;
+
+    paginationList.append(createPaginationButton("←", Math.max(1, currentPage - 1), {
+      disabled: currentPage === 1,
+      ariaLabel: "Vorherige Rezeptseite",
+    }));
+
+    getPageItems(totalPages).forEach((item) => {
+      if (item === "ellipsis") {
+        const ellipsis = document.createElement("li");
+        ellipsis.className = "recipe-page-ellipsis";
+        ellipsis.textContent = "…";
+        ellipsis.setAttribute("aria-hidden", "true");
+        paginationList.append(ellipsis);
+      } else {
+        paginationList.append(createPaginationButton(String(item), item, { current: item === currentPage }));
+      }
+    });
+
+    paginationList.append(createPaginationButton("→", Math.min(totalPages, currentPage + 1), {
+      disabled: currentPage === totalPages,
+      ariaLabel: "Nächste Rezeptseite",
+    }));
+  };
+
+  const renderRecipes = () => {
+    const filteredCards = recipeCards.filter((card) => activeFilter === "all" || card.dataset.recipeCategory === activeFilter);
+    const totalPages = Math.ceil(filteredCards.length / pageSize);
+    if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+    const firstIndex = (currentPage - 1) * pageSize;
+    const visibleCards = new Set(filteredCards.slice(firstIndex, firstIndex + pageSize));
+
+    recipeCards.forEach((card) => {
+      card.hidden = !visibleCards.has(card);
+    });
+
+    if (emptyState) emptyState.hidden = filteredCards.length > 0;
+    renderPagination(totalPages);
+  };
+
+  const setRecipeFilter = (link: HTMLAnchorElement, pushHistory: boolean) => {
+    activeFilter = link.dataset.recipeFilter ?? "all";
+    currentPage = 1;
+
+    filterLinks.forEach((item) => {
+      const isActive = item === link;
+      item.classList.toggle("active", isActive);
+      if (isActive) item.setAttribute("aria-current", "page");
+      else item.removeAttribute("aria-current");
+    });
+
+    if (link.dataset.pageTitle) document.title = link.dataset.pageTitle;
+    if (pushHistory) window.history.pushState({}, "", link.href);
+
+    const scrollPosition = { left: window.scrollX, top: window.scrollY };
+    void transitionRecipes(() => {
+      renderRecipes();
+      window.scrollTo(scrollPosition);
+      window.requestAnimationFrame(() => window.scrollTo(scrollPosition));
+    });
+  };
+
+  filterLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      setRecipeFilter(link, true);
+    });
+  });
+
+  window.addEventListener("popstate", () => {
+    const activeLink = filterLinks.find((link) => new URL(link.href).pathname === window.location.pathname);
+    if (activeLink) setRecipeFilter(activeLink, false);
+  });
+
+  renderRecipes();
+</script>
+<style is:global>
+  .recipe-tags { overflow-x: auto; scrollbar-width: thin; }
+  .recipe-tag-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+  .recipe-tag-button { appearance: none; background: transparent; text-decoration: none; border: 0; color: var(--color-text); cursor: pointer; font-family: var(--font-sans); font-size: var(--text-xs); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-caps); padding: var(--space-4) var(--space-2); position: relative; text-align: center; text-transform: uppercase; transition: color var(--transition-base); width: 100%; }
+  .recipe-tag-button::after { background: var(--color-action); bottom: 0; content: ""; height: var(--divider-thickness); left: 50%; position: absolute; transform: translateX(-50%) scaleX(0); transform-origin: center; transition: transform var(--transition-base); width: calc(100% - var(--space-4)); }
+  .recipe-tag-button:hover { color: var(--color-action-hover); }
+  .recipe-tag-button.active { color: var(--color-action); }
+  .recipe-tag-button.active::after { transform: translateX(-50%) scaleX(1); }
+  .recipe-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: var(--space-8); }
+  .recipe-card[hidden], .recipe-empty[hidden], .recipe-pagination[hidden] { display: none; }
+  .recipe-empty { margin-top: var(--space-8); }
+  .recipe-pagination { margin-top: var(--space-8); }
+  .recipe-pagination-list { align-items: center; display: flex; gap: var(--space-3); justify-content: center; list-style: none; margin: 0; padding: 0; }
+  .recipe-page-button { align-items: center; appearance: none; background: transparent; text-decoration: none; border: 0; color: var(--color-text); cursor: pointer; display: inline-flex; font-family: var(--font-sans); font-size: var(--text-md); height: var(--space-10); justify-content: center; min-width: var(--space-8); padding: var(--space-2); position: relative; transition: color var(--transition-base); }
+  .recipe-page-button::after { background: var(--color-action); bottom: 0; content: ""; height: var(--divider-thickness); left: 50%; opacity: 0; position: absolute; transform: translateX(-50%) scaleX(0.35); transition: opacity var(--transition-base), transform var(--transition-base); width: var(--space-6); }
+  .recipe-page-button:hover:not(:disabled) { color: var(--color-action-hover); }
+  .recipe-page-button:hover:not(:disabled)::after { opacity: 0.45; transform: translateX(-50%) scaleX(1); }
+  .recipe-page-button[aria-current="page"] { color: var(--color-action); }
+  .recipe-page-button[aria-current="page"]::after { opacity: 1; transform: translateX(-50%) scaleX(1); }
+  .recipe-pagination-list > li:first-child .recipe-page-button, .recipe-pagination-list > li:last-child .recipe-page-button { font-family: var(--font-sans); font-size: var(--text-lg); margin-inline: var(--space-2); }
+  .recipe-page-button:disabled { cursor: default; opacity: 0.3; }
+  .recipe-page-ellipsis { color: var(--color-text-muted); min-width: var(--space-6); text-align: center; }
+  .quote-feature, .newsletter-feature { margin-top: var(--space-12); }
+  @media (max-width: 64rem) {
+    .recipe-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 40rem) {
+    .recipe-tag-list { display: flex; gap: var(--space-6); min-width: max-content; }
+    .recipe-tag-button { padding-inline: 0; }
+    .recipe-tag-button::after { width: 100%; }
+    .recipe-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .recipe-tag-button, .recipe-tag-button::after, .recipe-page-button, .recipe-page-button::after { transition: none; }
+  }
+</style>

@@ -11,6 +11,7 @@ interface Props extends ArticlePreview {
 
 const { title, excerpt, category, image, href, date, duration, servings, featured = false } = Astro.props;
 const details = [
+  ...(date ? [{ icon: "calendar" as const, label: date }] : []),
   ...(duration ? [{ icon: "clock" as const, label: duration }] : []),
   ...(servings ? [{ icon: "users" as const, label: servings }] : []),
 ];
@@ -25,7 +26,7 @@ const details = [
     )}
   </a>
   <div class="article-card__body">
-    <p class="article-card__meta">{category}{date && <span>· {date}</span>}</p>
+    <p class="article-card__meta">{category}</p>
     <h3><a href={href}>{title}</a></h3>
     <p class="article-card__excerpt">{excerpt}</p>
     {details.length > 0 && <div class="article-card__details"><MetaList items={details} compact /></div>}
@@ -46,6 +47,7 @@ const details = [
   h3 { font-size: var(--text-xl); margin-top: var(--space-3); }
   h3 a { text-decoration: none; }
   .article-card__excerpt { font-size: var(--text-sm); margin-top: var(--space-3); }
+  .article-card__excerpt:not(:has(+ .article-card__details)) { margin-bottom: var(--space-4); }
   .article-card__details { margin: var(--space-5) 0 var(--space-4); width: 100%; }
   .article-card__body :global(.button) { margin-top: auto; }
   .article-card--featured { border: 0; }

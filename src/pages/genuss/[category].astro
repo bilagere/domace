@@ -1,0 +1,13 @@
+---
+import GenussOverview, { type RecipeCategory } from "../../components/layout/GenussOverview.astro";
+
+export function getStaticPaths() {
+  const categories: RecipeCategory[] = ["familienkueche", "brot-gebaeck", "spassgetraenke", "gastfreundschaft"];
+  return categories.map((category) => ({ params: { category }, props: { category } }));
+}
+
+interface Props { category: RecipeCategory; }
+const { category } = Astro.props;
+---
+
+<GenussOverview activeCategory={category} />

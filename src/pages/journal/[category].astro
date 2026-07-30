@@ -1,0 +1,17 @@
+---
+import JournalOverview from "../../components/layout/JournalOverview.astro";
+
+type JournalCategory = "ankommen" | "ordnen" | "zusammen" | "feiern";
+
+export function getStaticPaths() {
+  return (["ankommen", "ordnen", "zusammen", "feiern"] satisfies JournalCategory[]).map((category) => ({
+    params: { category },
+    props: { category },
+  }));
+}
+
+interface Props { category: JournalCategory; }
+const { category } = Astro.props;
+---
+
+<JournalOverview activeCategory={category} />

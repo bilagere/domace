@@ -1,7 +1,7 @@
 ---
 import Icon from "./Icon.astro";
 
-type IconName = "clock" | "users" | "leaf";
+type IconName = "calendar" | "clock" | "users" | "leaf";
 interface Item { icon: IconName; label: string; value?: string; }
 interface Props { items: Item[]; compact?: boolean; }
 const { items, compact = false } = Astro.props;

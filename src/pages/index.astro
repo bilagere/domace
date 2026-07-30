@@ -32,11 +32,11 @@ const images = {
 };
 
 const topics = [
-  { title: "Ankommen", subtitle: "Für ein Zuhause, das gut tut.", description: "Ideen für Zuhause, Garten und kleine Projekte, die Wärme, Ruhe und Persönlichkeit in den Alltag bringen.", href: "/ankommen", icon: "leaf" as const, image: images.arrive },
+  { title: "Ankommen", subtitle: "Für ein Zuhause, das gut tut.", description: "Ideen für Zuhause, Garten und kleine Projekte, die Wärme, Ruhe und Persönlichkeit in den Alltag bringen.", href: "/journal/ankommen", icon: "leaf" as const, image: images.arrive },
   { title: "Genießen", subtitle: "Für Mahlzeiten, die verbinden.", description: "Von Familienküche über Brot bis zur Kaffeepause – für alle, die gutes Essen als Teil eines schönen Alltags sehen.", href: "/genuss", icon: "cooking-pot" as const, image: images.enjoy },
-  { title: "Ordnen", subtitle: "Für einen Alltag, der leichter wird.", description: "Pläne, Routinen und einfache Systeme, die den Kopf entlasten und Zeit für das Wesentliche schaffen.", href: "/ordnen", icon: "list-check" as const, image: images.organize },
-  { title: "Zusammen", subtitle: "Für Beziehungen, die tragen.", description: "Alles was uns verbindet: Familie, Partnerschaft, Freundschaften und die Gedanken, die das Leben mit Kindern mit sich bringt.", href: "/zusammen", icon: "users" as const, image: images.together },
-  { title: "Feiern", subtitle: "Für Erinnerungen, die bleiben.", description: "Jahreszeiten, Feste und Rituale, die Erinnerungen schaffen und den Alltag ein bisschen schöner machen.", href: "/feiern", icon: "cake" as const, image: images.celebrate },
+  { title: "Ordnen", subtitle: "Für einen Alltag, der leichter wird.", description: "Pläne, Routinen und einfache Systeme, die den Kopf entlasten und Zeit für das Wesentliche schaffen.", href: "/journal/ordnen", icon: "list-check" as const, image: images.organize },
+  { title: "Zusammen", subtitle: "Für Beziehungen, die tragen.", description: "Alles was uns verbindet: Familie, Partnerschaft, Freundschaften und die Gedanken, die das Leben mit Kindern mit sich bringt.", href: "/journal/zusammen", icon: "users" as const, image: images.together },
+  { title: "Feiern", subtitle: "Für Erinnerungen, die bleiben.", description: "Jahreszeiten, Feste und Rituale, die Erinnerungen schaffen und den Alltag ein bisschen schöner machen.", href: "/journal/feiern", icon: "cake" as const, image: images.celebrate },
 ];
 
 ---
@@ -45,7 +45,7 @@ const topics = [
   <EditorialHero variant="homepage" showTitleIcon={false}
     eyebrow="Mach es dir leichter"
     title="Woran willst du dich später erinnern?"
-    description="Später wirst du dich hoffentlich nicht daran erinnern, wie ordentlich das Haus war oder ob die Fenster regelmäßig geputzt wurden. Aber du wirst wissen, wie es sich angefühlt hat Zuhause zu sein."
+    description="Später wirst du dich hoffentlich nicht daran erinnern, wie ordentlich das Haus war oder ob die Fenster regelmäßig geputzt wurden. Aber du wirst dich daran erinnern, wie sich euer Zuhause angefühlt hat."
     image={images.hero}
     imageAlt="Mutter und Kind auf einer sommerlichen Wildblumenwiese"
     narrowContent
