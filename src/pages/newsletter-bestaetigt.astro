@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EditorialHero from "../components/layout/EditorialHero.astro";
-import PageSection from "../components/ui/PageSection.astro";
 import Button from "../components/ui/Button.astro";
 import newsletterImage from "../assets/images/newsletter-feature.png";
 ---
@@ -10,6 +9,7 @@ import newsletterImage from "../assets/images/newsletter-feature.png";
   title="Newsletter bestätigt – Domaće"
   description="Deine Anmeldung zum Domaće-Newsletter wurde erfolgreich bestätigt."
   noindex
+  footerFlush
 >
   <EditorialHero
     variant="homepage"
@@ -17,25 +17,20 @@ import newsletterImage from "../assets/images/newsletter-feature.png";
     eyebrow="Willkommen bei Domaće"
     title={`Schön, dass du
 dabei bist.`}
-    description="Deine Anmeldung ist bestätigt. Ab jetzt kommen neue Geschichten, Rezepte und kleine Ideen für das gute Familienleben direkt zu dir."
     image={newsletterImage}
     imageAlt="Kaffeetasse auf einem hellen Holztisch"
-  />
-  <PageSection width="narrow" spacing="generous">
-    <div class="confirmation">
+  >
+    <Fragment slot="description">
+      <p>Deine Anmeldung ist bestätigt. Ab jetzt kommen neue Geschichten, Rezepte und kleine Ideen für das gute Familienleben direkt zu dir.</p>
       <p>Mach es dir gemütlich – die nächste Post von Domaće findet ihren Weg zu dir.</p>
       <div class="confirmation__actions">
         <Button href="/journal" icon>Zum Journal</Button>
-        <Button href="/" variant="secondary">Zur Startseite</Button>
+        <Button href="/geniessen" variant="secondary">Zum Genuss</Button>
       </div>
-      <p class="confirmation__signature">Ich freue mich auf dich! xo, Mara</p>
-    </div>
-  </PageSection>
+    </Fragment>
+  </EditorialHero>
 </BaseLayout>
 
 <style>
-  .confirmation { text-align: center; }
-  .confirmation > p:first-child { color: var(--color-text-muted); font-size: var(--text-lg); }
-  .confirmation__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-6); }
-  .confirmation__signature { font-family: var(--font-script); font-size: var(--text-lg); margin-top: var(--space-8); }
+  .confirmation__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
 </style>
