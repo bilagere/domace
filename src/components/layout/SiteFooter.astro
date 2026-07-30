@@ -24,12 +24,6 @@ const { gallery = [], flush = false } = Astro.props;
     <div class="site-footer__brand">
       <img class="site-footer__mark" src="/images/logo_c.png" alt="Domaće" />
       <p>Domaće ist ein Ort für alle, die das gute Familienleben lieben. Danke, dass du hier bist.</p>
-      <address class="site-footer__contact">
-        <span class="site-footer__label">Kontakt</span>
-        <a href="mailto:mara@domace.studio"><span>Persönlich</span>mara@domace.studio</a>
-        <a href="mailto:hallo@domace.studio"><span>Allgemein</span>hallo@domace.studio</a>
-        <a href="mailto:newsletter@domace.studio"><span>Newsletter</span>newsletter@domace.studio</a>
-      </address>
       <div class="site-footer__social" aria-label="Domaće auf Social Media und per E-Mail">
         <a href="https://www.instagram.com/domace.studio?igsh=MTM1cXU0YTUzYno5Yg==" aria-label="Domaće auf Instagram"><Icon name="instagram" size={16} /></a>
         <a href="https://www.pinterest.com/" aria-label="Domaće auf Pinterest"><Icon name="pin" size={16} /></a>
@@ -67,11 +61,6 @@ const { gallery = [], flush = false } = Astro.props;
   .site-footer__brand { align-content: start; display: grid; grid-template-columns: auto 1fr; gap: var(--space-3) var(--space-4); }
   .site-footer__mark { align-self: start; grid-row: span 2; max-height: 3rem; width: 2.4rem; }
   .site-footer p { font-size: var(--text-sm); margin: 0; }
-  .site-footer__contact { display: grid; font-style: normal; gap: var(--space-1); grid-column: 2; margin-top: var(--space-2); min-width: 0; }
-  .site-footer__contact .site-footer__label { margin-bottom: var(--space-1); }
-  .site-footer__contact a { color: var(--color-text); font-size: var(--text-sm); overflow-wrap: anywhere; text-decoration: none; }
-  .site-footer__contact a:hover { color: var(--color-terracotta); }
-  .site-footer__contact a span { color: var(--color-text-muted); display: block; font-size: var(--text-xs); }
   .site-footer__label { color: var(--color-terracotta); font-size: var(--text-xs) !important; font-weight: 700; letter-spacing: var(--tracking-caps); margin-bottom: var(--space-3) !important; text-transform: uppercase; }
   ul { list-style: none; margin: 0; padding: 0; } li + li { margin-top: var(--space-1); }
   li a { color: var(--color-text); font-size: var(--text-sm); text-decoration: none; }
