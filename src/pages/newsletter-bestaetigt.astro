@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/ui/PageIntro.astro";
+import PageSection from "../components/ui/PageSection.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<BaseLayout
+  title="Newsletter bestätigt – Domaće"
+  description="Deine Anmeldung zum Domaće-Newsletter wurde erfolgreich bestätigt."
+  noindex
+>
+  <PageIntro
+    eyebrow="Willkommen bei Domaće"
+    title="Schön, dass du dabei bist."
+    description="Deine Anmeldung ist bestätigt. Ab jetzt kommen neue Geschichten, Rezepte und kleine Ideen für das gute Familienleben direkt zu dir."
+    align="center"
+  />
+  <PageSection width="narrow" spacing="generous">
+    <div class="confirmation">
+      <p>Mach es dir gemütlich – die nächste Post von Domaće findet ihren Weg zu dir.</p>
+      <div class="confirmation__actions">
+        <Button href="/journal" icon>Zum Journal</Button>
+        <Button href="/" variant="secondary">Zur Startseite</Button>
+      </div>
+      <p class="confirmation__signature">Ich freue mich auf dich! xo, Mara</p>
+    </div>
+  </PageSection>
+</BaseLayout>
+
+<style>
+  .confirmation { text-align: center; }
+  .confirmation > p:first-child { color: var(--color-text-muted); font-size: var(--text-lg); }
+  .confirmation__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-6); }
+  .confirmation__signature { font-family: var(--font-script); font-size: var(--text-lg); margin-top: var(--space-8); }
+</style>
