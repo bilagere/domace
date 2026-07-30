@@ -1,7 +1,5 @@
 ---
-import Button from "./Button.astro";
 import Badge from "./Badge.astro";
-import FormField from "./FormField.astro";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -29,11 +27,9 @@ const {
     </div>
   </div>
   {compact && <Badge label="Keine Post" caption="verpassen" />}
-  <form class="newsletter__form" action="#" method="post">
-    <FormField id="newsletter-email" name="email" label="E-Mail-Adresse" type="email" autocomplete="email" placeholder="Deine E-Mail-Adresse" required hiddenLabel />
-    <Button type="submit">Anmelden</Button>
-    <p class="newsletter__note">Kein Spam. Du kannst dich jederzeit abmelden.</p>
-  </form>
+  <div class="newsletter__form">
+    <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="8c271560-80d4-4e4e-8627-95a34485ca88"></script>
+  </div>
   {compact && <p class="newsletter__signature">Ich freue mich auf dich! xo, Mara</p>}
 </section>
 
@@ -43,19 +39,17 @@ const {
   .newsletter__icon { color: var(--color-olive-dark); flex: 0 0 auto; }
   .newsletter__eyebrow { color: var(--color-terracotta); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
   h2 { font-size: var(--text-xl); margin: var(--space-1) 0 var(--space-2); }
-  .newsletter__form { display: grid; grid-template-columns: 1fr auto; }
-  .newsletter__note { font-size: var(--text-xs); grid-column: 1 / -1; margin-top: var(--space-2); }
+  .newsletter__form { min-height: 4.5rem; width: 100%; }
+  .newsletter__form :global(iframe) { border: 0; display: block; max-width: 100%; width: 100%; }
   .newsletter--compact { display: block; padding: clamp(var(--space-6), 3.5vw, var(--space-10)); position: relative; }
   .newsletter--compact .newsletter__copy { margin-bottom: var(--space-5); }
   .newsletter--compact .newsletter__icon { display: none; }
   .newsletter--compact :global(.badge) { position: absolute; right: clamp(var(--space-6), 4vw, var(--space-10)); top: clamp(var(--space-6), 4vw, var(--space-10)); }
   .newsletter--compact .newsletter__copy { max-width: 34rem; padding-right: 9rem; }
   .newsletter--compact .newsletter__form { max-width: 31rem; }
-  .newsletter--compact .newsletter__note { display: none; }
   .newsletter__signature { align-items: center; color: var(--color-text); display: flex; font-family: var(--font-script); font-size: var(--text-lg); gap: var(--space-2); margin-top: var(--space-5); }
   @media (max-width: 42rem) {
     .newsletter { grid-template-columns: 1fr; }
-    .newsletter__form { grid-template-columns: 1fr; gap: var(--space-2); }
     .newsletter--compact :global(.badge) { width: 6.5rem; }
     .newsletter--compact .newsletter__copy { padding-right: 6rem; }
   }
