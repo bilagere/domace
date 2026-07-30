@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PageIntro from "../components/ui/PageIntro.astro";
+import EditorialHero from "../components/layout/EditorialHero.astro";
 import PageSection from "../components/ui/PageSection.astro";
 import Button from "../components/ui/Button.astro";
+import newsletterImage from "../assets/images/newsletter-feature.png";
 ---
 
 <BaseLayout
@@ -10,11 +11,15 @@ import Button from "../components/ui/Button.astro";
   description="Deine Anmeldung zum Domaće-Newsletter wurde erfolgreich bestätigt."
   noindex
 >
-  <PageIntro
+  <EditorialHero
+    variant="homepage"
+    showTitleIcon={false}
     eyebrow="Willkommen bei Domaće"
-    title="Schön, dass du dabei bist."
+    title={`Schön, dass du
+dabei bist.`}
     description="Deine Anmeldung ist bestätigt. Ab jetzt kommen neue Geschichten, Rezepte und kleine Ideen für das gute Familienleben direkt zu dir."
-    align="center"
+    image={newsletterImage}
+    imageAlt="Kaffeetasse auf einem hellen Holztisch"
   />
   <PageSection width="narrow" spacing="generous">
     <div class="confirmation">
