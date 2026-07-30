@@ -22,7 +22,7 @@
   --color-focus: var(--color-olive-dark);
 
   /* Brand fonts are defined in fonts.css; the remaining entries are fallbacks. */
-  --font-display: "Safira March", "Iowan Old Style", "Baskerville", Georgia, serif;
+  --font-display: "Bodoni Moda Variable", "Bodoni Moda", "Iowan Old Style", "Baskerville", Georgia, serif;
   --font-sans: "Manrope", "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
   --font-script: "Segoe Script", "Bradley Hand", cursive;
 
@@ -36,6 +36,7 @@
   --text-home-heading: clamp(2.25rem, 4vw, 3.5rem);
 
   --font-weight-regular: 400;
+  --font-weight-display: 500;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
