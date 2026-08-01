@@ -1,40 +1,44 @@
 ---
 import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
 import { relatedContent } from "../../data/relatedContent";
+import stroganoffTitle from "../../assets/images/genuss/stroganoff-titel.png";
+import stroganoffFamilyTable from "../../assets/images/genuss/stroganoff-familientisch.png";
+import stroganoffEmpty from "../../assets/images/genuss/stroganoff-leer.png";
 
 const ingredients = [
-  "600 g Rinderhüfte oder Rinderfilet",
-  "250 g braune Champignons",
-  "1 große Zwiebel",
-  "2 kleine Gewürzgurken",
-  "2 EL Butterschmalz oder neutrales Öl",
-  "1 EL Tomatenmark",
-  "1 TL edelsüßes Paprikapulver",
-  "1 EL mittelscharfer Senf",
-  "150 ml Rinderfond",
-  "150 g Crème fraîche oder saure Sahne",
-  "Salz und frisch gemahlener Pfeffer",
-  "etwas glatte Petersilie zum Servieren",
+  "600 g Rindfleisch",
+  "400 g Champignons",
+  "1 Zwiebel",
+  "100 g Essiggurken",
+  "250 ml Rinderbrühe",
+  "250 ml Sahne",
+  "50 g Crème fraîche",
+  "3 EL Gurkenwasser",
+  "2 EL Senf",
+  "1 EL brauner Zucker",
+  "2 EL neutrales Öl zum Anbraten",
+  "edelsüßes Paprikapulver, Salz und frisch gemahlener Pfeffer",
 ];
 
 const steps = [
-  "Das Fleisch quer zur Faser in dünne Streifen schneiden. Champignons in Scheiben, Zwiebel in feine Halbringe und Gewürzgurken in schmale Streifen schneiden.",
-  "Eine große Pfanne sehr heiß werden lassen. Die Hälfte des Butterschmalzes hineingeben und das Fleisch portionsweise jeweils nur ein bis zwei Minuten kräftig anbraten. Herausnehmen, salzen und beiseitestellen.",
-  "Das restliche Butterschmalz in die Pfanne geben. Zwiebel und Champignons bei mittlerer bis hoher Hitze fünf bis sieben Minuten braten, bis die Pilze gebräunt sind.",
-  "Tomatenmark und Paprikapulver kurz mitrösten. Senf einrühren und mit dem Rinderfond ablöschen.",
-  "Die Sauce drei bis fünf Minuten leicht einkochen lassen. Die Hitze reduzieren und Crème fraîche glatt einrühren.",
-  "Fleisch und Gewürzgurken zurück in die Pfanne geben und nur noch zwei Minuten in der heißen Sauce ziehen lassen. Die Sauce soll jetzt nicht mehr stark kochen.",
-  "Mit Salz und Pfeffer abschmecken und mit Petersilie bestreuen. Dazu passen Reis, Bandnudeln oder Kartoffelpüree.",
+  "Das Rindfleisch quer zur Faser in dünne Streifen schneiden. Champignons in Scheiben, die Zwiebel in feine Halbringe und die Essiggurken in schmale Streifen schneiden.",
+  "Eine große Pfanne sehr heiß werden lassen. Etwas Öl hineingeben und das Fleisch portionsweise jeweils nur ein bis zwei Minuten kräftig anbraten. Herausnehmen, leicht salzen und beiseitestellen.",
+  "Das restliche Öl in die Pfanne geben. Zwiebel und Champignons bei mittlerer bis hoher Hitze anbraten, bis die Pilze schön gebräunt sind. Mit Paprikapulver, Salz und Pfeffer würzen.",
+  "Senf und braunen Zucker einrühren und alles mit der Rinderbrühe ablöschen. Sahne, Crème fraîche, Gurkenwasser und Essiggurken dazugeben und die Sauce einige Minuten sanft einkochen lassen.",
+  "Das Fleisch wieder in die Pfanne geben und nur noch kurz in der Sauce ziehen lassen. Das Stroganoff nicht mehr stark kochen, damit das Fleisch zart und die Sauce cremig bleibt.",
+  "Mit Salz, Pfeffer und bei Bedarf etwas zusätzlichem Gurkenwasser abschmecken. Dazu passen Reis, Bandnudeln oder Kartoffelpüree.",
 ];
 ---
 
 <RecipeLayout
   pageTitle="Boeuf Stroganoff – Domaće"
-  description="Cremiges Boeuf Stroganoff mit zartem Rindfleisch, Champignons und Gewürzgurken als wärmendes Familiengericht."
+  description="Cremiges Boeuf Stroganoff mit zartem Rindfleisch, Champignons und Essiggurken als wärmendes Familiengericht."
   category="Familienküche"
   title="Boeuf Stroganoff"
   summary="Zartes Rindfleisch, gebräunte Champignons und eine cremige, leicht würzige Sauce – ein Familiengericht, das besonders schmeckt und trotzdem in weniger als einer Stunde auf dem Tisch steht."
-  imagePlaceholder="Bildplatzhalter · Boeuf Stroganoff"
+  image={stroganoffTitle}
+  imageAlt="Cremiges Boeuf Stroganoff mit Champignons und Essiggurken"
   meta={[
     { icon: "clock", label: "Vorbereitung", value: "20 Minuten" },
     { icon: "clock", label: "Kochzeit", value: "25 Minuten" },
@@ -49,11 +53,27 @@ const steps = [
 >
   <Fragment slot="intro">
     <p>Boeuf Stroganoff ist ein cremiges Pfannengericht mit genau der richtigen Mischung aus herzhaft, mild und leicht säuerlich. Weil das Fleisch nur kurz gebraten wird, ist es schneller fertig, als der Name vermuten lässt.</p>
+    <figure>
+      <OptimizedImage
+        src={stroganoffFamilyTable}
+        alt="Boeuf Stroganoff wird am Familientisch serviert"
+        widths={[480, 720, 960]}
+        sizes="(max-width: 768px) 100vw, 46rem"
+      />
+    </figure>
     <h2>Ein besonderes Essen ohne langen Küchenabend</h2>
     <p>Bereite alle Zutaten vor, bevor die Pfanne heiß wird. Danach geht alles zügig. Reis oder Nudeln können währenddessen nebenbei garen.</p>
   </Fragment>
 
   <h2>Was dazu passt</h2>
   <p>Bandnudeln nehmen die cremige Sauce besonders gut auf. Reis macht das Gericht etwas leichter, Kartoffelpüree besonders gemütlich. Ein einfacher Gurken- oder Blattsalat bringt Frische dazu.</p>
-  <blockquote>Ein gutes Familiengericht muss nicht kompliziert sein – nur so gekocht, dass alle gerne an den Tisch kommen.</blockquote>
+  <figure>
+    <OptimizedImage
+      src={stroganoffEmpty}
+      alt="Fast leer gegessene Schüssel Boeuf Stroganoff"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) 100vw, 46rem"
+    />
+  </figure>
+  <blockquote>Von kleinen Testessern empfohlen.</blockquote>
 </RecipeLayout>

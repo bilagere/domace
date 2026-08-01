@@ -2,6 +2,7 @@ import type { ArticlePreview } from "../types/content";
 import focaccia from "../assets/images/genuss/focaccia-titel.jpg";
 import hugoEistee from "../assets/images/genuss/eistee-titel.png";
 import zimtschnecken from "../assets/images/geniessen-zimtschnecken.png";
+import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
 import familyLife from "../assets/images/entspanntes-familienleben.png";
 
 
@@ -32,6 +33,7 @@ const recipes = {
     title: "Boeuf Stroganoff",
     excerpt: "Zartes Rindfleisch in cremiger Sauce – ein wärmendes Familiengericht für besondere Alltagstage.",
     category: "Familienküche",
+    image: stroganoffTitle,
     href: "/genuss/boeuf-stroganoff",
     duration: "45 Min.",
     servings: "4 Portionen",
