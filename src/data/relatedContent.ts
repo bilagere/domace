@@ -1,5 +1,5 @@
 import type { ArticlePreview } from "../types/content";
-import focaccia from "../assets/images/focaccia.png";
+import focaccia from "../assets/images/genuss/focaccia-titel.jpg";
 import hugoEistee from "../assets/images/geniessen-hugo-eistee.png";
 import zimtschnecken from "../assets/images/geniessen-zimtschnecken.png";
 import familyLife from "../assets/images/entspanntes-familienleben.png";

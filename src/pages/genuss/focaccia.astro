@@ -1,57 +1,79 @@
 ---
 import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
 import { relatedContent } from "../../data/relatedContent";
-import focaccia from "../../assets/images/focaccia.png";
+import focacciaTitle from "../../assets/images/genuss/focaccia-titel.jpg";
+import focacciaDough from "../../assets/images/genuss/focaccia-teig.png";
+import focacciaFinal from "../../assets/images/genuss/focaccia-final.jpg";
 
 const ingredients = [
-  "500 g Weizenmehl (Type 550)",
-  "400 ml lauwarmes Wasser",
-  "7 g Trockenhefe",
-  "10 g Salz",
-  "3 EL Olivenöl plus etwas mehr für Form und Oberfläche",
-  "1 Zweig Rosmarin",
-  "eine kleine Handvoll grüne oder schwarze Oliven",
-  "grobes Meersalz",
+  "400 g Weizenmehl (Type 550)",
+  "300 g Wasser",
+  "80 g aktiver Weizensauerteig",
+  "8 g Salz",
+  "reichlich Olivenöl für Form, Hände und Oberfläche",
+  "Belag nach Geschmack, zum Beispiel Rosmarin, Oliven und Meersalz",
 ];
 
 const steps = [
-  "Wasser und Trockenhefe in einer großen Schüssel verrühren. Mehl und Salz dazugeben und alles mit einem Holzlöffel oder Teigschaber zu einem sehr weichen, klebrigen Teig vermengen.",
-  "Den Teig in der Schüssel viermal im Abstand von jeweils 15 Minuten von außen zur Mitte falten. Dafür die Hände leicht anfeuchten, eine Teigseite hochziehen und über die Mitte legen.",
-  "Die Schüssel abdecken und den Teig an einem warmen Ort etwa 60 bis 90 Minuten gehen lassen, bis er deutlich an Volumen gewonnen hat.",
-  "Eine Backform oder ein kleines Blech großzügig mit Olivenöl ausstreichen. Den Teig hineingleiten lassen, vorsichtig auseinanderziehen und weitere 30 Minuten ruhen lassen.",
-  "Den Backofen auf 220 °C Ober-/Unterhitze vorheizen. Die Fingerspitzen einölen und tiefe Mulden in den Teig drücken.",
-  "Rosmarin und Oliven auf der Oberfläche verteilen. Mit Olivenöl beträufeln und mit etwas grobem Meersalz bestreuen.",
-  "Die Focaccia 22 bis 28 Minuten backen, bis sie goldbraun ist. Vor dem Anschneiden mindestens 10 Minuten auf einem Gitter auskühlen lassen.",
+  "Mehl, Wasser, Sauerteig und Salz zusammen in die Knetschüssel geben. Alles nur so lange kneten, bis sich die Zutaten gut verbunden haben und keine Mehlnester mehr zu sehen sind. Der Teig ist jetzt noch sehr weich, klebrig und beinahe fließend.",
+  "Den Teig in den ersten zwei Stunden viermal dehnen und falten oder mit Coil Folds stärken. Die Hände dafür gut anfeuchten, da der Teig sehr klebrig ist. Nach jedem Falten bekommt er sichtbar mehr Spannung und Struktur.",
+  "Eine große Auflaufform (ca. 40 × 27 cm) großzügig mit Olivenöl ausstreichen. Den Teig nach dem letzten Falten hineingeben und auch von oben reichlich mit Öl beträufeln. In der großen Form wirkt er zunächst überraschend klein – er wird noch deutlich an Volumen gewinnen.",
+  "Die Form mit einem feuchten Geschirrtuch abdecken und den Teig bei Raumtemperatur über Nacht reifen lassen. In einer warmen Sommernacht kann er am nächsten Morgen bereit sein; im Winter braucht er möglicherweise bis mittags.",
+  "Der Teig ist bereit, wenn er sein Volumen deutlich vergrößert hat, luftig wirkt und viele Blasen zeigt. Den Backofen auf 250 °C Ober-/Unterhitze vorheizen.",
+  "Die Focaccia nach Lust und Laune belegen. Die Finger großzügig einölen und Belag sowie tiefe Mulden sanft in den Teig drücken. Dabei entstehen die typischen großen Luftblasen. Bei einem Belag ohne Käse zusätzlich Salz über die Oberfläche geben.",
+  "Die Form in den Ofen stellen, die Temperatur sofort auf 230 °C reduzieren und die Focaccia etwa 30 Minuten backen, bis sie kräftig goldbraun ist.",
 ];
 ---
 
 <RecipeLayout
-  pageTitle="Focaccia mit Rosmarin und Oliven – Domaće"
-  description="Ein einfaches Rezept für luftige Focaccia mit knuspriger Kruste, Rosmarin und Oliven."
+  pageTitle="Focaccia mit Sauerteig – Domaće"
+  description="Luftige Focaccia mit Weizensauerteig, langer Gare und reichlich Olivenöl – unkompliziert vorbereitet und nach Lust und Laune belegt."
   category="Brot & Gebäck"
-  title="Focaccia mit Rosmarin und Oliven"
-  summary="Außen goldbraun und knusprig, innen weich und luftig – eine unkomplizierte Focaccia für den Familientisch, Gäste oder den nächsten gemütlichen Abend."
-  image={focaccia}
-  imageAlt="Goldbraune Focaccia mit Rosmarin und Oliven"
+  title="Focaccia mit Sauerteig"
+  summary="Außen goldbraun, innen weich und voller großer Luftblasen: Diese Focaccia darf über Nacht in Ruhe reifen und wird am nächsten Tag ganz nach Geschmack belegt."
+  image={focacciaTitle}
+  imageAlt="Aufgeschnittene Focaccia mit Tomaten und Rosmarin auf einem Holztisch"
   meta={[
-    { icon: "clock", label: "Arbeitszeit", value: "20 Minuten" },
-    { icon: "clock", label: "Ruhe- & Backzeit", value: "ca. 2 Stunden" },
-    { icon: "users", label: "Ergibt", value: "4–6 Portionen" },
+    { icon: "clock", label: "Arbeitszeit", value: "ca. 25 Minuten" },
+    { icon: "clock", label: "Geh- & Backzeit", value: "über Nacht + ca. 30 Minuten" },
+    { icon: "users", label: "Ergibt", value: "ca. 6 Portionen" },
   ]}
   ingredients={ingredients}
-  ingredientNote="Der hohe Wasseranteil macht den Teig besonders luftig. Gib möglichst kein zusätzliches Mehl dazu – klebrige Hände sind hier genau richtig."
-  tipTitle="So wird sie besonders gut."
-  tipText="Plane genügend Ruhezeit ein und gehe sanft mit dem aufgegangenen Teig um. So bleiben die Luftblasen erhalten."
+  ingredientNoteTitle="Teiggefühl"
+  ingredientNote="Der Teig bleibt nach dem Kneten sehr weich und beinahe fließend. Gib kein zusätzliches Mehl dazu: Die eigentliche Spannung entsteht erst durch das wiederholte Falten."
+  tipTitle="So bleibt nichts kleben."
+  tipText="Lege ein Gitter über die Auflaufform und erst dann das feuchte Geschirrtuch darüber. So hat der Teig Platz zum Wachsen, ohne am Tuch festzukleben."
+  safetyTipTitle="Backen in der Glasform"
+  safetyTipText="Achte darauf, dass deine Glasform für die hohe Backtemperatur geeignet ist, und vermeide starke Temperaturschocks."
   steps={steps}
   relatedItems={relatedContent.focaccia}
 >
   <Fragment slot="intro">
-    <p>Focaccia gehört zu den Rezepten, die nach mehr Aufwand aussehen, als sie tatsächlich machen. Der Teig wird nicht geknetet, sondern nur einige Male gefaltet. Danach braucht er vor allem Zeit – und genau die sorgt für die luftige Krume.</p>
-    <h2>Ein Brot für die Mitte des Tisches</h2>
-    <p>Wir essen die Focaccia am liebsten noch leicht warm. Sie passt zu Suppe und Salat, kann mit Gemüse oder Käse belegt werden und ist auch am nächsten Tag kurz aufgebacken noch wunderbar.</p>
+    <p>Diese Focaccia folgt weniger der Uhr als dem Teig. Nach kurzem Kneten bekommt er seine Struktur durch mehrmaliges Falten und darf anschließend über Nacht bei Raumtemperatur reifen. Am nächsten Morgen ist aus dem anfangs kleinen Teig eine luftige, lebendige Focaccia geworden.</p>
+    <figure>
+      <OptimizedImage
+        src={focacciaDough}
+        alt="Hände drücken Mulden in einen luftig aufgegangenen Focaccia-Teig"
+        widths={[480, 720, 960]}
+        sizes="(max-width: 768px) 100vw, 46rem"
+      />
+    </figure>
+    <h2>Ein Brot, das zum Teilen einlädt</h2>
+    <p>Als Sandwich reicht sie ungefähr für sechs Personen, als Beilage auch für eine größere Runde. Wir essen sie am liebsten noch leicht warm – zu Suppe und Salat oder einfach so aus der Mitte des Tisches.</p>
+    <h2>Belegen nach Lust und Laune</h2>
+    <p>Besonders gut schmeckt die Focaccia mit getrockneten Tomaten, zerbröseltem Feta und Pinienkernen. Schlichter wird sie mit Rosmarin, Oliven und Meersalz. Beim Olivenöl darfst du großzügig sein – es gehört hier zum Geschmack und zur saftigen Krume.</p>
   </Fragment>
 
   <h2>Varianten für jede Jahreszeit</h2>
-  <p>Im Sommer schmecken kleine Tomaten und Thymian darauf, im Herbst dünne Kürbisscheiben und Salbei. Für Kinder kannst du einen Teil schlicht mit Olivenöl und wenig Salz lassen.</p>
-  <blockquote>Das beste Brot ist oft das, das in der Mitte des Tisches liegt und von allen geteilt wird.</blockquote>
+  <p>Im Sommer schmecken kleine Tomaten und Thymian darauf, im Herbst dünne Kürbisscheiben und Salbei. Für Kinder kannst du einen Teil schlicht mit Olivenöl und wenig Salz lassen – wobei meine Große am liebsten die Pinienkerne nascht.</p>
+  <figure>
+    <OptimizedImage
+      src={focacciaFinal}
+      alt="Fertig gebackene Focaccia mit Tomaten, Zwiebeln und Rosmarin"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) 100vw, 46rem"
+    />
+  </figure>
+  <blockquote>Ein Blech Focaccia ist selten lange ein ganzes Blech.</blockquote>
 </RecipeLayout>

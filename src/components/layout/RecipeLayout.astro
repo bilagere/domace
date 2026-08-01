@@ -33,6 +33,8 @@ interface Props {
   ingredientNoteTitle?: string;
   tipTitle: string;
   tipText: string;
+  safetyTipTitle?: string;
+  safetyTipText?: string;
   steps: string[];
   relatedItems: ArticlePreview[];
   instagramUrl?: string;
@@ -53,6 +55,8 @@ const {
   ingredientNoteTitle = "Zutaten-Tipp",
   tipTitle,
   tipText,
+  safetyTipTitle,
+  safetyTipText,
   steps,
   relatedItems,
   instagramUrl = "https://www.instagram.com/domace.studio/",
@@ -60,6 +64,10 @@ const {
 ---
 
 <BaseLayout title={pageTitle} description={description} activePath="/genuss" socialImage={image} footerFlush>
+  <div class="print-brand" aria-label="Domaće – domace.studio">
+    <img src="/images/wordmark_domace.png" alt="Domaće" />
+    <span>domace.studio</span>
+  </div>
   <Container>
     <ArticleLead
       eyebrow={category}
@@ -80,6 +88,7 @@ const {
   </section>
 
   <section class="recipe-body" aria-label={`${title} Rezept`}>
+
     <ContentWithSidebar asidePosition="start">
       <Fragment slot="aside">
         <div id="zutaten">
@@ -96,12 +105,21 @@ const {
             <h2>{tipTitle}</h2>
             <p>{tipText}</p>
           </section>
+          {safetyTipTitle && safetyTipText && (
+            <section class="recipe-tip">
+              <h2>{safetyTipTitle}</h2>
+              <p>{safetyTipText}</p>
+            </section>
+          )}
         </SidebarPanel>
       </Fragment>
 
       <ArticleProse>
         <div class="recipe-intro">
           <slot name="intro" />
+        </div>
+        <div class="recipe-mobile-ingredients">
+          <IngredientList items={ingredients} />
         </div>
         <div id="zubereitung">
           <NumberedSteps steps={steps} />
@@ -138,18 +156,28 @@ const {
   .recipe-tools { padding-block: var(--space-6); }
   .recipe-tools :global(.container) { align-items: center; display: flex; flex-wrap: wrap; gap: var(--space-5); }
   .recipe-body { padding-block: var(--space-8); }
-  .recipe-body :global(.content-layout__aside) { display: grid; gap: var(--space-8); }
+  .print-brand { display: none; }
+  .recipe-body :global(.content-layout__aside) { align-content: start; align-self: start; display: grid; gap: var(--space-8); }
   .recipe-body :global(.article-prose > p:first-child) { font-size: var(--text-lg); }
+  .recipe-mobile-ingredients { display: none; }
   .recipe-body :global(.numbered-steps) { margin-top: var(--space-12); }
   .recipe-body :global(.recipe-tip + .recipe-tip) { border-top: var(--divider-thickness) solid rgb(246 242 236 / 35%); margin-top: var(--space-5); padding-top: var(--space-5); }
   .recipe-body :global(.recipe-tip h2) { color: inherit; font-size: var(--text-lg); }
   .recipe-body :global(.recipe-tip p) { margin-top: var(--space-3); }
   .newsletter-feature { margin-top: var(--space-8); }
   @media (max-width: 48rem) {
-    .recipe-body :global(.content-layout__aside) { border-bottom: var(--divider-thickness) solid var(--color-border); border-top: 0; order: 0; padding-bottom: var(--space-8); padding-top: 0; }
+    .recipe-mobile-ingredients { display: block; margin-top: var(--space-10); }
+    .recipe-mobile-ingredients + #zubereitung :global(.numbered-steps) { margin-top: var(--space-8); }
+    .recipe-body :global(.content-layout__aside) { border-bottom: 0; border-top: var(--divider-thickness) solid var(--color-border); order: 2; padding-bottom: 0; padding-top: var(--space-8); }
+    .recipe-body :global(.content-layout__aside > #zutaten) { display: none; }
+  }
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
   }
   @media print {
-    :global(.site-header), :global(.site-footer), .recipe-tools, :global(.newsletter), :global(.related-content), .instagram-feature { display: none !important; }
+    :global(body) { background: var(--color-surface-raised); }
+    :global(.skip-link), :global(.site-header), :global(.site-footer), .recipe-tools, :global(.newsletter), :global(.related-content), .instagram-feature { display: none !important; }
     :global(.article-lead) { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
     :global(.article-lead__content) { padding: var(--space-5) var(--space-6) var(--space-5) 0; }
     :global(.article-lead__media) { height: 7.5cm; min-height: 0; }
@@ -157,9 +185,15 @@ const {
     :global(.article-lead__summary) { font-size: var(--text-base); margin-top: var(--space-3); }
     :global(.article-lead__meta) { display: none !important; }
     .recipe-body { padding: var(--space-8) 0 0; }
-    .recipe-body :global(.content-layout) { display: grid; gap: var(--space-6); grid-template-columns: 15rem 1fr; max-width: none; padding: 0; }
+    .print-brand { align-items: end; border-bottom: var(--divider-thickness) solid var(--color-divider); display: flex; justify-content: space-between; margin: 0 0 var(--space-6); padding-bottom: var(--space-3); }
+    .print-brand img { display: block; max-width: clamp(8rem, 10vw, 10rem); width: 100%; }
+    .print-brand span { color: var(--color-text-muted); font-size: var(--text-sm); }
+    .recipe-body :global(.content-layout) { display: grid; gap: var(--space-6); grid-template-areas: "ingredients preparation"; grid-template-columns: 15rem 1fr; max-width: none; padding: 0; }
+    .recipe-body :global(.content-layout__aside) { grid-area: ingredients; order: 0; }
+    .recipe-body :global(.content-layout__main) { grid-area: preparation; order: 0; }
     .recipe-body :global(.sidebar-panel) { display: none; }
-    .recipe-intro, .recipe-article { display: none !important; }
+    .recipe-intro, .recipe-article, .recipe-mobile-ingredients { display: none !important; }
+    .recipe-body :global(.content-layout__aside > #zutaten) { display: block !important; }
     .recipe-body :global(.numbered-steps) { margin-top: 0; }
     .recipe-body :global(.numbered-steps h2) { margin-top: 0; }
   }
