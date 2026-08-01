@@ -1,7 +1,7 @@
 import type { ArticlePreview } from "../types/content";
 import focaccia from "../assets/images/genuss/focaccia-titel.jpg";
 import hugoEistee from "../assets/images/genuss/eistee-titel.png";
-import zimtschnecken from "../assets/images/geniessen-zimtschnecken.png";
+import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
 import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
 import familyLife from "../assets/images/entspanntes-familienleben.png";
 
