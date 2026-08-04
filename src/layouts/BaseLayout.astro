@@ -22,6 +22,8 @@ interface Props {
   socialImage?: ImageMetadata;
   socialImageAlt?: string;
   socialType?: "website" | "article";
+  socialTitle?: string;
+  socialDescription?: string;
   articleAuthor?: string;
   articlePublishedTime?: string;
   structuredData?: Record<string, unknown>;
@@ -37,6 +39,8 @@ const {
   socialImage = ogImageSource,
   socialImageAlt = "Domaće – für das gute Familienleben",
   socialType = "website",
+  socialTitle = title,
+  socialDescription = description,
   articleAuthor,
   articlePublishedTime,
   structuredData,
@@ -78,11 +82,14 @@ const structuredDataJson = completeStructuredData
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f6f2ec" />
     <meta property="og:site_name" content="Domaće" />
     <meta property="og:locale" content="de_CH" />
     <meta property="og:type" content={socialType} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={socialTitle} />
+    <meta property="og:description" content={socialDescription} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
@@ -91,8 +98,8 @@ const structuredDataJson = completeStructuredData
     {articleAuthor && <meta property="article:author" content={articleAuthor} />}
     {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={socialTitle} />
+    <meta name="twitter:description" content={socialDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={socialImageAlt} />
     {structuredDataJson && <script is:inline type="application/ld+json" set:html={structuredDataJson} />}
