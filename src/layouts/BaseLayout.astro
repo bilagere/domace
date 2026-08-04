@@ -22,6 +22,8 @@ interface Props {
   socialImage?: ImageMetadata;
   socialImageAlt?: string;
   socialType?: "website" | "article";
+  articleAuthor?: string;
+  articlePublishedTime?: string;
   structuredData?: Record<string, unknown>;
 }
 
@@ -35,6 +37,8 @@ const {
   socialImage = ogImageSource,
   socialImageAlt = "Domaće – für das gute Familienleben",
   socialType = "website",
+  articleAuthor,
+  articlePublishedTime,
   structuredData,
 } = Astro.props;
 
@@ -84,6 +88,8 @@ const structuredDataJson = completeStructuredData
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={socialImageAlt} />
+    {articleAuthor && <meta property="article:author" content={articleAuthor} />}
+    {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

@@ -28,6 +28,9 @@ interface Props {
   imageAlt?: string;
   imagePlaceholder?: string;
   meta: MetaItem[];
+  prepTime?: string;
+  cookTime?: string;
+  totalTime?: string;
   ingredients: string[];
   ingredientNote?: string;
   ingredientNoteTitle?: string;
@@ -50,6 +53,9 @@ const {
   imageAlt = "",
   imagePlaceholder,
   meta,
+  prepTime,
+  cookTime,
+  totalTime,
   ingredients,
   ingredientNote,
   ingredientNoteTitle = "Zutaten-Tipp",
@@ -68,6 +74,9 @@ const structuredData = {
   description,
   recipeCategory: category,
   ...(recipeYield ? { recipeYield } : {}),
+  ...(prepTime ? { prepTime } : {}),
+  ...(cookTime ? { cookTime } : {}),
+  ...(totalTime ? { totalTime } : {}),
   recipeIngredient: ingredients,
   recipeInstructions: steps.map((text, index) => ({
     "@type": "HowToStep",
