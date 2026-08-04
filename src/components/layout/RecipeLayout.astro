@@ -14,6 +14,7 @@ import PageSection from "../ui/PageSection.astro";
 import RelatedArticles from "../ui/RelatedArticles.astro";
 import SidebarPanel from "../ui/SidebarPanel.astro";
 import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
 import type { ArticlePreview } from "../../types/content";
 import newsletter from "../../assets/images/newsletter-geniessen.png";
 
@@ -68,6 +69,16 @@ const {
   instagramUrl = "https://www.instagram.com/domace.studio/",
 } = Astro.props;
 const recipeYield = meta.find((item) => item.label === "Ergibt")?.value;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const pinImage = image
+  ? await getImage({ src: image, width: 1000, format: "jpg", quality: 82 })
+  : undefined;
+const pinParams = new URLSearchParams({
+  url: canonicalUrl,
+  description: `${title} – ${description}`,
+});
+if (pinImage) pinParams.set("media", new URL(pinImage.src, Astro.site).href);
+const pinterestUrl = `https://www.pinterest.com/pin/create/button/?${pinParams.toString()}`;
 const structuredData = {
   "@type": "Recipe",
   name: title,
@@ -119,6 +130,7 @@ const structuredData = {
   <section class="recipe-tools" aria-label="Rezeptaktionen">
     <Container>
       <Button class="print-recipe">Rezept drucken</Button>
+      <Button href={pinterestUrl} variant="secondary" external>Rezept pinnen</Button>
       <Button href="/genuss" variant="text" icon>Mehr aus der Domaće-Küche</Button>
     </Container>
   </section>
