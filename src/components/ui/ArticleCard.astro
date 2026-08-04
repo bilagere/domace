@@ -30,7 +30,7 @@ const details = [
     <h3><a href={href}>{title}</a></h3>
     <p class="article-card__excerpt">{excerpt}</p>
     {details.length > 0 && <div class="article-card__details"><MetaList items={details} compact /></div>}
-    <Button href={href} variant="text" icon>Weiterlesen</Button>
+    <Button href={href} variant="text" icon ariaLabel={`Weiterlesen: ${title}`}>Weiterlesen</Button>
   </div>
 </article>
 

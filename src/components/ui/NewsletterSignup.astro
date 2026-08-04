@@ -29,7 +29,20 @@ const {
   {compact && <Badge label="Keine Post" caption="verpassen" />}
   <div class="newsletter__form">
     <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="8c271560-80d4-4e4e-8627-95a34485ca88"></script>
-  </div>
+  </div>  <script>
+    const labelNewsletterFrames = () => {
+      document.querySelectorAll<HTMLIFrameElement>(
+        'iframe[src*="subscribe-forms.beehiiv.com"]',
+      ).forEach((frame) => {
+        if (!frame.title) frame.title = "Newsletter-Anmeldung bei Domaće";
+      });
+    };
+
+    labelNewsletterFrames();
+    const newsletterObserver = new MutationObserver(labelNewsletterFrames);
+    newsletterObserver.observe(document.body, { childList: true, subtree: true });
+    window.setTimeout(() => newsletterObserver.disconnect(), 10_000);
+  </script>
   {compact && <p class="newsletter__signature">Ich freue mich auf dich! xo, Mara</p>}
 </section>
 
