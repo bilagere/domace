@@ -3,7 +3,7 @@ import ArticleLayout from "../../components/layout/ArticleLayout.astro";
 import OptimizedImage from "../../components/ui/OptimizedImage.astro";
 import familyLife from "../../assets/images/entspanntes-familienleben.png";
 import organize from "../../assets/images/organize.png";
-import morning from "../../../public/images/morning.png";
+import morning from "../../assets/images/morning.png";
 
 const routines = [
   {
@@ -40,6 +40,7 @@ const routines = [
   image={organize}
   imageAlt="Notizbuch, Tasse und Blumen auf einem warmen Holztisch"
   date="7. Mai 2025"
+  datePublished="2025-05-07"
   readingTime="8 Min. Lesezeit"
   shortSummary="Nicht mehr schaffen, sondern weniger täglich neu entscheiden: Zehn kleine Routinen geben unserem Familienalltag Struktur, Ruhe und mehr Raum füreinander."
   relatedItems={[]}
@@ -79,7 +80,12 @@ const routines = [
   <p>Vielleicht ist es ein vorbereiteter Frühstückstisch, ein gemeinsamer Blick in den Kalender oder zehn Minuten Ruhe, bevor alle aufstehen. Erst wenn dieser Schritt selbstverständlich geworden ist, kommt der nächste dazu.</p>
 
   <figure>
-    <img src={morning.src} alt="Eine ruhige morgendliche Szene mit warmem Licht" loading="lazy" />
+    <OptimizedImage
+      src={morning}
+      alt="Eine ruhige morgendliche Szene mit warmem Licht"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) 100vw, 46rem"
+    />
   </figure>
 
   <p id="kommentare">Welche kleine Routine tut eurer Familie gerade gut? Schreib sie dir auf – oft beginnt Veränderung genau dort, wo etwas bewusst wird.</p>

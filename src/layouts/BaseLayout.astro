@@ -5,7 +5,8 @@ import "@fontsource-variable/bodoni-moda";
 import "../design/global.css";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
-import { getImage, type ImageMetadata } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
 import instagramOne from "../assets/images/ankommen_homepage.png";
 import instagramTwo from "../assets/images/newsletter-feature.png";
 import instagramThree from "../assets/images/enjoy.png";
@@ -19,6 +20,9 @@ interface Props {
   footerFlush?: boolean;
   noindex?: boolean;
   socialImage?: ImageMetadata;
+  socialImageAlt?: string;
+  socialType?: "website" | "article";
+  structuredData?: Record<string, unknown>;
 }
 
 const {
@@ -29,6 +33,9 @@ const {
   footerFlush = false,
   noindex = false,
   socialImage = ogImageSource,
+  socialImageAlt = "Domaće – für das gute Familienleben",
+  socialType = "website",
+  structuredData,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -41,6 +48,17 @@ const ogImage = await getImage({
   fit: "cover",
 });
 const ogImageUrl = new URL(ogImage.src, Astro.site);
+const completeStructuredData = structuredData
+  ? {
+      "@context": "https://schema.org",
+      url: canonicalUrl.href,
+      image: ogImageUrl.href,
+      ...structuredData,
+    }
+  : undefined;
+const structuredDataJson = completeStructuredData
+  ? JSON.stringify(completeStructuredData).replace(/</g, "\\u003c")
+  : undefined;
 ---
 
 <!doctype html>
@@ -57,19 +75,20 @@ const ogImageUrl = new URL(ogImage.src, Astro.site);
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta property="og:site_name" content="Domaće" />
     <meta property="og:locale" content="de_CH" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={socialType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Domaće – für das gute Familienleben" />
+    <meta property="og:image:alt" content={socialImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="twitter:image:alt" content="Domaće – für das gute Familienleben" />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
+    {structuredDataJson && <script is:inline type="application/ld+json" set:html={structuredDataJson} />}
     <title>{title}</title>
     <script
       is:inline

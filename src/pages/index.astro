@@ -63,7 +63,7 @@ const topics = [
       <Button href="/journal" variant="text" icon>Alle Beiträge ansehen</Button>
     </div>
     <div class="article-grid">
-      {latestContent.map(({ duration: _duration, servings: _servings, ...post }) => <ArticleCard {...post} />)}
+      {latestContent.map((post) => <ArticleCard {...post} />)}
     </div>
   </section>
 

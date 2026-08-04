@@ -61,9 +61,36 @@ const {
   relatedItems,
   instagramUrl = "https://www.instagram.com/domace.studio/",
 } = Astro.props;
----
+const recipeYield = meta.find((item) => item.label === "Ergibt")?.value;
+const structuredData = {
+  "@type": "Recipe",
+  name: title,
+  description,
+  recipeCategory: category,
+  ...(recipeYield ? { recipeYield } : {}),
+  recipeIngredient: ingredients,
+  recipeInstructions: steps.map((text, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    text,
+  })),
+  author: {
+    "@type": "Organization",
+    name: "Domaće",
+    url: new URL("/", Astro.site).href,
+  },
+};---
 
-<BaseLayout title={pageTitle} description={description} activePath="/genuss" socialImage={image} footerFlush>
+<BaseLayout
+  title={pageTitle}
+  description={description}
+  activePath="/genuss"
+  socialImage={image}
+  socialImageAlt={imageAlt}
+  socialType="article"
+  structuredData={structuredData}
+  footerFlush
+>
   <div class="print-brand" aria-label="Domaće – domace.studio">
     <img src="/images/wordmark_domace.png" alt="Domaće" />
     <span>domace.studio</span>

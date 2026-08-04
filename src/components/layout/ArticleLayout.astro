@@ -26,6 +26,7 @@ interface Props {
   image: ImageMetadata;
   imageAlt: string;
   date: string;
+  datePublished: string;
   readingTime: string;
   shortSummary?: string;
   relatedItems: ArticlePreview[];
@@ -41,14 +42,39 @@ const {
   image,
   imageAlt,
   date,
+  datePublished,
   readingTime,
   shortSummary = summary,
   relatedItems,
 } = Astro.props;
-
+const structuredData = {
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished,
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  author: {
+    "@type": "Person",
+    name: "Mara Lukić",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Domaće",
+    url: new URL("/", Astro.site).href,
+  },
+};
 ---
 
-<BaseLayout title={pageTitle} description={description} activePath={activePath} socialImage={image} footerFlush>
+<BaseLayout
+  title={pageTitle}
+  description={description}
+  activePath={activePath}
+  socialImage={image}
+  socialImageAlt={imageAlt}
+  socialType="article"
+  structuredData={structuredData}
+  footerFlush
+>
   <Container>
     <ArticleLead
       eyebrow={category}
