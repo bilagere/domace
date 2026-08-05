@@ -1,4 +1,6 @@
 import type { ArticlePreview } from "../types/content";
+
+type PublishedContent = ArticlePreview & { publishedAt: string };
 import focaccia from "../assets/images/genuss/focaccia-titel.jpg";
 import hugoEistee from "../assets/images/genuss/eistee-titel.png";
 import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
@@ -14,6 +16,7 @@ const recipes = {
     category: "Brot & Gebäck",
     image: focaccia,
     href: "/genuss/focaccia",
+    publishedAt: "2026-07-30",
   },
   hugoEistee: {
     title: "Hugo-Eistee",
@@ -21,6 +24,7 @@ const recipes = {
     category: "Spaßgetränk",
     image: hugoEistee,
     href: "/genuss/hugo-eistee",
+    publishedAt: "2026-07-30",
   },
   zimtschnecken: {
     title: "Zimtschnecken",
@@ -28,6 +32,7 @@ const recipes = {
     category: "Brot & Gebäck",
     image: zimtschnecken,
     href: "/genuss/zimtschnecken",
+    publishedAt: "2026-07-30",
   },
   boeufStroganoff: {
     title: "Boeuf Stroganoff",
@@ -35,8 +40,9 @@ const recipes = {
     category: "Familienküche",
     image: stroganoffTitle,
     href: "/genuss/boeuf-stroganoff",
+    publishedAt: "2026-07-30",
   },
-} satisfies Record<string, ArticlePreview>;
+} satisfies Record<string, PublishedContent>;
 
 const journalArticle = {
   title: "Nicht leiser, aber leichter.",
@@ -44,14 +50,20 @@ const journalArticle = {
   category: "Artikel · Zusammen",
   image: quieterFamilyLife,
   href: "/ordnen/familienleben-ruhiger",
-} satisfies ArticlePreview;
+  publishedAt: "2026-08-05",
+} satisfies PublishedContent;
 
-export const latestContent = [
+const publishedContent = [
+  journalArticle,
   recipes.focaccia,
   recipes.zimtschnecken,
   recipes.boeufStroganoff,
   recipes.hugoEistee,
-] satisfies ArticlePreview[];
+] satisfies PublishedContent[];
+
+export const latestContent: ArticlePreview[] = publishedContent
+  .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+  .slice(0, 4);
 
 export const relatedContent = {
   focaccia: [recipes.zimtschnecken, recipes.boeufStroganoff, recipes.hugoEistee, journalArticle],
