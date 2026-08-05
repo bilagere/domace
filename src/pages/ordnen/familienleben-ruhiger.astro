@@ -1,102 +1,105 @@
 ---
 import ArticleLayout from "../../components/layout/ArticleLayout.astro";
 import OptimizedImage from "../../components/ui/OptimizedImage.astro";
-import familyLife from "../../assets/images/entspanntes-familienleben.png";
-import organize from "../../assets/images/organize.png";
-import morning from "../../assets/images/morning.png";
-
-const routines = [
-  {
-    title: "Den Morgen langsam beginnen",
-    text: "Bevor der Tag für alle beginnt, gehören die ersten Minuten nur mir: ein Tee, ein paar Seiten lesen, kurz schreiben. Diese kleine Pause verändert meinen ganzen Tag.",
-  },
-  {
-    title: "Ein gemeinsamer Wochenblick",
-    text: "Einmal pro Woche schauen wir gemeinsam auf Termine, Mahlzeiten und besondere Aufgaben. So bleiben Erwartungen sichtbar und nicht alles hängt an einer Person.",
-  },
-  {
-    title: "Die Küche am Abend zurücksetzen",
-    text: "Zehn ruhige Minuten reichen meist: Flächen frei, Spülmaschine an, Frühstück bereit. Der nächste Morgen beginnt dadurch spürbar freundlicher.",
-  },
-  {
-    title: "Übergänge bewusst gestalten",
-    text: "Nach Schule, Arbeit oder Betreuung brauchen wir erst ein Ankommen, bevor das Nächste beginnt. Ein Snack und ein kurzes Gespräch helfen mehr als ein voller Plan.",
-  },
-  {
-    title: "Einen Abend ohne Müssen lassen",
-    text: "Mindestens ein Abend bleibt frei von Erledigungen. Diese Lücke ist kein verlorener Termin, sondern ein fester Platz für Erholung und spontane Nähe.",
-  },
-];
-
+import titleImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
+import everydayImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-alltag.png";
+import gardenImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-garten.png";
+import householdImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-haushalt.png";
+import eveningImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-abend.png";
 ---
 
 <ArticleLayout
-  pageTitle="10 Dinge für ein ruhigeres Familienleben | Domaće"
-  description="Zehn einfache Routinen und Gedanken, die den Familienalltag leichter, ruhiger und verbundener machen."
+  pageTitle="7 Tipps für ein entspannteres Familienleben | Domaće"
+  description="Sieben Gewohnheiten und Überzeugungen, die unseren Familienalltag ruhiger machen – von festen Wochenankern bis zur gemeinsam erledigten Hausarbeit."
   activePath="/journal"
-  category="Ordnen"
-  title="Die 10 Dinge, die unser Familienleben ruhiger gemacht haben"
-  summary="Routinen geben unserem Alltag Struktur, ohne ihn starr zu machen. Sie nehmen Entscheidungen ab, schenken Ruhe und schaffen Raum für das, was wirklich zählt."
-  image={organize}
-  imageAlt="Notizbuch, Tasse und Blumen auf einem warmen Holztisch"
-  date="7. Mai 2025"
-  datePublished="2025-05-07"
+  category="Zusammen"
+  title="7 Tipps für ein entspannteres Familienleben"
+  summary="Unser Familienalltag ist nicht immer still oder perfekt. Sieben kleine Entscheidungen geben ihm trotzdem einen Rhythmus, nehmen Druck heraus und schaffen mehr Ruhe füreinander."
+  image={titleImage}
+  imageAlt="Lebendiger Familienalltag in warmer, natürlicher Atmosphäre"
+  date="5. August 2026"
+  datePublished="2026-08-05"
   readingTime="8 Min. Lesezeit"
-  shortSummary="Nicht mehr schaffen, sondern weniger täglich neu entscheiden: Zehn kleine Routinen geben unserem Familienalltag Struktur, Ruhe und mehr Raum füreinander."
+  shortSummary="Ein entspannterer Familienalltag entsteht für uns nicht durch Perfektion, sondern durch verlässliche Systeme, weniger unnötige Entscheidungen und den Mut, Kinder am echten Leben teilhaben zu lassen."
   relatedItems={[]}
 >
-  <p>Als ich gemerkt habe, wie sehr mich ständiges Entscheiden und Planen ermüdet, habe ich begonnen, kleine Routinen in unseren Alltag zu integrieren. Nicht perfekt, nicht kompliziert – aber hilfreich.</p>
-  <p>Heute teile ich die Veränderungen, die bei uns den größten Unterschied gemacht haben. Vielleicht passt nicht jede davon zu deiner Familie. Nimm dir einfach das mit, was gerade entlastet.</p>
-
-  <h2 id="warum-routinen">1. Warum Routinen so viel verändern</h2>
-  <p>Gute Routinen sind keine engen Regeln. Sie sind Abkürzungen für wiederkehrende Entscheidungen. Wenn klar ist, wann wir die Woche besprechen oder wie der Morgen beginnt, muss niemand diese Abläufe jeden Tag neu verhandeln.</p>
-  <blockquote>Eine hilfreiche Routine schafft Halt – und lässt trotzdem Platz für das echte Leben.</blockquote>
-
-  <h2 id="alltagsroutinen">2. Unsere fünf wichtigsten Alltagsroutinen</h2>
-  <ol class="routine-list">
-    {routines.map((routine) => (
-      <li>
-        <h3>{routine.title}</h3>
-        <p>{routine.text}</p>
-      </li>
-    ))}
-  </ol>
+  <p>Es gibt Tage, an denen unser Haus alles andere als still ist. Die Große trägt gerade keine Hose und weigert sich vehement, von Papa die Haare gekämmt zu bekommen. Die Kleine möchte nur bei Mama auf den Arm. Unter dem Esstisch liegen noch die Brotbrösel vom Frühstück, auf der Terrasse steht immer noch das Töpfchen, das seit gestern niemand weggeräumt hat, und aus der Küche piepst gerade der Timer: Das Brot will aus dem Ofen.</p>
+  <p>Von außen würde in diesem Moment wahrscheinlich niemand behaupten, dass unsere Familie entspannt wirkt. Und trotzdem fühlt sich unser Alltag heute ruhiger an als noch vor ein paar Jahren. Nicht, weil wir weniger zu tun hätten. Nicht, weil unsere Kinder einfacher geworden wären. Und ganz bestimmt nicht, weil bei uns immer alles nach Plan läuft.</p>
+  <p>Stattdessen haben wir nach und nach Entscheidungen getroffen, die unserem Alltag einen Rhythmus geben und uns als Familie zur Ruhe kommen lassen. Kleine Veränderungen, die für sich genommen unscheinbar wirken, zusammen aber einen großen Unterschied machen.</p>
+  <p>Die Dinge, die ich in diesem Artikel mit dir teile, sind keine Regeln. Sie sind keine Garantie für einen stressfreien Familienalltag. Es sind Gewohnheiten und Überzeugungen, die unser Leben als Familie leichter machen. Vielleicht ist auch für dich der eine oder andere Gedanke dabei.</p>
 
   <figure>
     <OptimizedImage
-      src={familyLife}
-      alt="Ruhige Ecke mit natürlichen Materialien und gerahmtem Schriftzug"
-      widths={[480, 720, 960]}
-      sizes="(max-width: 768px) 100vw, 46rem"
-    />
-    <figcaption>Ein sichtbarer Platz für die Dinge, die den Alltag tragen.</figcaption>
-  </figure>
-
-  <h2 id="flexibel-bleiben">3. So bleiben Routinen leicht und flexibel</h2>
-  <p>Routinen sollen uns tragen, nicht einengen. Deshalb prüfen wir immer wieder, ob sie noch zu unserem Leben passen. In Ferien, stressigen Wochen oder neuen Lebensphasen darf ein Ablauf kleiner werden, pausieren oder sich ganz verändern.</p>
-  <p>Hilfreich ist eine einfache Frage: Macht uns diese Gewohnheit den Alltag leichter? Wenn die Antwort über längere Zeit nein lautet, darf sie gehen.</p>
-  <h2 id="kleine-schritte">4. Kleine Schritte, große Wirkung</h2>
-  <p>Du musst nicht zehn Dinge gleichzeitig verändern. Wähle eine Situation, die dich im Moment besonders viel Kraft kostet, und beginne dort mit dem kleinstmöglichen Schritt.</p>
-  <p>Vielleicht ist es ein vorbereiteter Frühstückstisch, ein gemeinsamer Blick in den Kalender oder zehn Minuten Ruhe, bevor alle aufstehen. Erst wenn dieser Schritt selbstverständlich geworden ist, kommt der nächste dazu.</p>
-
-  <figure>
-    <OptimizedImage
-      src={morning}
-      alt="Eine ruhige morgendliche Szene mit warmem Licht"
+      src={everydayImage}
+      alt="Ein authentischer Moment aus dem lebendigen Familienalltag"
       widths={[480, 720, 960]}
       sizes="(max-width: 768px) 100vw, 46rem"
     />
   </figure>
+  <h2 id="systeme-statt-todos">1. Systeme statt To-dos</h2>
+  <p>Ich habe gerne einen Plan und mag es, wenn ich am Montag schon weiß, was diese Woche auf unsere Familie zukommt. Das bedeutet allerdings nicht, dass ich jede freie Minute ausfülle und durchtakte. Im Gegenteil. Genauso wie ich die Routine liebe, genieße ich auch Spontanität. Für mich funktioniert das allerdings erst, wenn ich weiß, dass die wichtigsten Dinge einen fixen Platz in unserer Woche haben.</p>
+  <p>In unserer Familie habe ich deshalb ein System mit festen Ankern eingeführt: Montag ist mein Reset-Day für alles, was am Wochenende liegen geblieben ist. Dienstag passiert unser Wocheneinkauf. Sowohl ich als auch mein Mann haben geblockte Zeiten für die eigene Me-Time. Außerdem plane ich fixe wiederkehrende Termine ein, zum Beispiel den Oma-Nachmittag oder den monatlichen Besuch in der Bücherei.</p>
+  <p>Dieses System nimmt mir jede Menge kleiner Entscheidungen im Alltag ab. Ich muss mir nicht auf meine To-do-Liste schreiben, dass ich die Blumen gießen oder die Wäsche machen sollte. Ich weiß, an welchem Tag das passiert, und stresse mich die restliche Woche nicht damit.</p>
 
-  <p id="kommentare">Welche kleine Routine tut eurer Familie gerade gut? Schreib sie dir auf – oft beginnt Veränderung genau dort, wo etwas bewusst wird.</p>
+  <h2 id="menueplanung">2. Menüplanung spart Nerven</h2>
+  <p>Ich weiß schon, es ist ein leidiges Thema. Aber bitte: Hear me out! Lange Zeit war mein täglicher Nemesis die Frage „Was gibt’s heute zu essen?“. Erst als ich angefangen habe, am Montag einen Menüplan für die kommende Woche zu erstellen, hat sich dieses Debakel für mich aufgelöst.</p>
+  <p>Ich weiß, welche Zutaten ich auf die Einkaufsliste setzen muss, was wir im Kühlschrank haben und was zeitnah aufgebraucht werden muss. Mein Gamechanger war eine einfache Excel-Liste. Daraus ist mit der Zeit eine Menürotation entstanden, die heute fast von alleine funktioniert.</p>
+  <p>Die Idee ist ganz einfach. Meine Gerichte werden zu vier Themengebieten gruppiert – bei uns: Mediterran, Orient, Balkan und Comfort. Jede Woche startet ein neues Thema. Wie genau das funktioniert, erzähle ich dir gerne in einem separaten Beitrag.</p>
+
+  <h2 id="spielen-lassen">3. Spielen und spielen lassen</h2>
+  <p>Wir besitzen ganz bewusst nicht unendlich viele Spielsachen. Ein Teil wird regelmäßig weggeräumt und später wieder hervorgeholt. Dadurch fühlt sich Bekanntes wieder neu an. Batteriebetriebenes Spielzeug gibt es bei uns kaum, Medien ebenfalls nur sehr begrenzt – aktuell begleitet uns hauptsächlich der Tiptoi-Stift.</p>
+  <p>Ich habe festgestellt: Kinder profitieren von weniger Auswahl und mehr Zeit.</p>
+  <p>Eine Weile dachte ich, ich müsste den Tag für meine Kinder interessant gestalten. Noch ein Ausflug. Noch ein Bastelprojekt. Noch eine Beschäftigung. Heute beobachte ich lieber.</p>
+  <p>Wenn eines meiner Kinder völlig im Spiel versunken ist, brauche ich nichts hinzuzufügen. Meine Aufgabe ist dann nicht, das Spiel besser zu machen, sondern es möglichst nicht zu unterbrechen.</p>
+  <p>Ich glaube, wir Erwachsenen reißen Kinder oft aus genau den Momenten heraus, in denen sie am glücklichsten sind.</p>
+  <p>Dazu mein Lieblingsbeispiel: Als meine Große noch ein Baby war und gerade sitzen konnte, gab es mal genau so eine Situation bei uns im Garten. Wir saßen auf der Wiese, sie spielte mit irgendwelchen Förmchen, die Sonne schien und eine leichte Brise wehte. Sie war im Flow. Anstatt sie einfach noch ein paar Momente machen zu lassen, habe ich mit der allerbesten Absicht versucht, ihr das Drumherum noch ein wenig angenehmer zu machen. Ich habe sie also mit besagten Förmchen zwanzig Zentimeter umgesetzt, damit sie im Schatten sitzen kann.</p>
+  <p>Puff. Aus und vorbei. Die Förmchen waren nun überhaupt nicht mehr interessant und ihre Laune war im Keller.</p>
+  <p>Erst als ich abends mit meinem Mann über die Situation geredet habe, wurde mir klar, was ich da eigentlich angestellt habe. Manchmal ist das größte Geschenk, das wir unserem Kind machen können, einfach nicht einzugreifen.</p>
+
+  <figure>
+    <OptimizedImage
+      src={gardenImage}
+      alt="Ein Kind spielt draußen im Garten"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) 100vw, 46rem"
+    />
+  </figure>
+  <h2 id="kinder-sind-waschbar">4. Kinder sind waschbar</h2>
+  <p>Matschehände, nasse Hosen, Farbe, Mehl oder Grasflecken sind selten ein Problem und gehören für mich zur Kindheit dazu. Sie sind meistens ein Zeichen dafür, dass gerade etwas Wichtiges passiert: Ein Kind entdeckt die Welt.</p>
+  <p>Natürlich gibt es Grenzen. Niemand muss absichtlich das Sofa bemalen. Aber ich möchte nicht ständig eingreifen, nur weil Kleidung schmutzig werden könnte. Eine Waschmaschine haben wir ohnehin. Kindheit lässt sich nicht nachholen.</p>
+
+  <h2 id="bitte-zu-tisch">5. Bitte zu Tisch</h2>
+  <p>Gemeinsame Mahlzeiten sind für uns mehr als bloß Nahrungsaufnahme.</p>
+  <p>Mein Mann arbeitet von zu Hause aus. Deshalb schaffen wir es oft, mittags und abends gemeinsam am Tisch zu sitzen. Wir erzählen uns, was wir schon erlebt haben oder später noch vorhaben. Wir lachen, diskutieren, decken gemeinsam den Tisch und räumen danach wieder ab.</p>
+  <p>Unsere Große wechselt währenddessen ständig den Platz und probiert am liebsten von den Tellern der anderen. Unzählige Male ist mein Essen kalt geworden, weil die Kleine untröstlich war und sich nur bei mir auf dem Arm beruhigen konnte. Trotzdem sind diese Momente für mich unbezahlbar.</p>
+  <p>Ich glaube, viele Familien warten auf den besonderen Ausflug oder das freie Wochenende. Dabei entstehen viele der Erinnerungen, die ich meinen Kindern mitgeben möchte, genau hier: an einem ganz normalen Dienstag, zwischen einer halb aufgegessenen Karotte und einem verschütteten Glas Wasser.</p>
+
+  <figure>
+    <OptimizedImage
+      src={householdImage}
+      alt="Kind und Erwachsene erledigen gemeinsam Aufgaben im Haushalt"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) 100vw, 46rem"
+    />
+  </figure>
+  <h2 id="es-braucht-ein-dorf">6. Es braucht ein Dorf</h2>
+  <p>Ich bin der Meinung, dass Familie genau dafür da ist, sich gegenseitig zu unterstützen. Wenn Oma mit den Kindern spazieren geht, Freunde uns Essen vorbeibringen oder jemand kurz aufpasst, nehme ich diese Geste dankend an.</p>
+  <p>Früher hatte ich oft das Gefühl, alles alleine schaffen zu müssen. Heute weiß ich: Hilfe anzunehmen macht mich nicht weniger kompetent. Es macht unseren Alltag leichter und schenkt uns Zeit.</p>
+
+  <h2 id="hausarbeit-ist-familiensache">7. Hausarbeit ist Familiensache</h2>
+  <p>Schon sehr früh war mir als Mama wichtig, dass ich keine Hausarbeit mache, während die Kinder schlafen. Meine Kinder wissen, dass Aufräumen, Kochen, Wäschewaschen und Putzen zu einem sauberen und ordentlichen Zuhause dazugehören und nicht plötzlich während ihres Nickerchens die magische Aufräumfee kommt.</p>
+  <p>Meine Große liebt es, mir bei diesen alltäglichen Dingen zu helfen. Sie wäscht und schnippelt Gemüse, gießt die Blumen, holt Vorräte aus dem Keller, räumt den Spüler ein oder hilft beim Wäschesortieren. Vieles dauert oft länger. Manchmal muss ich hinterher trotzdem selbst Hand anlegen. Aber sie lernt dabei neben den Haushalt-Skills vor allem eines: Selbstwirksamkeit.</p>
+  <p>Der unendliche Stolz in ihren Augen, wenn sie etwas alleine geschafft hat, lässt sich nur schwer in Worte fassen. Und die ungläubigen und anerkennenden Blicke von anderen, die sehen, wie geschickt und selbstsicher eine Dreijährige durchs Leben geht, sind Balsam für meine Mama-Seele. 😉</p>
+
+  <figure>
+    <OptimizedImage
+      src={eveningImage}
+      alt="Ruhiger Familienmoment am Abend"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) 100vw, 46rem"
+    />
+  </figure>
+  <p id="kommentare">Vielleicht hat dich der eine oder andere Gedanke bestätigt. Vielleicht gibt es auch Dinge, die bei euch ganz anders funktionieren. Jetzt bin ich neugierig: Welche Gewohnheit hat euren Familienalltag spürbar ruhiger gemacht?</p>
   <span id="teilen"></span>
   <span id="speichern"></span>
 </ArticleLayout>
-
-<style>
-  .routine-list { counter-reset: routines; list-style: none; margin: var(--space-6) 0 0; padding: 0; }
-  .routine-list li { counter-increment: routines; padding: var(--space-6) 0 var(--space-2) var(--space-12); position: relative; }
-  .routine-list li::before { align-items: center; background: var(--color-surface-muted); border-radius: 50%; color: var(--color-olive-dark); content: counter(routines); display: flex; font-family: var(--font-display); font-size: var(--text-lg); height: var(--space-8); justify-content: center; left: 0; position: absolute; top: var(--space-6); width: var(--space-8); }
-  .routine-list h3 { margin-top: 0; }
-  .routine-list p { margin-top: var(--space-2); }
-</style>

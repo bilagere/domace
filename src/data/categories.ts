@@ -2,7 +2,7 @@ import type { ImageMetadata } from "astro";
 import type { ArticlePreview } from "../types/content";
 import arrive from "../assets/images/ankommen_homepage.png";
 import celebrate from "../assets/images/celebrate.png";
-import familyLife from "../assets/images/entspanntes-familienleben.png";
+import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 import organize from "../assets/images/organize.png";
 import together from "../assets/images/together.png";
 import table from "../assets/images/tisch-am-fenster.png";
@@ -49,14 +49,7 @@ export const categories = {
       { icon: "heart", title: "Weniger Druck", description: "Systeme, die dienen statt bestimmen." },
     ],
     articles: [
-      {
-        title: "10 Dinge für einen ruhigeren Familienalltag",
-        excerpt: "Kleine Routinen, klare Absprachen und weniger Perfektionsdruck – zehn Veränderungen, die unseren Alltag leichter machen.",
-        category: "Ordnen",
-        image: familyLife,
-        href: "/ordnen/familienleben-ruhiger",
-        date: "7. Mai 2025",
-      },
+
     ],
     quote: "Weniger Entscheidungen treffen. Mehr Zeit füreinander haben.",
     quoteImage: organize,
@@ -99,7 +92,16 @@ export const categories = {
       { icon: "heart", title: "Beziehungen", description: "Kleine Gesten, die Nähe entstehen lassen." },
       { icon: "mail", title: "Gespräche", description: "Gedanken, die wir miteinander teilen." },
     ],
-    articles: [],
+    articles: [
+      {
+        title: "Nicht leiser, aber leichter.",
+        excerpt: "Sieben Gewohnheiten, die Druck herausnehmen und unserem Familienalltag mehr Ruhe und einen verlässlichen Rhythmus geben.",
+        category: "Zusammen",
+        image: quieterFamilyLife,
+        href: "/ordnen/familienleben-ruhiger",
+        date: "5. August 2026",
+      },
+    ],
     quote: "Am Ende erinnern wir uns nicht an perfekte Tage, sondern daran, wie wir uns miteinander gefühlt haben.",
     quoteImage: together,
     quoteAlt: "Familie unterwegs in ruhiger Natur",

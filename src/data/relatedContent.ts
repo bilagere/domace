@@ -3,7 +3,7 @@ import focaccia from "../assets/images/genuss/focaccia-titel.jpg";
 import hugoEistee from "../assets/images/genuss/eistee-titel.png";
 import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
 import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
-import familyLife from "../assets/images/entspanntes-familienleben.png";
+import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 
 
 
@@ -39,10 +39,10 @@ const recipes = {
 } satisfies Record<string, ArticlePreview>;
 
 const journalArticle = {
-  title: "10 Dinge für einen ruhigeren Familienalltag",
-  excerpt: "Kleine Routinen, die den Familienalltag spürbar leichter machen.",
-  category: "Artikel · Ordnen",
-  image: familyLife,
+  title: "Nicht leiser, aber leichter.",
+  excerpt: "Sieben Gewohnheiten, die den Familienalltag spürbar ruhiger machen.",
+  category: "Artikel · Zusammen",
+  image: quieterFamilyLife,
   href: "/ordnen/familienleben-ruhiger",
 } satisfies ArticlePreview;
 
