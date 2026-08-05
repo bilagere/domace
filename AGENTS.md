@@ -50,9 +50,20 @@ Die verbindliche Dokumentation liegt in `src/design/README.md`.
 
 - Importiere optimierte Inhaltsbilder bevorzugt aus `src/assets/images/`. Statische Markenassets und unverarbeitete Dateien liegen unter `public/`.
 - Wortmarke: `/images/wordmark_domace.png`; Submarke: `/images/logo_c.png`; Favicons liegen direkt in `public/`.
+- Die Wortmarke im Header trägt den handschriftlichen Zusatz `Von Zuhause. Für Zuhause.` und muss ihr natürliches Seitenverhältnis behalten.
+- Startbildschirm-Icons verwenden die ć-Submarke: `apple-touch-icon.png`, `icon-192.png` und `icon-512.png`. `site.webmanifest` verwendet `#F6F2EC` als Hintergrund- und Theme-Farbe.
 - Die Schriften `Bodoni Moda` und `Manrope` werden über Fontsource lokal ausgeliefert. Handschrift ist derzeit `Segoe Script`.
 - Neue generierte Bilder müssen zur warmen, natürlichen Domaće-Bildsprache passen: Kalk, Holz, Textilien, zurückhaltende Terracotta-, Oliv- und Pflaumentöne. Keine Olivenzweige als Standardmotiv verwenden.
 - Social-Sharing-Bilder werden über `BaseLayout.astro` auf 1200 × 630 Pixel zugeschnitten und als optimiertes JPG erzeugt. Journalartikel und Rezepte verwenden ihr jeweiliges Beitragsbild; ohne Bild gilt `src/assets/images/og-image.png` als Rückfall.
+
+## SEO, Social Sharing und Pinterest
+
+- `BaseLayout.astro` verwaltet Canonical URL, Sitemap-Verweis, Open Graph, Twitter Cards, Pinterest-Verifizierung und optionales JSON-LD zentral.
+- Die Startseite verwendet für Social Sharing den Titel `Domaće | Von Zuhause. Für Zuhause.` und die Beschreibung `Ein digitales Zuhause für Familien, die ihren Alltag bewusster, einfacher und mit mehr Leichtigkeit gestalten möchten.`. Der normale Seitentitel darf davon unabhängig bleiben.
+- Journalartikel liefern `Article`-JSON-LD sowie Autorin und Veröffentlichungsdatum. Rezepte liefern `Recipe`-JSON-LD mit Zutaten, Schritten, Ertrag und vorhandenen Zeitangaben.
+- Rezeptseiten behalten neben `Rezept drucken` die Aktion `Rezept pinnen`. Der Pinterest-Link übergibt die kanonische Rezept-URL, ein öffentlich erreichbares optimiertes Beitragsbild und die Beschreibung.
+- Die Domain ist in Google Search Console und Pinterest bestätigt. `https://domace.studio/sitemap-index.xml` ist in der Search Console eingereicht.
+- `public/site.webmanifest`, Touch-Icon und App-Icons müssen in `BaseLayout.astro` verlinkt bleiben.
 
 ## Lokale Entwicklung und Prüfung
 

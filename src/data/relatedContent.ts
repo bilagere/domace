@@ -35,8 +35,6 @@ const recipes = {
     category: "Familienküche",
     image: stroganoffTitle,
     href: "/genuss/boeuf-stroganoff",
-    duration: "45 Min.",
-    servings: "4 Portionen",
   },
 } satisfies Record<string, ArticlePreview>;
 
