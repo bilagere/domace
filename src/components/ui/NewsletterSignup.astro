@@ -1,5 +1,6 @@
 ---
 import Badge from "./Badge.astro";
+import Button from "./Button.astro";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -27,9 +28,27 @@ const {
     </div>
   </div>
   {compact && <Badge label="Keine Post" caption="verpassen" />}
-  <div class="newsletter__form">
-    <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="8c271560-80d4-4e4e-8627-95a34485ca88"></script>
-  </div>  <script>
+  <div class="newsletter__form" data-newsletter-form>
+    <div class="newsletter__gate" data-newsletter-gate>
+      <Button class="newsletter__load" ariaLabel="Newsletter-Anmeldung von beehiiv laden">Newsletter-Anmeldung öffnen</Button>
+      <p class="newsletter__privacy">Das Formular wird von beehiiv bereitgestellt und erst nach deinem Klick geladen. Dabei können Verbindungsdaten verarbeitet und ein Attributions-Cookie gesetzt werden. <a href="/datenschutz">Mehr zum Datenschutz</a>.</p>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll<HTMLElement>("[data-newsletter-form]").forEach((form) => {
+      const gate = form.querySelector<HTMLElement>("[data-newsletter-gate]");
+      const button = gate?.querySelector<HTMLButtonElement>("button");
+
+      button?.addEventListener("click", () => {
+        const script = document.createElement("script");
+        script.src = "https://subscribe-forms.beehiiv.com/v3/loader.js";
+        script.async = true;
+        script.dataset.beehiivForm = "8c271560-80d4-4e4e-8627-95a34485ca88";
+        gate?.remove();
+        form.append(script);
+      }, { once: true });
+    });
+
     const labelNewsletterFrames = () => {
       document.querySelectorAll<HTMLIFrameElement>(
         'iframe[src*="subscribe-forms.beehiiv.com"]',
@@ -53,6 +72,9 @@ const {
   .newsletter__eyebrow { color: var(--color-terracotta); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
   h2 { font-size: var(--text-xl); margin: var(--space-1) 0 var(--space-2); }
   .newsletter__form { min-height: 4.5rem; width: 100%; }
+  .newsletter__gate { align-items: flex-start; display: flex; flex-direction: column; gap: var(--space-3); }
+  .newsletter__privacy { color: var(--color-text-muted); font-size: var(--text-xs); line-height: var(--leading-relaxed); max-width: 34rem; }
+  .newsletter__privacy a { color: var(--color-action); }
   .newsletter__form :global(iframe) { border: 0; display: block; max-width: 100%; width: 100%; }
   .newsletter--compact { display: block; padding: clamp(var(--space-6), 3.5vw, var(--space-10)); position: relative; }
   .newsletter--compact .newsletter__copy { margin-bottom: var(--space-5); }

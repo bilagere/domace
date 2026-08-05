@@ -51,10 +51,12 @@ Die verbindliche Dokumentation liegt in `src/design/README.md`.
 - Importiere optimierte Inhaltsbilder bevorzugt aus `src/assets/images/`. Statische Markenassets und unverarbeitete Dateien liegen unter `public/`.
 - Wortmarke: `/images/wordmark_domace.png`; Submarke: `/images/logo_c.png`; Favicons liegen direkt in `public/`.
 - Die Wortmarke im Header trägt den handschriftlichen Zusatz `Von Zuhause. Für Zuhause.` und muss ihr natürliches Seitenverhältnis behalten.
-- Startbildschirm-Icons verwenden die ć-Submarke: `apple-touch-icon.png`, `icon-192.png` und `icon-512.png`. `site.webmanifest` verwendet `#F6F2EC` als Hintergrund- und Theme-Farbe.
+- Startbildschirm-Icons verwenden die ć-Submarke: `apple-touch-icon-v2.png`, `icon-192.png`, `icon-512.png` sowie die beiden `maskable-icon-*`-Varianten. Alle Icon-Hintergründe und `site.webmanifest` verwenden `#F6F2EC`; die Maskable-Icons müssen im Manifest mit `purpose: maskable` erhalten bleiben.
 - Die Schriften `Bodoni Moda` und `Manrope` werden über Fontsource lokal ausgeliefert. Handschrift ist derzeit `Segoe Script`.
 - Neue generierte Bilder müssen zur warmen, natürlichen Domaće-Bildsprache passen: Kalk, Holz, Textilien, zurückhaltende Terracotta-, Oliv- und Pflaumentöne. Keine Olivenzweige als Standardmotiv verwenden.
 - Social-Sharing-Bilder werden über `BaseLayout.astro` auf 1200 × 630 Pixel zugeschnitten und als optimiertes JPG erzeugt. Journalartikel und Rezepte verwenden ihr jeweiliges Beitragsbild; ohne Bild gilt `src/assets/images/og-image.png` als Rückfall.
+- Das beehiiv-Newsletterformular wird aus Datenschutzgründen erst nach einem bewussten Klick geladen. Das globale beehiiv-Attributionsskript nicht erneut in `BaseLayout.astro` einbinden.
+- Umami läuft cookielos. Pinterest und Instagram sind nur verlinkt; keine Social-Media-Plugins oder Tracking-Pixel ohne erneute Prüfung und passende Einwilligung ergänzen.
 
 ## SEO, Social Sharing und Pinterest
 

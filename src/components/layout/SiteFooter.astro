@@ -17,6 +17,7 @@ const information = [
 ];
 interface Props { gallery?: ImageMetadata[]; flush?: boolean; }
 const { gallery = [], flush = false } = Astro.props;
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class:list={["site-footer", { "site-footer--flush": flush }]}>
@@ -51,7 +52,7 @@ const { gallery = [], flush = false } = Astro.props;
       </div>
     )}
   </div>
-  <div class="site-footer__bottom"><span>© 2025 Domaće</span><span><Icon name="heart" size={15} /> Für das gute Familienleben.</span></div>
+  <div class="site-footer__bottom"><span>© {currentYear} Domaće</span><span><Icon name="heart" size={15} /> Für das gute Familienleben.</span></div>
 </footer>
 
 <style>
