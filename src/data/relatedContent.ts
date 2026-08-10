@@ -6,7 +6,7 @@ import hugoEistee from "../assets/images/genuss/eistee-titel.png";
 import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
 import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
-import kitchenFavorites from "../assets/images/tisch-am-fenster.png";
+import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
 
 
 
@@ -57,7 +57,7 @@ const journalArticle = {
 const kitchenArticle = {
   title: "Meine Küchenlieblinge",
   excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns im Alltag bewährt haben.",
-  category: "Artikel · Ordnen",
+  category: "Artikel · Ankommen",
   image: kitchenFavorites,
   href: "/ordnen/kuechenutensilien",
   publishedAt: "2026-08-09",

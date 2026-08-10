@@ -3,7 +3,7 @@ import type { ArticlePreview } from "../types/content";
 import arrive from "../assets/images/ankommen_homepage.png";
 import celebrate from "../assets/images/celebrate.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
-import kitchenFavorites from "../assets/images/tisch-am-fenster.png";
+import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
 import organize from "../assets/images/organize.png";
 import together from "../assets/images/together.png";
 import table from "../assets/images/tisch-am-fenster.png";
@@ -49,16 +49,7 @@ export const categories = {
       { icon: "users", title: "Familienplanung", description: "Übersicht, die alle mitnehmen kann." },
       { icon: "heart", title: "Weniger Druck", description: "Systeme, die dienen statt bestimmen." },
     ],
-    articles: [
-      {
-        title: "Meine Küchenlieblinge",
-        excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns über Jahre im echten Familienalltag bewährt haben.",
-        category: "Ordnen",
-        image: kitchenFavorites,
-        href: "/ordnen/kuechenutensilien",
-        date: "9. August 2026",
-      },
-    ],
+    articles: [],
     quote: "Weniger Entscheidungen treffen. Mehr Zeit füreinander haben.",
     quoteImage: organize,
     quoteAlt: "Wochenplanung in ruhiger, warmer Atmosphäre",
@@ -79,7 +70,16 @@ export const categories = {
       { icon: "heart", title: "Geborgenheit", description: "Räume, die Nähe und Rückzug erlauben." },
       { icon: "users", title: "Familienräume", description: "Schön und alltagstauglich zugleich." },
     ],
-    articles: [],
+    articles: [
+      {
+        title: "Meine Küchenlieblinge",
+        excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns über Jahre im echten Familienalltag bewährt haben.",
+        category: "Ankommen",
+        image: kitchenFavorites,
+        href: "/ordnen/kuechenutensilien",
+        date: "9. August 2026",
+      },
+    ],
     quote: "Zuhause ist kein Ort, der fertig wird. Es wächst mit den Menschen, die darin leben.",
     quoteImage: arrive,
     quoteAlt: "Helles, warm eingerichtetes Zuhause",
