@@ -2,12 +2,13 @@
 interface Props {
   asidePosition?: "start" | "end";
   narrow?: boolean;
+  stickyAside?: boolean;
 }
 
-const { asidePosition = "end", narrow = false } = Astro.props;
+const { asidePosition = "end", narrow = false, stickyAside = false } = Astro.props;
 ---
 
-<div class:list={["content-layout", `content-layout--aside-${asidePosition}`, { "content-layout--narrow": narrow }]}>
+<div class:list={["content-layout", `content-layout--aside-${asidePosition}`, { "content-layout--narrow": narrow, "content-layout--sticky-aside": stickyAside }]}>
   <aside class="content-layout__aside"><slot name="aside" /></aside>
   <div class="content-layout__main"><slot /></div>
 </div>
@@ -18,5 +19,6 @@ const { asidePosition = "end", narrow = false } = Astro.props;
   .content-layout--aside-start .content-layout__aside { grid-column: 1; }
   .content-layout--aside-start .content-layout__main { grid-column: 2; }
   .content-layout--narrow .content-layout__main { max-width: var(--content-reading); }
-  @media (max-width: 48rem) { .content-layout, .content-layout--aside-start { grid-template-columns: 1fr; } .content-layout--aside-start .content-layout__aside, .content-layout--aside-start .content-layout__main { grid-column: auto; } .content-layout__aside { order: 2; } }
+  .content-layout--sticky-aside .content-layout__aside { align-self: start; position: sticky; top: var(--space-6); }
+  @media (max-width: 48rem) { .content-layout, .content-layout--aside-start { grid-template-columns: 1fr; } .content-layout--aside-start .content-layout__aside, .content-layout--aside-start .content-layout__main { grid-column: auto; } .content-layout__aside { order: 2; } .content-layout--sticky-aside .content-layout__aside { position: static; } }
 </style>

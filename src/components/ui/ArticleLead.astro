@@ -44,7 +44,7 @@ const { eyebrow, title, summary, image, imageAlt = "", imagePlaceholder, meta = 
 
 <style>
   .article-lead { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.95fr); }
-  .article-lead__media { min-height: 31rem; overflow: hidden; }
+  .article-lead__media { height: 31rem; min-height: 31rem; overflow: hidden; }
   .article-lead__media :global(picture), .article-lead__media :global(img) { height: 100%; width: 100%; }
   .article-lead__media :global(img) { object-fit: cover; }
   .article-lead__media--placeholder { align-items: center; background: var(--color-surface-muted); display: flex; justify-content: center; }
@@ -62,7 +62,7 @@ const { eyebrow, title, summary, image, imageAlt = "", imagePlaceholder, meta = 
   @media (max-width: 48rem) {
     .article-lead { grid-template-columns: 1fr; }
     .article-lead__content { padding: var(--space-8) 0; }
-    .article-lead__media { aspect-ratio: 1.15; min-height: 0; }
+    .article-lead__media { aspect-ratio: 1.15; height: auto; min-height: 0; }
   }
   @media print {
     .article-lead { display: grid !important; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important; }

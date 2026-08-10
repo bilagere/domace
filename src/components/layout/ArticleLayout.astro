@@ -29,6 +29,9 @@ interface Props {
   datePublished: string;
   readingTime: string;
   shortSummary?: string;
+  shortSummaryEyebrow?: string;
+  shortSummaryItems?: Array<string | { label: string; href: `#${string}` }>;
+  stickyQuickSummary?: boolean;
   relatedItems: ArticlePreview[];
 }
 
@@ -45,6 +48,9 @@ const {
   datePublished,
   readingTime,
   shortSummary = summary,
+  shortSummaryEyebrow = "Kurz gesagt",
+  shortSummaryItems = [],
+  stickyQuickSummary = false,
   relatedItems,
 } = Astro.props;
 const structuredData = {
@@ -99,10 +105,20 @@ const structuredData = {
   </section>
 
   <section class="article-shell" id="artikelanfang" aria-label={title}>
-    <ContentWithSidebar asidePosition="start">
+    <ContentWithSidebar asidePosition="start" stickyAside={stickyQuickSummary}>
       <Fragment slot="aside">
-        <SidebarPanel eyebrow="Kurz gesagt" tone="plum">
-          <p>{shortSummary}</p>
+        <SidebarPanel eyebrow={shortSummaryEyebrow} tone="plum">
+          {shortSummaryItems.length > 0 ? (
+            <ul class="article-quick-list">
+              {shortSummaryItems.map((item) => (
+                <li>
+                  {typeof item === "string" ? item : <a href={item.href}>{item.label}</a>}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>{shortSummary}</p>
+          )}
         </SidebarPanel>
       </Fragment>
       <ArticleProse><slot /></ArticleProse>
@@ -143,8 +159,13 @@ const structuredData = {
   .article-shell { padding-block: var(--space-12); }
   .article-shell :global(.article-prose) { max-width: calc(var(--content-reading) + var(--space-16)); }
   .article-shell :global(.sidebar-panel__content p) { font-size: var(--text-base); line-height: var(--leading-relaxed); }
+  .article-shell :global(.article-quick-list) { display: grid; font-size: var(--text-sm); gap: var(--space-3); line-height: var(--leading-relaxed); list-style: none; margin: 0; padding: 0; }
+  .article-shell :global(.article-quick-list li) { border-bottom: var(--divider-thickness) solid color-mix(in srgb, currentColor 22%, transparent); padding-bottom: var(--space-3); }
+  .article-shell :global(.article-quick-list li:last-child) { border-bottom: 0; padding-bottom: 0; }
+  .article-shell :global(.article-quick-list a) { color: inherit; display: block; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); text-underline-offset: 0.2em; }
+  .article-shell :global(.article-quick-list a:hover) { text-decoration-color: currentColor; }
+  .article-shell :global(.article-quick-list a:focus-visible) { border-radius: var(--radius-sm); outline: var(--focus-ring); outline-offset: var(--focus-offset); }
   @media (max-width: 48rem) {
     .article-shell :global(.content-layout__aside) { order: 0; }
   }
 </style>
-

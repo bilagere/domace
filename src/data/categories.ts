@@ -3,6 +3,7 @@ import type { ArticlePreview } from "../types/content";
 import arrive from "../assets/images/ankommen_homepage.png";
 import celebrate from "../assets/images/celebrate.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
+import kitchenFavorites from "../assets/images/tisch-am-fenster.png";
 import organize from "../assets/images/organize.png";
 import together from "../assets/images/together.png";
 import table from "../assets/images/tisch-am-fenster.png";
@@ -49,7 +50,14 @@ export const categories = {
       { icon: "heart", title: "Weniger Druck", description: "Systeme, die dienen statt bestimmen." },
     ],
     articles: [
-
+      {
+        title: "Meine Küchenlieblinge",
+        excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns über Jahre im echten Familienalltag bewährt haben.",
+        category: "Ordnen",
+        image: kitchenFavorites,
+        href: "/ordnen/kuechenutensilien",
+        date: "9. August 2026",
+      },
     ],
     quote: "Weniger Entscheidungen treffen. Mehr Zeit füreinander haben.",
     quoteImage: organize,
@@ -128,4 +136,3 @@ export const categories = {
     quoteAlt: "Festliche Details in warmen Naturtönen",
   },
 } satisfies Record<string, CategoryPageData>;
-

@@ -6,6 +6,7 @@ import hugoEistee from "../assets/images/genuss/eistee-titel.png";
 import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
 import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
+import kitchenFavorites from "../assets/images/tisch-am-fenster.png";
 
 
 
@@ -53,7 +54,17 @@ const journalArticle = {
   publishedAt: "2026-08-05",
 } satisfies PublishedContent;
 
+const kitchenArticle = {
+  title: "Meine Küchenlieblinge",
+  excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns im Alltag bewährt haben.",
+  category: "Artikel · Ordnen",
+  image: kitchenFavorites,
+  href: "/ordnen/kuechenutensilien",
+  publishedAt: "2026-08-09",
+} satisfies PublishedContent;
+
 const publishedContent = [
+  kitchenArticle,
   journalArticle,
   recipes.focaccia,
   recipes.zimtschnecken,
