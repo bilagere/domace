@@ -32,6 +32,7 @@ interface Props {
   shortSummaryEyebrow?: string;
   shortSummaryItems?: Array<string | { label: string; href: `#${string}` }>;
   stickyQuickSummary?: boolean;
+  instagramHref?: string;
   relatedItems: ArticlePreview[];
 }
 
@@ -51,6 +52,7 @@ const {
   shortSummaryEyebrow = "Kurz gesagt",
   shortSummaryItems = [],
   stickyQuickSummary = false,
+  instagramHref = "https://www.instagram.com/domace.studio/",
   relatedItems,
 } = Astro.props;
 const structuredData = {
@@ -127,7 +129,7 @@ const structuredData = {
 
   <section class="instagram-feature" aria-label="Dialog auf Instagram">
     <InstagramDiscussion
-      href="https://www.instagram.com/domace.studio/"
+      href={instagramHref}
       eyebrow="Wie ist das bei dir?"
       title="Erzähl mir davon!"
       tone="plum"
