@@ -57,12 +57,6 @@ const topics = [
     narrowContent
   />
 
-  <section class="section topic-section" aria-label="Domaće Themen">
-    <div class="topic-grid">
-      {topics.map((topic) => <TopicCard {...topic} />)}
-    </div>
-  </section>
-
   <section class="section latest-section" id="neu" aria-labelledby="newest-heading">
     <div class="section__heading-row">
       <SectionHeading eyebrow="Gerade erschienen"><span id="newest-heading">Neu auf Domaće</span></SectionHeading>
@@ -70,6 +64,12 @@ const topics = [
     </div>
     <div class="article-grid">
       {latestContent.map((post) => <ArticleCard {...post} />)}
+    </div>
+  </section>
+
+  <section class="section topic-section" aria-label="Domaće Themen">
+    <div class="topic-grid">
+      {topics.map((topic) => <TopicCard {...topic} />)}
     </div>
   </section>
 
