@@ -34,19 +34,6 @@ const initialFilter = activeLabel ?? "all";
   description="Gedanken, Routinen und Inspiration für ein ruhigeres, verbundenes Familienleben."
   activePath="/journal"
 >
-  <EditorialHero
-    variant="homepage"
-    showTitleIcon={false}
-    eyebrow="Gedanken vom Küchentisch"
-    title="Was braucht deine Familie gerade wirklich?"
-    image={heroJournal}
-    imageAlt="Ein heller Tisch am Fenster in ruhiger Atmosphäre"
-  >
-    <Fragment slot="description">
-      <p>Nicht jede Antwort passt zu jeder Familie. Hier findest du Gedanken, kleine Routinen und praktische Ideen, die dir helfen sollen, euren eigenen Weg zu finden. Nimm einfach das mit, was gerade zu euch passt.</p>
-    </Fragment>
-  </EditorialHero>
-
   <PageSection label="Journalbeiträge" spacing="compact">
     <nav class="journal-tags" aria-label="Journalthemen" data-journal-active={initialFilter}>
       <ul class="journal-tag-list">
@@ -81,6 +68,19 @@ const initialFilter = activeLabel ?? "all";
       <ul class="journal-pagination-list"></ul>
     </nav>
   </PageSection>
+
+  <EditorialHero
+    variant="homepage"
+    showTitleIcon={false}
+    eyebrow="Gedanken vom Küchentisch"
+    title="Was braucht deine Familie gerade wirklich?"
+    image={heroJournal}
+    imageAlt="Ein heller Tisch am Fenster in ruhiger Atmosphäre"
+  >
+    <Fragment slot="description">
+      <p>Nicht jede Antwort passt zu jeder Familie. Hier findest du Gedanken, kleine Routinen und praktische Ideen, die dir helfen sollen, euren eigenen Weg zu finden. Nimm einfach das mit, was gerade zu euch passt.</p>
+    </Fragment>
+  </EditorialHero>
 
   <section class="quote-feature" aria-label="Leitsatz">
     <QuoteBanner image={quote} imageAlt="Warmes Zuhause in natürlichen Tönen">

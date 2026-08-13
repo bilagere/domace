@@ -48,24 +48,27 @@ const topics = [
   socialDescription="Ein digitales Zuhause für Familien, die ihren Alltag bewusster, einfacher und mit mehr Leichtigkeit gestalten möchten."
   footerGallery={[images.arrive, images.newsletter, images.enjoy]}
 >
-  <EditorialHero variant="homepage" showTitleIcon={false}
-    eyebrow="Mach es dir leichter"
-    title="Woran willst du dich später erinnern?"
-    description="Später wirst du dich hoffentlich nicht daran erinnern, wie ordentlich das Haus war oder ob die Fenster regelmäßig geputzt wurden. Aber du wirst dich daran erinnern, wie sich euer Zuhause angefühlt hat."
-    image={images.hero}
-    imageAlt="Mutter und Kind auf einer sommerlichen Wildblumenwiese"
-    narrowContent
-  />
-
   <section class="section latest-section" id="neu" aria-labelledby="newest-heading">
     <div class="section__heading-row">
-      <SectionHeading eyebrow="Gerade erschienen"><span id="newest-heading">Neu auf Domaće</span></SectionHeading>
+      <SectionHeading as="h1" id="newest-heading">Gutes für jeden Tag.</SectionHeading>
       <Button href="/journal" variant="text" icon>Alle Beiträge ansehen</Button>
     </div>
     <div class="article-grid">
       {latestContent.map((post) => <ArticleCard {...post} />)}
     </div>
   </section>
+
+  <div class="homepage-hero">
+    <EditorialHero variant="homepage" showTitleIcon={false}
+      eyebrow="Mach es dir leichter"
+      title="Woran willst du dich später erinnern?"
+      description="Später wirst du dich hoffentlich nicht daran erinnern, wie ordentlich das Haus war oder ob die Fenster regelmäßig geputzt wurden. Aber du wirst dich daran erinnern, wie sich euer Zuhause angefühlt hat."
+      image={images.hero}
+      imageAlt="Mutter und Kind auf einer sommerlichen Wildblumenwiese"
+      narrowContent
+      headingAs="h2"
+    />
+  </div>
 
   <section class="section topic-section" aria-label="Domaće Themen">
     <div class="topic-grid">
@@ -100,7 +103,7 @@ const topics = [
 <style>
   .section { margin-inline: auto; max-width: var(--content-width); padding: var(--space-20) var(--page-gutter); }
   .topic-section, .latest-section { padding-block: 0; }
-  .topic-section, .latest-section, .newsletter-feature, .quote-feature, .author-section { margin-top: var(--space-12); }
+  .topic-section, .latest-section, .homepage-hero, .newsletter-feature, .quote-feature, .author-section { margin-top: var(--space-12); }
   .topic-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .section__heading-row { align-items: end; display: flex; justify-content: space-between; margin-bottom: var(--space-8); }
   .article-grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(4, minmax(0, 1fr)); }
