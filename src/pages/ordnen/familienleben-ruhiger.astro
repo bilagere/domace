@@ -6,6 +6,16 @@ import everydayImage from "../../assets/images/journal/leiser-leichter/leiser-la
 import gardenImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-garten.png";
 import householdImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-haushalt.png";
 import eveningImage from "../../assets/images/journal/leiser-leichter/leiser-lauter-abend.png";
+
+const articleOverview = [
+  { label: "Systeme statt To-dos", href: "#systeme-statt-todos" },
+  { label: "Menüplanung spart Nerven", href: "#menueplanung" },
+  { label: "Spielen und spielen lassen", href: "#spielen-lassen" },
+  { label: "Kinder sind waschbar", href: "#kinder-sind-waschbar" },
+  { label: "Bitte zu Tisch", href: "#bitte-zu-tisch" },
+  { label: "Es braucht ein Dorf", href: "#es-braucht-ein-dorf" },
+  { label: "Hausarbeit ist Familiensache", href: "#hausarbeit-ist-familiensache" },
+];
 ---
 
 <ArticleLayout
@@ -20,7 +30,8 @@ import eveningImage from "../../assets/images/journal/leiser-leichter/leiser-lau
   date="5. August 2026"
   datePublished="2026-08-05"
   readingTime="8 Min. Lesezeit"
-  shortSummary="Ein entspannterer Familienalltag entsteht für uns nicht durch Perfektion, sondern durch verlässliche Systeme, weniger unnötige Entscheidungen und den Mut, Kinder am echten Leben teilhaben zu lassen."
+  overviewItems={articleOverview}
+  stickyQuickSummary
   relatedItems={[]}
 >
   <p>Es gibt Tage, an denen unser Haus alles andere als still ist. Die Große trägt gerade keine Hose und weigert sich vehement, von Papa die Haare gekämmt zu bekommen. Die Kleine möchte nur bei Mama auf den Arm. Unter dem Esstisch liegen noch die Brotbrösel vom Frühstück, auf der Terrasse steht immer noch das Töpfchen, das seit gestern niemand weggeräumt hat, und aus der Küche piepst gerade der Timer: Das Brot will aus dem Ofen.</p>

@@ -4,6 +4,7 @@ import arrive from "../assets/images/ankommen_homepage.png";
 import celebrate from "../assets/images/celebrate.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
+import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel.png";
 import organize from "../assets/images/organize.png";
 import together from "../assets/images/together.png";
 import table from "../assets/images/tisch-am-fenster.png";
@@ -71,6 +72,14 @@ export const categories = {
       { icon: "users", title: "Familienräume", description: "Schön und alltagstauglich zugleich." },
     ],
     articles: [
+      {
+        title: "Unser täglich Brot",
+        excerpt: "Warum Sauerteig viel unkomplizierter ist, als das Internet dich glauben lässt – und wie Brotbacken entspannt in den Familienalltag passt.",
+        category: "Ankommen",
+        image: sourdoughBread,
+        href: "/ankommen/unser-taeglich-brot",
+        date: "11. August 2026",
+      },
       {
         title: "Meine Küchenlieblinge",
         excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns über Jahre im echten Familienalltag bewährt haben.",

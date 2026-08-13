@@ -7,6 +7,7 @@ import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
 import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
+import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel.png";
 
 
 
@@ -63,7 +64,17 @@ const kitchenArticle = {
   publishedAt: "2026-08-09",
 } satisfies PublishedContent;
 
+const sourdoughArticle = {
+  title: "Unser täglich Brot",
+  excerpt: "Warum Sauerteig unkompliziert und alltagstauglich sein darf.",
+  category: "Artikel · Ankommen",
+  image: sourdoughBread,
+  href: "/ankommen/unser-taeglich-brot",
+  publishedAt: "2026-08-11",
+} satisfies PublishedContent;
+
 const publishedContent = [
+  sourdoughArticle,
   kitchenArticle,
   journalArticle,
   recipes.focaccia,

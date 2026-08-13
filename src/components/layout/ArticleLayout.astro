@@ -15,6 +15,7 @@ import type { ImageMetadata } from "astro";
 import type { ArticlePreview } from "../../types/content";
 import newsletterImage from "../../assets/images/newsletter-journal.png";
 import instagramJournalImage from "../../assets/images/instagram-journal.png";
+import defaultSocialImage from "../../assets/images/og-image.png";
 
 interface Props {
   pageTitle: string;
@@ -23,14 +24,14 @@ interface Props {
   category: string;
   title: string;
   summary: string;
-  image: ImageMetadata;
-  imageAlt: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  imagePlaceholder?: string;
   date: string;
   datePublished: string;
   readingTime: string;
-  shortSummary?: string;
-  shortSummaryEyebrow?: string;
-  shortSummaryItems?: Array<string | { label: string; href: `#${string}` }>;
+  overviewEyebrow?: string;
+  overviewItems: Array<string | { label: string; href: `#${string}` }>;
   stickyQuickSummary?: boolean;
   instagramHref?: string;
   relatedItems: ArticlePreview[];
@@ -44,13 +45,13 @@ const {
   title,
   summary,
   image,
-  imageAlt,
+  imageAlt = "",
+  imagePlaceholder,
   date,
   datePublished,
   readingTime,
-  shortSummary = summary,
-  shortSummaryEyebrow = "Kurz gesagt",
-  shortSummaryItems = [],
+  overviewEyebrow = "Auf einen Blick",
+  overviewItems,
   stickyQuickSummary = false,
   instagramHref = "https://www.instagram.com/domace.studio/",
   relatedItems,
@@ -71,14 +72,15 @@ const structuredData = {
     url: new URL("/", Astro.site).href,
   },
 };
+const socialImageAlt = image ? imageAlt : "Domaće – für das gute Familienleben";
 ---
 
 <BaseLayout
   title={pageTitle}
   description={description}
   activePath={activePath}
-  socialImage={image}
-  socialImageAlt={imageAlt}
+  socialImage={image ?? defaultSocialImage}
+  socialImageAlt={socialImageAlt}
   socialType="article"
   articleAuthor="Mara Lukić"
   articlePublishedTime={datePublished}
@@ -92,6 +94,7 @@ const structuredData = {
       summary={summary}
       image={image}
       imageAlt={imageAlt}
+      imagePlaceholder={imagePlaceholder}
       contentAlign="start"
       meta={[
         { icon: "clock", label: date },
@@ -109,18 +112,14 @@ const structuredData = {
   <section class="article-shell" id="artikelanfang" aria-label={title}>
     <ContentWithSidebar asidePosition="start" stickyAside={stickyQuickSummary}>
       <Fragment slot="aside">
-        <SidebarPanel eyebrow={shortSummaryEyebrow} tone="plum">
-          {shortSummaryItems.length > 0 ? (
-            <ul class="article-quick-list">
-              {shortSummaryItems.map((item) => (
-                <li>
-                  {typeof item === "string" ? item : <a href={item.href}>{item.label}</a>}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>{shortSummary}</p>
-          )}
+        <SidebarPanel eyebrow={overviewEyebrow} tone="plum">
+          <ul class="article-quick-list">
+            {overviewItems.map((item) => (
+              <li>
+                {typeof item === "string" ? item : <a href={item.href}>{item.label}</a>}
+              </li>
+            ))}
+          </ul>
         </SidebarPanel>
       </Fragment>
       <ArticleProse><slot /></ArticleProse>
