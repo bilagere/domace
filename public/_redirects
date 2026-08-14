@@ -1,3 +1,7 @@
 /geniessen /genuss 301
 /geniessen/ /genuss/ 301
 /geniessen/* /genuss/:splat 301
+/feiern /journal 301
+/feiern/ /journal/ 301
+/journal/feiern /journal 301
+/journal/feiern/ /journal/ 301

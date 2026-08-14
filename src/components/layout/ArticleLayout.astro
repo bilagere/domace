@@ -73,6 +73,14 @@ const structuredData = {
   },
 };
 const socialImageAlt = image ? imageAlt : "Domaće – für das gute Familienleben";
+const normalizedCategory = category.toLocaleLowerCase("de");
+const categoryTone = normalizedCategory.includes("ankommen")
+  ? "salbei"
+  : normalizedCategory.includes("ordnen")
+    ? "sonne"
+    : normalizedCategory.includes("zusammen")
+      ? "mauve"
+      : "lehm";
 ---
 
 <BaseLayout
@@ -96,6 +104,7 @@ const socialImageAlt = image ? imageAlt : "Domaće – für das gute Familienleb
       imageAlt={imageAlt}
       imagePlaceholder={imagePlaceholder}
       contentAlign="start"
+      tone={categoryTone}
       meta={[
         { icon: "clock", label: date },
         { icon: "clock", label: readingTime },
@@ -112,7 +121,7 @@ const socialImageAlt = image ? imageAlt : "Domaće – für das gute Familienleb
   <section class="article-shell" id="artikelanfang" aria-label={title}>
     <ContentWithSidebar asidePosition="start" stickyAside={stickyQuickSummary}>
       <Fragment slot="aside">
-        <SidebarPanel eyebrow={overviewEyebrow} tone="plum">
+        <SidebarPanel eyebrow={overviewEyebrow} tone={categoryTone}>
           <ul class="article-quick-list">
             {overviewItems.map((item) => (
               <li>

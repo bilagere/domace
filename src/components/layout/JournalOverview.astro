@@ -11,17 +11,17 @@ import heroJournal from "../../assets/images/hero-journal.png";
 import newsletter from "../../assets/images/newsletter-journal.png";
 import quote from "../../assets/images/quote_journal.png";
 
-export type JournalCategory = "ankommen" | "ordnen" | "zusammen" | "feiern";
+export type JournalCategory = "ankommen" | "geniessen" | "ordnen" | "zusammen";
 interface Props { activeCategory?: JournalCategory; }
 const { activeCategory } = Astro.props;
 const journalTags: ReadonlyArray<{ label: string; href: string; category?: JournalCategory }> = [
   { label: "Alle Beiträge", href: "/journal" },
   { label: "Ankommen", href: "/journal/ankommen", category: "ankommen" },
+  { label: "Genießen", href: "/journal/geniessen", category: "geniessen" },
   { label: "Ordnen", href: "/journal/ordnen", category: "ordnen" },
   { label: "Zusammen", href: "/journal/zusammen", category: "zusammen" },
-  { label: "Feiern", href: "/journal/feiern", category: "feiern" },
 ];
-const journalArticles = Object.values(categories).flatMap((category) => category.articles);
+const journalArticles = journalTags.flatMap((tag) => tag.category ? categories[tag.category].articles : []);
 const initialArticles = activeCategory ? categories[activeCategory].articles : journalArticles;
 const activeLabel = activeCategory
   ? journalTags.find((tag) => tag.category === activeCategory)?.label
@@ -287,10 +287,13 @@ const initialFilter = activeLabel ?? "all";
   @media (max-width: 64rem) {
     .journal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  @media (max-width: 40rem) {
-    .journal-tag-list { display: flex; gap: var(--space-6); min-width: max-content; }
-    .journal-tag-link { padding-inline: 0; }
-    .journal-tag-link::after { width: 100%; }
+  @media (max-width: 48rem) {
+    .journal-tags { overflow: visible; }
+    .journal-tag-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .journal-tag-list > li { border-left: var(--divider-thickness) solid var(--color-border); min-width: 0; }
+    .journal-tag-list > li:first-child { border-left: 0; grid-column: 1 / -1; }
+    .journal-tag-list > li:nth-child(n + 2) { border-top: var(--divider-thickness) solid var(--color-border); }
+    .journal-tag-list > li:nth-child(even) { border-left: 0; }
     .journal-grid { grid-template-columns: 1fr; }
   }
 </style>

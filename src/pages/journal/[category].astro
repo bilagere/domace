@@ -1,10 +1,10 @@
 ---
 import JournalOverview from "../../components/layout/JournalOverview.astro";
 
-type JournalCategory = "ankommen" | "ordnen" | "zusammen" | "feiern";
+type JournalCategory = "ankommen" | "geniessen" | "ordnen" | "zusammen";
 
 export function getStaticPaths() {
-  return (["ankommen", "ordnen", "zusammen", "feiern"] satisfies JournalCategory[]).map((category) => ({
+  return (["ankommen", "geniessen", "ordnen", "zusammen"] satisfies JournalCategory[]).map((category) => ({
     params: { category },
     props: { category },
   }));

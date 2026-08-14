@@ -14,7 +14,6 @@ import together from "../assets/images/together.png";
 import enjoy from "../assets/images/enjoy.png";
 import arrive from "../assets/images/ankommen_homepage.png";
 import organize from "../assets/images/organize.png";
-import celebrate from "../assets/images/celebrate.png";
 import newsletter from "../assets/images/newsletter-feature.png";
 import author from "../assets/images/Mara_Lukic.png";
 import quote from "../assets/images/quote-home.png";
@@ -25,18 +24,16 @@ const images = {
   enjoy,
   arrive,
   organize,
-  celebrate,
   newsletter,
   author,
   quote,
 };
 
 const topics = [
-  { title: "Ankommen", subtitle: "Für ein Zuhause, das gut tut.", description: "Ideen für Zuhause, Garten und kleine Projekte mit Herz.", href: "/journal/ankommen", icon: "leaf" as const, image: images.arrive },
-  { title: "Genießen", subtitle: "Für Mahlzeiten, die verbinden.", description: "Familienrezepte, Brot und kleine Genussmomente für jeden Tag.", href: "/genuss", icon: "cooking-pot" as const, image: images.enjoy },
-  { title: "Ordnen", subtitle: "Für einen Alltag, der leichter wird.", description: "Pläne, Routinen und einfache Systeme mit weniger Mental Load.", href: "/journal/ordnen", icon: "list-check" as const, image: images.organize },
-  { title: "Zusammen", subtitle: "Für Beziehungen, die tragen.", description: "Familie, Partnerschaft und Gedanken, die den Alltag begleiten.", href: "/journal/zusammen", icon: "users" as const, image: images.together },
-  { title: "Feiern", subtitle: "Für Erinnerungen, die bleiben.", description: "Feste, Jahreszeiten und Rituale, die das Familienleben bereichern.", href: "/journal/feiern", icon: "cake" as const, image: images.celebrate },
+  { title: "Ankommen", subtitle: "Für ein Zuhause, das gut tut.", description: "Ideen für Zuhause, Garten und kleine Projekte mit Herz.", href: "/journal/ankommen", icon: "leaf" as const, image: images.arrive, tone: "salbei" as const },
+  { title: "Genießen", subtitle: "Für Mahlzeiten, die verbinden.", description: "Geschichten über saisonales Kochen, Brot und gutes Essen.", href: "/journal/geniessen", icon: "cooking-pot" as const, image: images.enjoy, tone: "lehm" as const },
+  { title: "Ordnen", subtitle: "Für einen Alltag, der leichter wird.", description: "Pläne, Routinen und einfache Systeme mit weniger Mental Load.", href: "/journal/ordnen", icon: "list-check" as const, image: images.organize, tone: "sonne" as const },
+  { title: "Zusammen", subtitle: "Für Beziehungen, die tragen.", description: "Familie, Partnerschaft und Gedanken, die den Alltag begleiten.", href: "/journal/zusammen", icon: "users" as const, image: images.together, tone: "mauve" as const },
 ];
 
 ---
@@ -64,7 +61,7 @@ const topics = [
       title="Woran willst du dich später erinnern?"
       description="Später wirst du dich hoffentlich nicht daran erinnern, wie ordentlich das Haus war oder ob die Fenster regelmäßig geputzt wurden. Aber du wirst dich daran erinnern, wie sich euer Zuhause angefühlt hat."
       image={images.hero}
-      imageAlt="Mutter spielt mit zwei Kindern im Garten vor dem Haus"
+      imageAlt="Mutter sitzt mit zwei Kindern in einer blühenden Gartenwiese"
       narrowContent
       headingAs="h2"
     />
@@ -104,14 +101,14 @@ const topics = [
   .section { margin-inline: auto; max-width: var(--content-width); padding: var(--space-20) var(--page-gutter); }
   .topic-section, .latest-section { padding-block: 0; }
   .topic-section, .latest-section, .homepage-hero, .newsletter-feature, .quote-feature, .author-section { margin-top: var(--space-12); }
-  .topic-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .topic-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .section__heading-row { align-items: end; display: flex; justify-content: space-between; margin-bottom: var(--space-8); }
   .article-grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(4, minmax(0, 1fr)); }
   :global(.site-footer) { margin-top: var(--space-12); }
   .author-section__copy { font-size: var(--text-lg); margin: var(--space-6) 0; max-width: 36rem; }
   .author-section__copy p + p { margin-top: var(--space-4); }
-  @media (max-width: 64rem) { .topic-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 64rem) { .topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 64rem) { .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 46rem) { .article-grid { grid-template-columns: 1fr; } .section__heading-row { align-items: flex-start; flex-direction: column; gap: var(--space-4); } }
-  @media (max-width: 34rem) { .topic-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 34rem) { .topic-grid { grid-template-columns: 1fr; } }
 </style>

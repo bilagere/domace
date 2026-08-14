@@ -13,11 +13,12 @@ interface Props {
   imagePlaceholder?: string;
   meta?: MetaItem[];
   contentAlign?: "center" | "start";
+  tone?: "salbei" | "lehm" | "sonne" | "mauve";
 }
-const { eyebrow, title, summary, image, imageAlt = "", imagePlaceholder, meta = [], contentAlign = "center" } = Astro.props;
+const { eyebrow, title, summary, image, imageAlt = "", imagePlaceholder, meta = [], contentAlign = "center", tone = "lehm" } = Astro.props;
 ---
 
-<header class="article-lead">
+<header class:list={["article-lead", `article-lead--${tone}`]}>
   <div class:list={["article-lead__content", `article-lead__content--${contentAlign}`]}>
     {eyebrow && <p class="article-lead__eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
@@ -43,18 +44,22 @@ const { eyebrow, title, summary, image, imageAlt = "", imagePlaceholder, meta = 
 </header>
 
 <style>
-  .article-lead { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.95fr); }
+  .article-lead { --detail-accent: var(--color-lehm); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.95fr); }
+  .article-lead--salbei { --detail-accent: var(--color-salbei); }
+  .article-lead--sonne { --detail-accent: var(--color-sonne); }
+  .article-lead--mauve { --detail-accent: var(--color-mauve); }
   .article-lead__media { height: 31rem; min-height: 31rem; overflow: hidden; }
   .article-lead__media :global(picture), .article-lead__media :global(img) { height: 100%; width: 100%; }
   .article-lead__media :global(img) { object-fit: cover; }
   .article-lead__media--placeholder { align-items: center; background: var(--color-surface-muted); display: flex; justify-content: center; }
   .article-lead__media--placeholder p { color: var(--color-olive-dark); font-size: var(--text-xs); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-caps); text-transform: uppercase; }
-  .article-lead__content { align-content: center; display: grid; border-bottom: var(--divider-thickness) solid var(--color-divider); padding: var(--space-10) var(--space-12) var(--space-10) 0; }
+  .article-lead__content { align-content: center; border-bottom: var(--divider-thickness) solid var(--detail-accent); display: grid; padding: var(--space-10) var(--space-12) var(--space-10) 0; }
   .article-lead__content--start { align-content: start; padding-top: var(--space-10); }
-  .article-lead__eyebrow { color: var(--color-terracotta); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
+  .article-lead__eyebrow { background: var(--detail-accent); color: var(--color-espresso); font-size: var(--text-xs); font-weight: 700; justify-self: start; letter-spacing: var(--tracking-caps); padding: var(--space-2) var(--space-3); text-transform: uppercase; }
   h1 { font-size: var(--text-2xl); margin-top: var(--space-3); }
   .article-lead__summary { font-size: var(--text-lg); margin-top: var(--space-5); max-width: var(--content-narrow); }
-  .article-lead__meta { border-top: var(--divider-thickness) solid var(--color-divider); margin-top: var(--space-6); padding-top: var(--space-4); }
+  .article-lead__meta { border-top: var(--divider-thickness) solid var(--detail-accent); margin-top: var(--space-6); padding-top: var(--space-4); }
+  .article-lead__meta :global(dt) { color: var(--detail-accent); }
   @media (max-width: 64rem) {
     .article-lead { grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.8fr); }
     .article-lead__content { padding-right: var(--space-8); }

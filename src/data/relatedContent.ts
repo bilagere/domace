@@ -49,7 +49,7 @@ const recipes = {
 const journalArticle = {
   title: "Nicht leiser, aber leichter.",
   excerpt: "Sieben Gewohnheiten, die den Familienalltag spürbar ruhiger machen.",
-  category: "Artikel · Zusammen",
+  category: "Zusammen",
   image: quieterFamilyLife,
   href: "/ordnen/familienleben-ruhiger",
   publishedAt: "2026-08-05",
@@ -58,7 +58,7 @@ const journalArticle = {
 const kitchenArticle = {
   title: "Meine Küchenlieblinge",
   excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns im Alltag bewährt haben.",
-  category: "Artikel · Ankommen",
+  category: "Ordnen",
   image: kitchenFavorites,
   href: "/ordnen/kuechenutensilien",
   publishedAt: "2026-08-09",
@@ -67,7 +67,7 @@ const kitchenArticle = {
 const sourdoughArticle = {
   title: "Unser täglich Brot",
   excerpt: "Warum Sauerteig unkompliziert und alltagstauglich sein darf.",
-  category: "Artikel · Ankommen",
+  category: "Genießen",
   image: sourdoughBread,
   href: "/ankommen/unser-taeglich-brot",
   publishedAt: "2026-08-11",

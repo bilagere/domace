@@ -1,7 +1,7 @@
 import type { ImageMetadata } from "astro";
 import type { ArticlePreview } from "../types/content";
 import arrive from "../assets/images/ankommen_homepage.png";
-import celebrate from "../assets/images/celebrate.png";
+import enjoy from "../assets/images/enjoy.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
 import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel.png";
@@ -50,7 +50,16 @@ export const categories = {
       { icon: "users", title: "Familienplanung", description: "Übersicht, die alle mitnehmen kann." },
       { icon: "heart", title: "Weniger Druck", description: "Systeme, die dienen statt bestimmen." },
     ],
-    articles: [],
+    articles: [
+      {
+        title: "Meine Küchenlieblinge",
+        excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns über Jahre im echten Familienalltag bewährt haben.",
+        category: "Ordnen",
+        image: kitchenFavorites,
+        href: "/ordnen/kuechenutensilien",
+        date: "9. August 2026",
+      },
+    ],
     quote: "Weniger Entscheidungen treffen. Mehr Zeit füreinander haben.",
     quoteImage: organize,
     quoteAlt: "Wochenplanung in ruhiger, warmer Atmosphäre",
@@ -71,27 +80,40 @@ export const categories = {
       { icon: "heart", title: "Geborgenheit", description: "Räume, die Nähe und Rückzug erlauben." },
       { icon: "users", title: "Familienräume", description: "Schön und alltagstauglich zugleich." },
     ],
+    articles: [],
+    quote: "Zuhause ist kein Ort, der fertig wird. Es wächst mit den Menschen, die darin leben.",
+    quoteImage: arrive,
+    quoteAlt: "Helles, warm eingerichtetes Zuhause",
+  },
+  geniessen: {
+    path: "/journal/geniessen",
+    title: "Genießen",
+    pageTitle: "Genießen im Journal – Domaće",
+    description: "Geschichten über saisonales Kochen, Brot und gutes Essen für die Menschen, die wir lieben.",
+    eyebrow: "Für Mahlzeiten, die verbinden",
+    heroTitle: "Gutes Essen.\nEchte Verbindung.",
+    heroDescription: "Gedanken über saisonales Kochen, Brot und jene Mahlzeiten, die im Alltag zu gemeinsamen Erinnerungen werden.",
+    heroImage: enjoy,
+    heroAlt: "Gemeinsames Kochen in einer warmen Familienküche",
+    intro: "Genießen muss weder aufwendig noch außergewöhnlich sein. Oft reicht ein vertrautes Rezept, etwas Zeit am Tisch und das Gefühl, miteinander verbunden zu sein.",
+    features: [
+      { icon: "heart", title: "Familienküche", description: "Gutes Essen für die Menschen, die wir lieben." },
+      { icon: "leaf", title: "Saisonal kochen", description: "Mit dem, was Garten und Jahreszeit schenken." },
+      { icon: "users", title: "Gemeinsam essen", description: "Mahlzeiten, die im Alltag verbinden." },
+    ],
     articles: [
       {
         title: "Unser täglich Brot",
         excerpt: "Warum Sauerteig viel unkomplizierter ist, als das Internet dich glauben lässt – und wie Brotbacken entspannt in den Familienalltag passt.",
-        category: "Ankommen",
+        category: "Genießen",
         image: sourdoughBread,
         href: "/ankommen/unser-taeglich-brot",
         date: "11. August 2026",
       },
-      {
-        title: "Meine Küchenlieblinge",
-        excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns über Jahre im echten Familienalltag bewährt haben.",
-        category: "Ankommen",
-        image: kitchenFavorites,
-        href: "/ordnen/kuechenutensilien",
-        date: "9. August 2026",
-      },
     ],
-    quote: "Zuhause ist kein Ort, der fertig wird. Es wächst mit den Menschen, die darin leben.",
-    quoteImage: arrive,
-    quoteAlt: "Helles, warm eingerichtetes Zuhause",
+    quote: "Manche Erinnerungen beginnen mit dem Duft von frisch gebackenem Brot.",
+    quoteImage: enjoy,
+    quoteAlt: "Gemeinsames Kochen in warmer Atmosphäre",
   },
   zusammen: {
     path: "/zusammen",
@@ -122,26 +144,5 @@ export const categories = {
     quote: "Am Ende erinnern wir uns nicht an perfekte Tage, sondern daran, wie wir uns miteinander gefühlt haben.",
     quoteImage: together,
     quoteAlt: "Familie unterwegs in ruhiger Natur",
-  },
-  feiern: {
-    path: "/feiern",
-    title: "Feiern",
-    pageTitle: "Feiern – Domaće",
-    description: "Feste, Jahreszeiten und Rituale für Erinnerungen, die bleiben.",
-    eyebrow: "Für Erinnerungen, die bleiben",
-    heroTitle: "Das Leben feiern.\nGanz ohne großes Müssen.",
-    heroDescription: "Saisonale Ideen, vertraute Rituale und unkomplizierte Feste, bei denen die Menschen wichtiger bleiben als die Dekoration.",
-    heroImage: celebrate,
-    heroAlt: "Festlich gedeckter Tisch in warmem Licht",
-    intro: "Feiern darf leicht sein. Ein vertrautes Rezept, Kerzen auf dem Tisch und Menschen, die gern zusammenkommen, reichen oft aus, damit aus einem gewöhnlichen Tag eine Erinnerung wird.",
-    features: [
-      { icon: "heart", title: "Familienfeste", description: "Persönlich, herzlich und unkompliziert." },
-      { icon: "leaf", title: "Jahreszeiten", description: "Rituale, die durch das Jahr begleiten." },
-      { icon: "users", title: "Gastfreundschaft", description: "Ideen, bei denen alle entspannen dürfen." },
-    ],
-    articles: [],
-    quote: "Die schönsten Feste beginnen lange vor dem ersten Gast.",
-    quoteImage: celebrate,
-    quoteAlt: "Festliche Details in warmen Naturtönen",
   },
 } satisfies Record<string, CategoryPageData>;

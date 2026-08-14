@@ -10,6 +10,12 @@
   --color-pflaume: #503a47;
   --color-gold: #a79068;
 
+  /* Category accents complement the brand palette without replacing it. */
+  --color-salbei: #b7c19c;
+  --color-lehm: #dc7a5f;
+  --color-mauve: #a38195;
+  --color-sonne: #dea645;
+
   --color-surface: var(--color-kalk);
   --color-surface-raised: #fffdfa;
   --color-surface-muted: #f1e9e0;

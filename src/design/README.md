@@ -18,6 +18,7 @@ Das Designsystem übersetzt den Styleguide in wiederverwendbare Entscheidungen. 
 - `text` und `text-muted`: primäre und sekundäre Lesetexte.
 - `action`: interaktive Terracotta-Akzente.
 - `olive` und `pflaume`: ruhige, thematische Flächen und Kontraste.
+- `salbei`, `lehm`, `sonne` und `mauve`: ergänzende Kategorieakzente für Ankommen, Genießen, Ordnen und Zusammen; sie ersetzen nicht die Markenfarben.
 - `border` und `divider`: zurückhaltende Rahmung und die charakteristische Trennlinie.
 
 ## Layout-Primitiven
