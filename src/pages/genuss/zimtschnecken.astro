@@ -9,14 +9,11 @@ import zimtschneckenFrosting from "../../assets/images/genuss/zimtschnecken-fros
 const ingredients = [
   "370 g Weizenmehl (Type 550)",
   "170 ml Milch",
-  "1½ EL Wasser",
   "1 Ei",
   "75 g weiche Butter",
   "60 g Zucker",
   "½ TL Salz",
-  "140 g aktiver Weizensauerteig",
-  "4 g frische Germ für die Variante am selben Tag",
-  "alternativ ca. 180 g aktiver Weizensauerteig und keine Germ für die Übernacht-Variante",
+  "180 g aktiver Weizensauerteig",
   "100 g weiche Butter für die Füllung",
   "80 g Zucker für die Füllung",
   "1½ TL Zimt",
@@ -27,24 +24,33 @@ const ingredients = [
 ];
 
 const steps = [
-  "Für die Variante am selben Tag die Germ mit dem Wasser und etwas vom Zucker verrühren und kurz stehen lassen. Für die Übernacht-Variante diesen Schritt auslassen und statt 140 g etwa 180 g aktiven Sauerteig verwenden.",
-  "Mehl, Milch, Ei, Sauerteig, restlichen Zucker und die Germmischung – falls verwendet – verkneten. Salz und Butter erst zum Schluss dazugeben und alles etwa zehn Minuten zu einem weichen, geschmeidigen Teig kneten.",
-  "Den Teig zu einer Kugel formen, abdecken und bei Raumtemperatur gehen lassen, bis er sich deutlich vergrößert hat. Bei der Variante mit Germ geht das schneller; die Sauerteigvariante folgt weniger der Uhr als dem Teig.",
+  "Mehl, Milch, Ei, Sauerteig und Zucker verkneten. Salz und Butter erst zum Schluss dazugeben und alles etwa zehn Minuten zu einem weichen, geschmeidigen Teig kneten.",
+  "Den Teig zu einer Kugel formen, abdecken und bei Raumtemperatur gehen lassen, bis er sich deutlich vergrößert hat. Die genaue Dauer hängt von der Aktivität des Sauerteigs und der Raumtemperatur ab – folge dabei lieber dem Teig als der Uhr.",
   "Eine Backform mit etwas Butter ausstreichen. Den Teig auf einer leicht bemehlten Fläche zu einem großen Rechteck ausrollen und mit der weichen Butter bestreichen.",
   "Zucker und Zimt vermischen und gleichmäßig auf der Butter verteilen. Die gehackten Pekannüsse darüberstreuen.",
   "Den belegten Teig mit einem Pizzaschneider in zwölf möglichst gleich breite Streifen schneiden. Jeden Streifen einzeln zu einer Schnecke aufrollen und mit etwas Abstand in die vorbereitete Form setzen. Das ist etwas aufwändiger als eine große Rolle zu teilen, dafür werden die fertigen Schnecken besonders gleichmäßig und schön.",
-  "Für die Variante am selben Tag die Schnecken abdecken und nochmals gehen lassen, bis sie sichtbar aufgegangen sind. Für die Übernacht-Variante die geformten Schnecken abgedeckt bei Raumtemperatur über Nacht gehen lassen.",
+  "Die geformten Schnecken abdecken und bei Raumtemperatur über Nacht gehen lassen. Am Morgen sollten sie sichtbar aufgegangen sein und sich luftig anfühlen.",
   "Den Backofen auf 180 °C Ober-/Unterhitze vorheizen. Die Zimtschnecken 30 bis 35 Minuten backen, bis sie goldbraun sind.",
   "Für das Frosting entweder den Frischkäse oder Sauerrahm und Crème fraîche mit Puderzucker und Vanille glatt rühren. Auf den noch warmen Zimtschnecken verteilen und am besten gleich servieren.",
+];
+const stepIngredients = [
+  [0, 1, 2, 3, 4, 5, 6],
+  [],
+  [7],
+  [8, 9, 10],
+  [],
+  [],
+  [],
+  [11, 12, 13],
 ];
 ---
 
 <RecipeLayout
-  pageTitle="Sauerteig-Zimtschnecken mit Pekannüssen | Domaće"
-  description="Weiche Sauerteig-Zimtschnecken mit Pekannüssen und cremigem Vanillefrosting – am selben Tag oder über Nacht vorbereitet."
+  pageTitle="Sauerteig-Zimtschnecken über Nacht | Domaće"
+  description="Weiche Sauerteig-Zimtschnecken über Nacht mit Pekannüssen und cremigem Vanillefrosting – am Morgen nur noch backen und genießen."
   category="Brot & Gebäck"
-  title="Sauerteig-Zimtschnecken mit Pekannüssen"
-  summary="Fluffiger Sauerteig, eine saftige Zimtfüllung mit Pekannüssen und cremiges Vanillefrosting – genau richtig für langsame Nachmittage oder ein warmes Sonntagsfrühstück."
+  title="Sauerteig-Zimtschnecken über Nacht"
+  summary="Am Abend in Ruhe vorbereitet, am Morgen warm aus dem Ofen: fluffige Sauerteig-Zimtschnecken mit Pekannüssen und cremigem Vanillefrosting."
   image={zimtschneckenTitle}
   imageAlt="Frisch gebackene Zimtschnecken mit Pekannüssen"
   meta={[
@@ -55,11 +61,12 @@ const steps = [
   prepTime="PT30M"
   cookTime="PT35M"
   ingredients={ingredients}
-  ingredientNoteTitle="Zwei Wege zum Erfolg."
-  ingredientNote="Für Schnecken am selben Tag verwende ich 140 g Sauerteig und 4 g Germ. Wenn sie über Nacht gehen, lasse ich die Germ weg und erhöhe den Sauerteig auf etwa 180 g."
+  ingredientNoteTitle="Ein aktiver Sauerteig zählt."
+  ingredientNote="Verwende den Sauerteig, wenn er sichtbar aufgegangen ist und viele kleine Bläschen zeigt. So hat der Teig genug Kraft für die lange Gare über Nacht."
   tipTitle="Morgens nur noch backen."
-  tipText="Für die Übernacht-Variante die Schnecken bereits am Vorabend formen und abgedeckt bei Raumtemperatur gehen lassen. Am Morgen kommen sie direkt ins vorgeheizte Rohr – und warm auf den Frühstückstisch."
+  tipText="Forme die Schnecken bereits am Vorabend und lass sie abgedeckt bei Raumtemperatur gehen. Am Morgen kommen sie direkt ins vorgeheizte Rohr – und warm auf den Frühstückstisch."
   steps={steps}
+  stepIngredients={stepIngredients}
   relatedItems={relatedContent.zimtschnecken}
 >
   <Fragment slot="intro">
@@ -72,8 +79,8 @@ const steps = [
         sizes="(max-width: 768px) 100vw, 46rem"
       />
     </figure>
-    <h2>Am selben Tag oder über Nacht</h2>
-    <p>Wenn es schneller gehen soll, hilft eine kleine Menge Germ dem Sauerteig auf die Sprünge. Für besonders entspannte Morgen forme ich die Schnecken schon am Vorabend und lasse sie ohne Germ über Nacht bei Raumtemperatur gehen. Am nächsten Morgen werden sie nur noch gebacken – herrlich warm zum Frühstück.</p>
+    <h2>Am Abend vorbereitet, am Morgen gebacken</h2>
+    <p>Die Schnecken werden schon am Vorabend geformt und dürfen abgedeckt über Nacht bei Raumtemperatur gehen. Am nächsten Morgen kommen sie nur noch in den vorgeheizten Ofen – herrlich warm zum Frühstück.</p>
   </Fragment>
 
   <h2>Varianten für die Füllung</h2>
@@ -86,5 +93,7 @@ const steps = [
       sizes="(max-width: 768px) 100vw, 46rem"
     />
   </figure>
+  <h2>Zimtschnecken am selben Tag</h2>
+  <p>Wenn es schneller gehen soll, verwende nur 140 g Sauerteig und zusätzlich 4 g frische Germ. Verrühre die Germ mit 1½ EL Wasser und etwas vom Zucker und gib die Mischung zum Teig. Lass die geformten Schnecken anschließend nochmals gehen, bis sie sichtbar aufgegangen sind, und backe sie wie beschrieben.</p>
   <blockquote>Wer die letzte nimmt, backt die nächsten.</blockquote>
 </RecipeLayout>

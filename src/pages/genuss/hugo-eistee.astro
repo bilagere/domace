@@ -21,6 +21,13 @@ const steps = [
   "Den Holunderblütensirup in den kalten Pfefferminztee rühren. Je nach Süße des Sirups zunächst etwas weniger verwenden und abschmecken.",
   "Eiswürfel und Limetten auf vier Gläser verteilen. Den Hugo-Eistee eingießen und jedes Glas mit frischer Minze garnieren.",
 ];
+const stepIngredients = [
+  [0, 1],
+  [],
+  [3],
+  [2],
+  [4, 5],
+];
 ---
 
 <RecipeLayout
@@ -43,6 +50,7 @@ const steps = [
   tipTitle="Gut vorzubereiten."
   tipText="Bereite den Tee schon am Morgen zu und stelle ihn kalt. Limette, Minze und Eis kommen erst kurz vor dem Servieren ins Glas."
   steps={steps}
+  stepIngredients={stepIngredients}
   relatedItems={relatedContent.hugoEistee}
 >
   <Fragment slot="intro">

@@ -24,6 +24,15 @@ const steps = [
   "Die Focaccia nach Lust und Laune belegen. Die Finger großzügig einölen und Belag sowie tiefe Mulden sanft in den Teig drücken. Dabei entstehen die typischen großen Luftblasen. Bei einem Belag ohne Käse zusätzlich Salz über die Oberfläche geben.",
   "Die Form in den Ofen stellen, die Temperatur sofort auf 230 °C reduzieren und die Focaccia etwa 30 Minuten backen, bis sie kräftig goldbraun ist.",
 ];
+const stepIngredients = [
+  [0, 1, 2, 3],
+  [],
+  [4],
+  [],
+  [],
+  [5],
+  [],
+];
 ---
 
 <RecipeLayout
@@ -49,6 +58,7 @@ const steps = [
   safetyTipTitle="Backen in der Glasform"
   safetyTipText="Achte darauf, dass deine Glasform für die hohe Backtemperatur geeignet ist, und vermeide starke Temperaturschocks."
   steps={steps}
+  stepIngredients={stepIngredients}
   relatedItems={relatedContent.focaccia}
 >
   <Fragment slot="intro">

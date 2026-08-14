@@ -40,6 +40,7 @@ interface Props {
   safetyTipTitle?: string;
   safetyTipText?: string;
   steps: string[];
+  stepIngredients?: number[][];
   relatedItems: ArticlePreview[];
   instagramUrl?: string;
 }
@@ -65,6 +66,7 @@ const {
   safetyTipTitle,
   safetyTipText,
   steps,
+  stepIngredients,
   relatedItems,
   instagramUrl = "https://www.instagram.com/domace.studio/",
 } = Astro.props;
@@ -170,7 +172,7 @@ const structuredData = {
           <IngredientList items={ingredients} />
         </div>
         <div id="zubereitung">
-          <NumberedSteps steps={steps} />
+          <NumberedSteps steps={steps} ingredients={ingredients} stepIngredients={stepIngredients} />
         </div>
         <div class="recipe-article">
           <slot />

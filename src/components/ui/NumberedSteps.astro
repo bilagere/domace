@@ -1,11 +1,34 @@
 ---
-interface Props { title?: string; steps: string[]; note?: string; }
-const { title = "Zubereitung", steps, note } = Astro.props;
+interface Props {
+  title?: string;
+  steps: string[];
+  ingredients?: string[];
+  stepIngredients?: number[][];
+  note?: string;
+}
+const { title = "Zubereitung", steps, ingredients = [], stepIngredients = [], note } = Astro.props;
 ---
 
 <section class="numbered-steps">
   <h2>{title}</h2>
-  <ol>{steps.map((step) => <li>{step}</li>)}</ol>
+  <ol>{steps.map((step, index) => {
+    const ingredientsForStep = (stepIngredients[index] ?? [])
+      .map((ingredientIndex) => ingredients[ingredientIndex])
+      .filter(Boolean);
+
+    return (
+      <li>
+        {ingredientsForStep.length > 0 && (
+          <div class="numbered-steps__ingredients" aria-label="Zutaten für diesen Schritt">
+            <ul>
+              {ingredientsForStep.map((ingredient) => <li>{ingredient}</li>)}
+            </ul>
+          </div>
+        )}
+        <p>{step}</p>
+      </li>
+    );
+  })}</ol>
   {note && <p class="numbered-steps__note">{note}</p>}
 </section>
 
@@ -15,5 +38,12 @@ const { title = "Zubereitung", steps, note } = Astro.props;
   li { color: var(--color-text-muted); counter-increment: steps; font-size: var(--text-sm); line-height: var(--leading-relaxed); padding-left: 2.25rem; position: relative; }
   li + li { margin-top: var(--space-4); }
   li::before { align-items: center; background: var(--color-olive-dark); border-radius: 50%; color: var(--color-kalk); content: counter(steps); display: flex; font-size: var(--text-xs); height: 1.4rem; justify-content: center; left: 0; position: absolute; top: 0.15rem; width: 1.4rem; }
+  li > p { margin: 0; }
+  .numbered-steps__ingredients { background: var(--color-surface-muted); border-left: var(--divider-thickness) solid var(--color-terracotta); margin-bottom: var(--space-3); padding: var(--space-3) var(--space-4); }
+  .numbered-steps__ingredients ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); list-style: none; margin: 0; padding: 0; }
+  .numbered-steps__ingredients li { color: var(--color-text); counter-increment: none; font-size: var(--text-sm); line-height: var(--leading-normal); padding: 0; }
+  .numbered-steps__ingredients li + li { margin-top: 0; }
+  .numbered-steps__ingredients li::before { content: none; }
+  .numbered-steps__ingredients li:not(:last-child)::after { color: var(--color-terracotta); content: " ·"; }
   .numbered-steps__note { font-family: var(--font-script); margin-top: var(--space-6); }
 </style>
