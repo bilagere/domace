@@ -2,19 +2,7 @@
 import Icon from "../ui/Icon.astro";
 import OptimizedImage from "../ui/OptimizedImage.astro";
 import type { ImageMetadata } from "astro";
-
-const categories = [
-  { label: "Genießen", href: "/genuss" },
-  { label: "Ankommen", href: "/ankommen" },
-  { label: "Genießen", href: "/journal/geniessen" },
-  { label: "Ordnen", href: "/ordnen" },
-  { label: "Zusammen", href: "/zusammen" },
-];
-const information = [
-  { label: "Willkommen", href: "/willkommen" },
-  { label: "Impressum", href: "/impressum" },
-  { label: "Datenschutz", href: "/datenschutz" },
-];
+import { informationNavigation, journalCategories, recipeCategories } from "../../data/taxonomy";
 interface Props { gallery?: ImageMetadata[]; flush?: boolean; }
 const { gallery = [], flush = false } = Astro.props;
 const currentYear = new Date().getFullYear();
@@ -31,8 +19,9 @@ const currentYear = new Date().getFullYear();
         <a href="mailto:hallo@domace.studio" aria-label="E-Mail an hallo@domace.studio"><Icon name="mail" size={16} /></a>
       </div>
     </div>
-    <nav aria-label="Journal"><p class="site-footer__label">Journal</p><ul>{categories.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
-    <nav aria-label="Informationen"><p class="site-footer__label">Informationen</p><ul>{information.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
+    <nav aria-label="Journal"><p class="site-footer__label">Journal</p><ul>{journalCategories.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
+    <nav aria-label="Genuss"><p class="site-footer__label">Genuss</p><ul>{recipeCategories.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
+    <nav aria-label="Informationen"><p class="site-footer__label">Informationen</p><ul>{informationNavigation.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
     {gallery.length > 0 && (
       <div class="site-footer__instagram">
         <p class="site-footer__label">Neues auf Instagram</p>
@@ -58,7 +47,7 @@ const currentYear = new Date().getFullYear();
 <style>
   .site-footer { background: var(--color-surface-muted); margin-top: var(--space-12); }
   .site-footer--flush { margin-top: 0; }
-  .site-footer__main { display: grid; gap: var(--space-8); grid-template-columns: 1.5fr 0.75fr 0.75fr 1fr; margin: 0 auto; max-width: var(--content-width); padding: var(--space-12) var(--page-gutter) var(--space-6); }
+  .site-footer__main { display: grid; column-gap: var(--space-8); grid-template-columns: 14rem repeat(3, max-content) 18rem; justify-content: space-between; margin: 0 auto; max-width: var(--content-width); padding: var(--space-12) var(--page-gutter) var(--space-6); }
   .site-footer__brand { align-content: start; display: grid; grid-template-columns: auto 1fr; gap: var(--space-3) var(--space-4); }
   .site-footer__mark { align-self: start; grid-row: span 2; height: 3rem; width: auto; }
   .site-footer p { font-size: var(--text-sm); margin: 0; }
@@ -74,7 +63,8 @@ const currentYear = new Date().getFullYear();
   .site-footer__gallery-item { aspect-ratio: 1; min-width: 0; overflow: hidden; position: relative; width: 100%; }
   .site-footer__bottom { align-items: center; background: var(--color-olive-dark); color: var(--color-kalk); display: flex; font-size: var(--text-xs); justify-content: space-between; padding: var(--space-3) max(var(--page-gutter), calc((100% - var(--content-width)) / 2)); }
   .site-footer__bottom span { align-items: center; display: flex; gap: var(--space-2); }
-  @media (max-width: 48rem) { .site-footer__main { grid-template-columns: 1fr 1fr; } .site-footer__brand { grid-column: 1 / -1; } .site-footer__instagram { grid-column: 1 / -1; max-width: 18rem; } }
+  @media (max-width: 72rem) { .site-footer__main { gap: var(--space-8); grid-template-columns: repeat(3, 1fr); justify-content: stretch; } .site-footer__brand, .site-footer__instagram { grid-column: 1 / -1; } .site-footer__instagram { max-width: 18rem; } }
+  @media (max-width: 48rem) { .site-footer__main { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 28rem) { .site-footer__main { grid-template-columns: 1fr; } .site-footer__bottom { align-items: flex-start; flex-direction: column; gap: var(--space-2); } }
 </style>
 

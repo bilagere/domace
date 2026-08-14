@@ -1,43 +1,39 @@
-# Astro Starter Kit: Minimal
+# Domaće
 
-```sh
-npm create astro@latest -- --template minimal
+Domaće ist eine deutschsprachige Editorial-Website über Familienleben, Rezepte, Zuhause und alltagstaugliche Routinen. Sie wird statisch mit Astro, TypeScript und komponentenlokalem CSS gebaut.
+
+## Entwicklung
+
+Voraussetzung ist Node.js in der in `package.json` angegebenen Version.
+
+```powershell
+npm.cmd install
+npm.cmd run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Die lokale Vorschau ist anschließend unter `http://localhost:4321` erreichbar.
 
-## 🚀 Project Structure
+## Prüfungen
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```powershell
+npm.cmd run check
+npm.cmd run lint
+npm.cmd run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Struktur
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- `src/components/layout/`: Seitengerüste und größere Kompositionen
+- `src/components/ui/`: wiederverwendbare Inhalts- und UI-Bausteine
+- `src/data/`: zentrale Navigation, Kategorien und Beitragsvorschauen
+- `src/design/`: Tokens, globale Stile und Designsystem-Dokumentation
+- `src/pages/`: Astro-Routen
+- `src/assets/images/`: optimierte Inhaltsbilder
+- `public/`: statische Markenassets, Manifest und Weiterleitungen
+- `design/mockups/`: dauerhafte visuelle Referenzen
 
-Any static assets, like images, can be placed in the `public/` directory.
+Die verbindlichen Arbeitsregeln stehen in `AGENTS.md`, das Designsystem in `src/design/README.md`.
 
-## 🧞 Commands
+## Veröffentlichung
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Cloudflare veröffentlicht automatisch nach einem Push auf `master`. Vor jedem Push müssen Typprüfung, Lint und Produktions-Build erfolgreich sein.

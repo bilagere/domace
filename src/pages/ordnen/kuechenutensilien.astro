@@ -4,7 +4,7 @@ import OptimizedImage from "../../components/ui/OptimizedImage.astro";
 import productFavorites from "../../assets/images/journal/kuechenlieblinge/produkte.png";
 import maraCooking from "../../assets/images/journal/kuechenlieblinge/mara-kocht.png";
 
-const kitchenFavoritesOverview = [
+const kitchenFavoritesOverview: Array<{ label: string; href: `#${string}` }> = [
   { label: "Ein scharfes Santokumesser", href: "#scharfes-messer" },
   { label: "Ein großes Stirnholzbrett", href: "#stirnholzbrett" },
   { label: "Ein Kompostkübel", href: "#kompostkuebel" },

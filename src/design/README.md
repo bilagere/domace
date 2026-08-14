@@ -39,10 +39,10 @@ Das Designsystem übersetzt den Styleguide in wiederverwendbare Entscheidungen. 
 
 ## Inhaltsbausteine
 
-- Orientierung: `SectionHeading`, `CategoryNav`, `TableOfContents`, `TagList`, `MetaList`.
-- Teaser: `TopicCard`, `ArticleCard`, `RelatedList`, `AuthorCard`, `CommentCard`.
+- Orientierung: `SectionHeading`, `MetaList`.
+- Teaser: `TopicCard`, `ArticleCard`, `RelatedArticles`, `FilterableCardGrid`.
 - Editorial: `EditorialHero`, `MediaText`, `QuoteBanner`, `NewsletterSignup`, `SidebarPanel`.
-- Artikel und Rezepte: `ArticleLead`, `ArticleProse`, `IngredientList`, `NumberedSteps`, `FeatureList`.
+- Artikel und Rezepte: `ArticleLead`, `ArticleProse`, `IngredientList`, `NumberedSteps`.
 
 ## Regeln für neue Komponenten
 
@@ -50,7 +50,7 @@ Das Designsystem übersetzt den Styleguide in wiederverwendbare Entscheidungen. 
 2. Komponenten erhalten Inhalte über Props oder Slots; Seiten enthalten die konkrete Datenzusammenstellung.
 3. Interaktive Elemente brauchen sichtbaren Fokus, eindeutige Beschriftungen und einen semantisch passenden HTML-Tag.
 4. Bildkomponenten erhalten immer einen Kontext-Alttext; rein dekorative Bilder verwenden `alt=""`.
-5. Breakpoints folgen den vorhandenen Stufen `compact` (640), `medium` (768) und `wide` (1024).
+5. Die Grundstufen sind `compact` (640), `medium` (768) und `wide` (1024). Zusätzliche komponentenspezifische Umbruchpunkte sind nur zulässig, wenn der Inhalt sie sichtbar erfordert.
 
 ## Einsatzbeispiel
 

@@ -1,9 +1,9 @@
 ---
-import GenussOverview, { type RecipeCategory } from "../../components/layout/GenussOverview.astro";
+import GenussOverview from "../../components/layout/GenussOverview.astro";
+import { recipeCategories, type RecipeCategory } from "../../data/taxonomy";
 
 export function getStaticPaths() {
-  const categories: RecipeCategory[] = ["familienkueche", "brot-gebaeck", "spassgetraenke", "gastfreundschaft"];
-  return categories.map((category) => ({ params: { category }, props: { category } }));
+  return recipeCategories.map(({ category }) => ({ params: { category }, props: { category: category satisfies RecipeCategory } }));
 }
 
 interface Props { category: RecipeCategory; }

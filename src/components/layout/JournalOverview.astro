@@ -1,72 +1,40 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EditorialHero from "./EditorialHero.astro";
-import ArticleCard from "../ui/ArticleCard.astro";
+import FilterableCardGrid from "../ui/FilterableCardGrid.astro";
 import MediaText from "../ui/MediaText.astro";
 import NewsletterSignup from "../ui/NewsletterSignup.astro";
 import PageSection from "../ui/PageSection.astro";
 import QuoteBanner from "../ui/QuoteBanner.astro";
-import { categories } from "../../data/categories";
+import { journalPreviews } from "../../data/relatedContent";
+import { journalCategories, type JournalCategory } from "../../data/taxonomy";
 import heroJournal from "../../assets/images/hero-journal.png";
 import newsletter from "../../assets/images/newsletter-journal.png";
 import quote from "../../assets/images/quote_journal.png";
 
-export type JournalCategory = "ankommen" | "geniessen" | "ordnen" | "zusammen";
+export type { JournalCategory } from "../../data/taxonomy";
 interface Props { activeCategory?: JournalCategory; }
 const { activeCategory } = Astro.props;
-const journalTags: ReadonlyArray<{ label: string; href: string; category?: JournalCategory }> = [
-  { label: "Alle Beiträge", href: "/journal" },
-  { label: "Ankommen", href: "/journal/ankommen", category: "ankommen" },
-  { label: "Genießen", href: "/journal/geniessen", category: "geniessen" },
-  { label: "Ordnen", href: "/journal/ordnen", category: "ordnen" },
-  { label: "Zusammen", href: "/journal/zusammen", category: "zusammen" },
-];
-const journalArticles = journalTags.flatMap((tag) => tag.category ? categories[tag.category].articles : []);
-const initialArticles = activeCategory ? categories[activeCategory].articles : journalArticles;
-const activeLabel = activeCategory
-  ? journalTags.find((tag) => tag.category === activeCategory)?.label
-  : undefined;
-const initialFilter = activeLabel ?? "all";
+const activeTag = journalCategories.find((tag) => tag.category === activeCategory);
 ---
 
 <BaseLayout
-  title={activeLabel ? `${activeLabel} im Journal – Domaće` : "Journal – Domaće"}
+  title={activeTag?.pageTitle ?? "Journal – Domaće"}
   description="Gedanken, Routinen und Inspiration für ein ruhigeres, verbundenes Familienleben."
   activePath="/journal"
 >
   <PageSection label="Journalbeiträge" spacing="compact">
-    <nav class="journal-tags" aria-label="Journalthemen" data-journal-active={initialFilter}>
-      <ul class="journal-tag-list">
-        {journalTags.map((tag) => {
-          const isActive = tag.category === activeCategory || (!tag.category && !activeCategory);
-          return (
-            <li>
-              <a
-                class:list={["journal-tag-link", { active: isActive }]}
-                href={tag.href}
-                aria-current={isActive ? "page" : undefined}
-                data-journal-filter={tag.category ? tag.label : "all"}
-                data-page-title={tag.category ? `${tag.label} im Journal – Domaće` : "Journal – Domaće"}
-              >
-                {tag.label}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-
-    <div class="journal-grid">
-      {journalArticles.map((article) => (
-        <div class="journal-card" data-journal-category={article.category} hidden={activeCategory ? article.category.toLowerCase() !== activeCategory : false}>
-          <ArticleCard {...article} />
-        </div>
-      ))}
-    </div>
-    <p class="journal-empty" hidden={initialArticles.length > 0}>In diesem Bereich folgen bald die ersten Beiträge.</p>
-    <nav class="journal-pagination" aria-label="Journalseiten" hidden>
-      <ul class="journal-pagination-list"></ul>
-    </nav>
+    <FilterableCardGrid
+      items={journalPreviews}
+      categories={journalCategories}
+      activeCategory={activeCategory}
+      allHref="/journal"
+      allPageTitle="Journal – Domaće"
+      emptyMessage="In diesem Bereich folgen bald die ersten Beiträge."
+      paginationLabel="Journalseiten"
+      previousLabel="Vorherige Journalseite"
+      nextLabel="Nächste Journalseite"
+    />
   </PageSection>
 
   <EditorialHero
@@ -95,205 +63,6 @@ const initialFilter = activeLabel ?? "all";
   </section>
 </BaseLayout>
 
-<script>
-  const pageSize = 8;
-  const filterLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-journal-filter]"));
-  const journalCards = Array.from(document.querySelectorAll<HTMLElement>("[data-journal-category]"));
-  const journalGrid = document.querySelector<HTMLElement>(".journal-grid");
-  const journalNav = document.querySelector<HTMLElement>("[data-journal-active]");
-  const emptyState = document.querySelector<HTMLElement>(".journal-empty");
-  const pagination = document.querySelector<HTMLElement>(".journal-pagination");
-  const paginationList = document.querySelector<HTMLUListElement>(".journal-pagination-list");
-  let activeFilter = journalNav?.dataset.journalActive ?? "all";
-  let currentPage = 1;
-
-  const getPageItems = (totalPages: number) => {
-    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, index) => index + 1);
-
-    const pages = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
-    if (currentPage <= 3) [1, 2, 3].forEach((page) => pages.add(page));
-    if (currentPage >= totalPages - 2) [totalPages - 2, totalPages - 1, totalPages].forEach((page) => pages.add(page));
-
-    const validPages = [...pages].filter((page) => page >= 1 && page <= totalPages).sort((a, b) => a - b);
-    const items: Array<number | "ellipsis"> = [];
-    validPages.forEach((page, index) => {
-      if (index > 0 && page - validPages[index - 1] > 1) items.push("ellipsis");
-      items.push(page);
-    });
-    return items;
-  };
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let transitionInProgress = false;
-
-  const transitionJournals = async (update: () => void, scrollAfter = false) => {
-    if (!journalGrid || prefersReducedMotion) {
-      update();
-      if (scrollAfter) journalGrid?.scrollIntoView({ behavior: "auto", block: "start" });
-      return;
-    }
-    if (transitionInProgress) return;
-    transitionInProgress = true;
-
-    const outgoing = journalGrid.animate(
-      [
-        { opacity: 1, transform: "translateY(0)" },
-        { opacity: 0, transform: "translateY(0.5rem)" },
-      ],
-      { duration: 150, easing: "ease-in", fill: "forwards" },
-    );
-    await outgoing.finished.catch(() => undefined);
-    update();
-    outgoing.cancel();
-
-    const incomingCards = journalCards.filter((card) => !card.hidden);
-    const animations = incomingCards.map((card, index) => card.animate(
-      [
-        { opacity: 0, transform: "translateY(0.75rem)" },
-        { opacity: 1, transform: "translateY(0)" },
-      ],
-      { duration: 300, delay: index * 45, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" },
-    ));
-    await Promise.all(animations.map((animation) => animation.finished.catch(() => undefined)));
-    animations.forEach((animation) => animation.cancel());
-    transitionInProgress = false;
-
-    if (scrollAfter) journalGrid.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const createPaginationButton = (label: string, page: number, options: { current?: boolean; disabled?: boolean; ariaLabel?: string } = {}) => {
-    const item = document.createElement("li");
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "journal-page-button";
-    button.textContent = label;
-    button.disabled = Boolean(options.disabled);
-    if (options.ariaLabel) button.setAttribute("aria-label", options.ariaLabel);
-    if (options.current) button.setAttribute("aria-current", "page");
-    button.addEventListener("click", () => {
-      void transitionJournals(() => {
-        currentPage = page;
-        renderJournals();
-      }, true);
-    });
-    item.append(button);
-    return item;
-  };
-
-  const renderPagination = (totalPages: number) => {
-    if (!pagination || !paginationList) return;
-    pagination.hidden = totalPages <= 1;
-    paginationList.replaceChildren();
-    if (totalPages <= 1) return;
-
-    paginationList.append(createPaginationButton("←", Math.max(1, currentPage - 1), {
-      disabled: currentPage === 1,
-      ariaLabel: "Vorherige Journalseite",
-    }));
-
-    getPageItems(totalPages).forEach((item) => {
-      if (item === "ellipsis") {
-        const ellipsis = document.createElement("li");
-        ellipsis.className = "journal-page-ellipsis";
-        ellipsis.textContent = "…";
-        ellipsis.setAttribute("aria-hidden", "true");
-        paginationList.append(ellipsis);
-      } else {
-        paginationList.append(createPaginationButton(String(item), item, { current: item === currentPage }));
-      }
-    });
-
-    paginationList.append(createPaginationButton("→", Math.min(totalPages, currentPage + 1), {
-      disabled: currentPage === totalPages,
-      ariaLabel: "Nächste Journalseite",
-    }));
-  };
-
-  const renderJournals = () => {
-    const filteredCards = journalCards.filter((card) => activeFilter === "all" || card.dataset.journalCategory === activeFilter);
-    const totalPages = Math.ceil(filteredCards.length / pageSize);
-    if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
-    const firstIndex = (currentPage - 1) * pageSize;
-    const visibleCards = new Set(filteredCards.slice(firstIndex, firstIndex + pageSize));
-
-    journalCards.forEach((card) => {
-      card.hidden = !visibleCards.has(card);
-    });
-
-    if (emptyState) emptyState.hidden = filteredCards.length > 0;
-    renderPagination(totalPages);
-  };
-
-  const setJournalFilter = (link: HTMLAnchorElement, pushHistory: boolean) => {
-    activeFilter = link.dataset.journalFilter ?? "all";
-    currentPage = 1;
-
-    filterLinks.forEach((item) => {
-      const isActive = item === link;
-      item.classList.toggle("active", isActive);
-      if (isActive) item.setAttribute("aria-current", "page");
-      else item.removeAttribute("aria-current");
-    });
-
-    if (link.dataset.pageTitle) document.title = link.dataset.pageTitle;
-    if (pushHistory) window.history.pushState({}, "", link.href);
-
-    const scrollPosition = { left: window.scrollX, top: window.scrollY };
-    void transitionJournals(() => {
-      renderJournals();
-      window.scrollTo(scrollPosition);
-      window.requestAnimationFrame(() => window.scrollTo(scrollPosition));
-    });
-  };
-
-  filterLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      setJournalFilter(link, true);
-    });
-  });
-
-  window.addEventListener("popstate", () => {
-    const activeLink = filterLinks.find((link) => new URL(link.href).pathname === window.location.pathname);
-    if (activeLink) setJournalFilter(activeLink, false);
-  });
-
-  renderJournals();
-</script>
-
-<style is:global>
-  .journal-tags { overflow-x: auto; scrollbar-width: thin; }
-  .journal-tag-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
-  .journal-tag-link { display: block; text-decoration: none; appearance: none; background: transparent; border: 0; color: var(--color-text); cursor: pointer; font-family: var(--font-sans); font-size: var(--text-xs); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-caps); padding: var(--space-4) var(--space-2); position: relative; text-align: center; text-transform: uppercase; transition: color var(--transition-base); width: 100%; }
-  .journal-tag-link::after { background: var(--color-action); bottom: 0; content: ""; height: var(--divider-thickness); left: 50%; position: absolute; transform: translateX(-50%) scaleX(0); transform-origin: center; transition: transform var(--transition-base); width: calc(100% - var(--space-4)); }
-  .journal-tag-link:hover { color: var(--color-action-hover); }
-  .journal-tag-link.active { color: var(--color-action); }
-  .journal-tag-link.active::after { transform: translateX(-50%) scaleX(1); }
-  .journal-grid { display: grid; gap: var(--space-5); overflow-anchor: none; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: var(--space-8); }
-  .journal-card[hidden], .journal-empty[hidden], .journal-pagination[hidden] { display: none; }
-  .journal-empty { margin-top: var(--space-8); overflow-anchor: none; }
-  .journal-pagination { margin-top: var(--space-8); }
-  .journal-pagination-list { align-items: center; display: flex; gap: var(--space-3); justify-content: center; list-style: none; margin: 0; padding: 0; }
-  .journal-page-button { align-items: center; appearance: none; background: transparent; border: 0; color: var(--color-text); cursor: pointer; display: inline-flex; font-family: var(--font-sans); font-size: var(--text-md); height: var(--space-10); justify-content: center; min-width: var(--space-8); padding: var(--space-2); position: relative; transition: color var(--transition-base); }
-  .journal-page-button::after { background: var(--color-action); bottom: 0; content: ""; height: var(--divider-thickness); left: 50%; opacity: 0; position: absolute; transform: translateX(-50%) scaleX(0.35); transition: opacity var(--transition-base), transform var(--transition-base); width: var(--space-6); }
-  .journal-page-button:hover:not(:disabled) { color: var(--color-action-hover); }
-  .journal-page-button:hover:not(:disabled)::after { opacity: 0.45; transform: translateX(-50%) scaleX(1); }
-  .journal-page-button[aria-current="page"] { color: var(--color-action); }
-  .journal-page-button[aria-current="page"]::after { opacity: 1; transform: translateX(-50%) scaleX(1); }
-  .journal-pagination-list > li:first-child .journal-page-button, .journal-pagination-list > li:last-child .journal-page-button { font-family: var(--font-sans); font-size: var(--text-lg); margin-inline: var(--space-2); }
-  .journal-page-button:disabled { cursor: default; opacity: 0.3; }
-  .journal-page-ellipsis { color: var(--color-text-muted); min-width: var(--space-6); text-align: center; }  .quote-feature, .newsletter-feature { margin-top: var(--space-12); }
-  @media (max-width: 64rem) {
-    .journal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media (max-width: 48rem) {
-    .journal-tags { overflow: visible; }
-    .journal-tag-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .journal-tag-list > li { border-left: var(--divider-thickness) solid var(--color-border); min-width: 0; }
-    .journal-tag-list > li:first-child { border-left: 0; grid-column: 1 / -1; }
-    .journal-tag-list > li:nth-child(n + 2) { border-top: var(--divider-thickness) solid var(--color-border); }
-    .journal-tag-list > li:nth-child(even) { border-left: 0; }
-    .journal-grid { grid-template-columns: 1fr; }
-  }
+<style>
+  .quote-feature, .newsletter-feature { margin-top: var(--space-12); }
 </style>

@@ -83,7 +83,7 @@ astro dev stop
 ```
 
 - Auf diesem Windows-System kann `npm.ps1` durch die Execution Policy blockiert sein. Für npm-Befehle `npm.cmd` verwenden.
-- Ein `lint`-Script ist aktuell nicht konfiguriert. Nicht voraussetzen, dass `npm run lint` existiert.
+- Für die Codeprüfung `npm.cmd run lint` und für Astro-/TypeScript-Diagnosen `npm.cmd run check` verwenden.
 - Nach Änderungen an Komponenten, Tokens oder Layouts immer den Astro-Build ausführen.
 - Bei visuellen oder responsiven Änderungen die lokale Seite im Browser auf Desktop und mobil prüfen, einschließlich Konsole, Bilder und horizontalem Überlauf.
 
@@ -92,11 +92,12 @@ astro dev stop
 - `BaseLayout.astro` ist die einzige Quelle für globale Styles und die gemeinsame Kopf-/Fußzeile. Neue Seiten müssen es verwenden.
 - Die Hauptnavigation lautet `Journal`, `Genuss`, `Über Domaće`. Die zugehörigen Routen bleiben `/journal`, `/genuss` und `/willkommen`.
 - `/geniessen` ist eine veraltete Route und darf nicht erneut für interne Links verwendet werden. Die Weiterleitungen in `public/_redirects` auf `/genuss` müssen erhalten bleiben.
-- Das Journal gliedert sich in `Alle Beiträge`, `Ankommen`, `Ordnen`, `Zusammen` und `Feiern`. Die Übersicht zeigt höchstens acht Beiträge pro Seite.
+- Das Journal gliedert sich in `Alle Beiträge`, `Ankommen`, `Genießen`, `Ordnen` und `Zusammen`. Die Übersicht zeigt höchstens acht Beiträge pro Seite.
+- Genuss gliedert sich in `Alle Beiträge`, `Familienküche`, `Brot & Gebäck`, `Spaßgetränke` und `Gastfreundschaft`.
 - Journal-Karten dürfen einen kürzeren, scanbaren Titel als die zugehörige Artikeldetailseite verwenden. Beide Titel bewusst getrennt pflegen.
 - Nur Beiträge mit vorhandener Detailroute als Karte oder Empfehlung ausgeben. Keine Teaser auf noch nicht angelegte Seiten veröffentlichen.
-- Journalartikel verwenden `ArticleLayout.astro`, Rezepte `RecipeLayout.astro` und Themenübersichten `CategoryPage.astro`.
-- Bevor Inhalte wachsen, die Daten von Seitenkompositionen in Content Collections oder zentrale Datenmodule überführen.
+- Journalartikel verwenden `ArticleLayout.astro`, Rezepte `RecipeLayout.astro`; die Übersichten werden mit `JournalOverview.astro` und `GenussOverview.astro` aufgebaut.
+- Navigation und Kategorien werden zentral in `src/data/taxonomy.ts` gepflegt. Beitragsvorschauen und Empfehlungen liegen in `src/data/relatedContent.ts`; dieselben Listen nicht erneut in Komponenten anlegen.
 
 ## Deployment
 

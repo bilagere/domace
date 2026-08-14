@@ -11,7 +11,7 @@ import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel
 
 
 
-const recipes = {
+export const recipes = {
   focaccia: {
     title: "Focaccia",
     excerpt: "Außen knusprig, innen luftig – ein unkompliziertes Brot für den Familientisch.",
@@ -23,7 +23,7 @@ const recipes = {
   hugoEistee: {
     title: "Hugo-Eistee",
     excerpt: "Eine alkoholfreie Erfrischung mit Holunderblüte, Limette und Minze.",
-    category: "Spaßgetränk",
+    category: "Spaßgetränke",
     image: hugoEistee,
     href: "/genuss/hugo-eistee",
     publishedAt: "2026-07-30",
@@ -82,6 +82,9 @@ const publishedContent = [
   recipes.boeufStroganoff,
   recipes.hugoEistee,
 ] satisfies PublishedContent[];
+
+export const recipePreviews: ArticlePreview[] = Object.values(recipes);
+export const journalPreviews: ArticlePreview[] = [sourdoughArticle, kitchenArticle, journalArticle];
 
 export const latestContent: ArticlePreview[] = publishedContent
   .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt))

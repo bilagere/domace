@@ -7,4 +7,4 @@
 - Benötigte Berechtigung: `instagram_business_basic`.
 - Zugriffsschlüssel ausschließlich als geheime Cloudflare-Build-Variable hinterlegen, nicht im Repository.
 - Videobeiträge überspringen; bei API-Fehlern weiterhin die vorhandenen Ersatzbilder anzeigen.
-- Instagram- und Pinterest-Profiladressen bei Gelegenheit final prüfen; Pinterest-URL fehlt noch.
+- Instagram- und Pinterest-Profiladressen bei Änderungen an den Konten erneut prüfen.

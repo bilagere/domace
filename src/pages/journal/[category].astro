@@ -1,12 +1,11 @@
 ---
 import JournalOverview from "../../components/layout/JournalOverview.astro";
-
-type JournalCategory = "ankommen" | "geniessen" | "ordnen" | "zusammen";
+import { journalCategories, type JournalCategory } from "../../data/taxonomy";
 
 export function getStaticPaths() {
-  return (["ankommen", "geniessen", "ordnen", "zusammen"] satisfies JournalCategory[]).map((category) => ({
+  return journalCategories.map(({ category }) => ({
     params: { category },
-    props: { category },
+    props: { category: category satisfies JournalCategory },
   }));
 }
 

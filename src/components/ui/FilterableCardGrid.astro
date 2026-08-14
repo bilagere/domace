@@ -1,0 +1,254 @@
+---
+import type { ArticlePreview } from "../../types/content";
+import type { CategoryLink } from "../../data/taxonomy";
+import ArticleCard from "./ArticleCard.astro";
+
+interface Props {
+  items: ArticlePreview[];
+  categories: ReadonlyArray<CategoryLink<string>>;
+  activeCategory?: string;
+  allHref: string;
+  allLabel?: string;
+  allPageTitle: string;
+  emptyMessage: string;
+  paginationLabel: string;
+  previousLabel: string;
+  nextLabel: string;
+  pageSize?: number;
+}
+
+const {
+  items,
+  categories,
+  activeCategory,
+  allHref,
+  allLabel = "Alle Beiträge",
+  allPageTitle,
+  emptyMessage,
+  paginationLabel,
+  previousLabel,
+  nextLabel,
+  pageSize = 8,
+} = Astro.props;
+const activeTag = categories.find((tag) => tag.category === activeCategory);
+const initialFilter = activeTag?.label ?? "all";
+const tags = [{ label: allLabel, href: allHref, category: undefined, pageTitle: allPageTitle }, ...categories];
+---
+
+<div
+  class="filterable-grid"
+  data-filter-grid
+  data-active-filter={initialFilter}
+  data-page-size={pageSize}
+  data-previous-label={previousLabel}
+  data-next-label={nextLabel}
+>
+  <nav class="filterable-grid__categories" aria-label="Kategorien">
+    <ul class="filterable-grid__category-list">
+      {tags.map((tag) => {
+        const isActive = tag.category === activeCategory || (!tag.category && !activeCategory);
+        return (
+          <li>
+            <a
+              class:list={["filterable-grid__category-link", { active: isActive }]}
+              href={tag.href}
+              aria-current={isActive ? "page" : undefined}
+              data-filter-link={tag.category ? tag.label : "all"}
+              data-page-title={tag.pageTitle}
+            >
+              {tag.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+
+  <div class="filterable-grid__cards" data-filter-cards>
+    {items.map((item) => (
+      <div data-filter-category={item.category} hidden={activeTag ? item.category !== activeTag.label : false}>
+        <ArticleCard {...item} />
+      </div>
+    ))}
+  </div>
+
+  <p class="filterable-grid__empty" data-filter-empty hidden={activeTag ? items.some((item) => item.category === activeTag.label) : items.length > 0}>{emptyMessage}</p>
+  <nav class="filterable-grid__pagination" data-filter-pagination aria-label={paginationLabel} hidden>
+    <ul class="filterable-grid__pagination-list" data-filter-pagination-list></ul>
+  </nav>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-filter-grid]").forEach((root) => {
+    const filterLinks = Array.from(root.querySelectorAll<HTMLAnchorElement>("[data-filter-link]"));
+    const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-filter-category]"));
+    const cardGrid = root.querySelector<HTMLElement>("[data-filter-cards]");
+    const emptyState = root.querySelector<HTMLElement>("[data-filter-empty]");
+    const pagination = root.querySelector<HTMLElement>("[data-filter-pagination]");
+    const paginationList = root.querySelector<HTMLUListElement>("[data-filter-pagination-list]");
+    const pageSize = Number(root.dataset.pageSize ?? 8);
+    let activeFilter = root.dataset.activeFilter ?? "all";
+    let currentPage = 1;
+    let transitionInProgress = false;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const getPageItems = (totalPages: number) => {
+      if (totalPages <= 5) return Array.from({ length: totalPages }, (_, index) => index + 1);
+      const pages = new Set([1, totalPages, currentPage - 1, currentPage, currentPage + 1]);
+      if (currentPage <= 3) [1, 2, 3].forEach((page) => pages.add(page));
+      if (currentPage >= totalPages - 2) [totalPages - 2, totalPages - 1, totalPages].forEach((page) => pages.add(page));
+      const validPages = [...pages].filter((page) => page >= 1 && page <= totalPages).sort((a, b) => a - b);
+      const items: Array<number | "ellipsis"> = [];
+      validPages.forEach((page, index) => {
+        if (index > 0 && page - validPages[index - 1] > 1) items.push("ellipsis");
+        items.push(page);
+      });
+      return items;
+    };
+
+    const transitionCards = async (update: () => void, scrollAfter = false) => {
+      if (!cardGrid || prefersReducedMotion) {
+        update();
+        if (scrollAfter) cardGrid?.scrollIntoView({ behavior: "auto", block: "start" });
+        return;
+      }
+      if (transitionInProgress) return;
+      transitionInProgress = true;
+      const outgoing = cardGrid.animate(
+        [{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(0.5rem)" }],
+        { duration: 150, easing: "ease-in", fill: "forwards" },
+      );
+      await outgoing.finished.catch(() => undefined);
+      update();
+      outgoing.cancel();
+      const animations = cards.filter((card) => !card.hidden).map((card, index) => card.animate(
+        [{ opacity: 0, transform: "translateY(0.75rem)" }, { opacity: 1, transform: "translateY(0)" }],
+        { duration: 300, delay: index * 45, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" },
+      ));
+      await Promise.all(animations.map((animation) => animation.finished.catch(() => undefined)));
+      animations.forEach((animation) => animation.cancel());
+      transitionInProgress = false;
+      if (scrollAfter) cardGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    const createPaginationButton = (label: string, page: number, options: { current?: boolean; disabled?: boolean; ariaLabel?: string } = {}) => {
+      const item = document.createElement("li");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "filterable-grid__page-button";
+      button.textContent = label;
+      button.disabled = Boolean(options.disabled);
+      if (options.ariaLabel) button.setAttribute("aria-label", options.ariaLabel);
+      if (options.current) button.setAttribute("aria-current", "page");
+      button.addEventListener("click", () => {
+        void transitionCards(() => {
+          currentPage = page;
+          renderCards();
+        }, true);
+      });
+      item.append(button);
+      return item;
+    };
+
+    const renderPagination = (totalPages: number) => {
+      if (!pagination || !paginationList) return;
+      pagination.hidden = totalPages <= 1;
+      paginationList.replaceChildren();
+      if (totalPages <= 1) return;
+      paginationList.append(createPaginationButton("←", Math.max(1, currentPage - 1), {
+        disabled: currentPage === 1,
+        ariaLabel: root.dataset.previousLabel,
+      }));
+      getPageItems(totalPages).forEach((item) => {
+        if (item === "ellipsis") {
+          const ellipsis = document.createElement("li");
+          ellipsis.className = "filterable-grid__ellipsis";
+          ellipsis.textContent = "…";
+          ellipsis.setAttribute("aria-hidden", "true");
+          paginationList.append(ellipsis);
+        } else {
+          paginationList.append(createPaginationButton(String(item), item, { current: item === currentPage }));
+        }
+      });
+      paginationList.append(createPaginationButton("→", Math.min(totalPages, currentPage + 1), {
+        disabled: currentPage === totalPages,
+        ariaLabel: root.dataset.nextLabel,
+      }));
+    };
+
+    const renderCards = () => {
+      const filteredCards = cards.filter((card) => activeFilter === "all" || card.dataset.filterCategory === activeFilter);
+      const totalPages = Math.ceil(filteredCards.length / pageSize);
+      if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+      const firstIndex = (currentPage - 1) * pageSize;
+      const visibleCards = new Set(filteredCards.slice(firstIndex, firstIndex + pageSize));
+      cards.forEach((card) => { card.hidden = !visibleCards.has(card); });
+      if (emptyState) emptyState.hidden = filteredCards.length > 0;
+      renderPagination(totalPages);
+    };
+
+    const setFilter = (link: HTMLAnchorElement, pushHistory: boolean) => {
+      activeFilter = link.dataset.filterLink ?? "all";
+      currentPage = 1;
+      filterLinks.forEach((item) => {
+        const isActive = item === link;
+        item.classList.toggle("active", isActive);
+        if (isActive) item.setAttribute("aria-current", "page");
+        else item.removeAttribute("aria-current");
+      });
+      if (link.dataset.pageTitle) document.title = link.dataset.pageTitle;
+      if (pushHistory) window.history.pushState({}, "", link.href);
+      const scrollPosition = { left: window.scrollX, top: window.scrollY };
+      void transitionCards(() => {
+        renderCards();
+        window.scrollTo(scrollPosition);
+        window.requestAnimationFrame(() => window.scrollTo(scrollPosition));
+      });
+    };
+
+    filterLinks.forEach((link) => link.addEventListener("click", (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      setFilter(link, true);
+    }));
+    window.addEventListener("popstate", () => {
+      const activeLink = filterLinks.find((link) => new URL(link.href).pathname === window.location.pathname);
+      if (activeLink) setFilter(activeLink, false);
+    });
+    renderCards();
+  });
+</script>
+
+<style>
+  .filterable-grid__categories { overflow-x: auto; scrollbar-width: thin; }
+  .filterable-grid__category-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+  .filterable-grid__category-link { appearance: none; background: transparent; border: 0; color: var(--color-text); cursor: pointer; display: block; font-family: var(--font-sans); font-size: var(--text-xs); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-caps); padding: var(--space-4) var(--space-2); position: relative; text-align: center; text-decoration: none; text-transform: uppercase; transition: color var(--transition-base); width: 100%; }
+  .filterable-grid__category-link::after { background: var(--color-action); bottom: 0; content: ""; height: var(--divider-thickness); left: 50%; position: absolute; transform: translateX(-50%) scaleX(0); transform-origin: center; transition: transform var(--transition-base); width: calc(100% - var(--space-4)); }
+  .filterable-grid__category-link:hover { color: var(--color-action-hover); }
+  .filterable-grid__category-link.active { color: var(--color-action); }
+  .filterable-grid__category-link.active::after { transform: translateX(-50%) scaleX(1); }
+  .filterable-grid__cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: var(--space-8); overflow-anchor: none; }
+  .filterable-grid__cards > [hidden], .filterable-grid__empty[hidden], .filterable-grid__pagination[hidden] { display: none; }
+  .filterable-grid__empty, .filterable-grid__pagination { margin-top: var(--space-8); overflow-anchor: none; }
+  .filterable-grid__pagination-list { align-items: center; display: flex; gap: var(--space-3); justify-content: center; list-style: none; margin: 0; padding: 0; }
+  :global(.filterable-grid__page-button) { align-items: center; appearance: none; background: transparent; border: 0; color: var(--color-text); cursor: pointer; display: inline-flex; font-family: var(--font-sans); font-size: var(--text-md); height: var(--space-10); justify-content: center; min-width: var(--space-8); padding: var(--space-2); position: relative; transition: color var(--transition-base); }
+  :global(.filterable-grid__page-button::after) { background: var(--color-action); bottom: 0; content: ""; height: var(--divider-thickness); left: 50%; opacity: 0; position: absolute; transform: translateX(-50%) scaleX(0.35); transition: opacity var(--transition-base), transform var(--transition-base); width: var(--space-6); }
+  :global(.filterable-grid__page-button:hover:not(:disabled)) { color: var(--color-action-hover); }
+  :global(.filterable-grid__page-button:hover:not(:disabled)::after) { opacity: 0.45; transform: translateX(-50%) scaleX(1); }
+  :global(.filterable-grid__page-button[aria-current="page"]) { color: var(--color-action); }
+  :global(.filterable-grid__page-button[aria-current="page"]::after) { opacity: 1; transform: translateX(-50%) scaleX(1); }
+  .filterable-grid__pagination-list > li:first-child :global(.filterable-grid__page-button), .filterable-grid__pagination-list > li:last-child :global(.filterable-grid__page-button) { font-size: var(--text-lg); margin-inline: var(--space-2); }
+  :global(.filterable-grid__page-button:disabled) { cursor: default; opacity: 0.3; }
+  :global(.filterable-grid__ellipsis) { color: var(--color-text-muted); min-width: var(--space-6); text-align: center; }
+  @media (max-width: 64rem) { .filterable-grid__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 48rem) {
+    .filterable-grid__categories { overflow: visible; }
+    .filterable-grid__category-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .filterable-grid__category-list > li { border-left: var(--divider-thickness) solid var(--color-border); min-width: 0; }
+    .filterable-grid__category-list > li:first-child { border-left: 0; grid-column: 1 / -1; }
+    .filterable-grid__category-list > li:nth-child(n + 2) { border-top: var(--divider-thickness) solid var(--color-border); }
+    .filterable-grid__category-list > li:nth-child(even) { border-left: 0; }
+    .filterable-grid__cards { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .filterable-grid__category-link, :global(.filterable-grid__page-button) { transition: none; } }
+</style>
