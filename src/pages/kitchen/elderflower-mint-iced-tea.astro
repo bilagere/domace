@@ -1,0 +1,53 @@
+---
+import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import { relatedContent } from "../../data/relatedContent";
+import hugoEistee from "../../assets/images/genuss/eistee-titel.png";
+import hugoEisteePreparation from "../../assets/images/genuss/eistee-zubereitung.jpg";
+const ingredients = [
+  "1 l water",
+  "5 peppermint tea bags",
+  "200 ml elderflower syrup",
+  "2 organic limes",
+  "4 sprigs of fresh mint",
+  "Ice cubes"
+];
+const steps = [
+  "Bring the water to the boil and pour it into a heatproof jug. Add the tea bags and leave the peppermint tea to steep for about eight minutes.",
+  "Remove the tea bags and let the tea cool completely. Refrigerate until ready to serve.",
+  "Wash the limes in hot water, dry them and cut into thin slices or small wedges.",
+  "Stir the elderflower syrup into the cold peppermint tea. Depending on how sweet your syrup is, start with a little less and adjust to taste.",
+  "Divide the ice cubes and lime between four glasses. Pour in the iced tea and garnish each glass with fresh mint."
+];
+const stepIngredients = [[0,1],[],[3],[2],[4,5]];
+---
+<RecipeLayout
+  lang={"en"}
+  pageTitle={"Elderflower & mint iced tea – Domaće"}
+  description={"A refreshing alcohol-free iced tea with peppermint, elderflower syrup, lime and fresh mint. Inspired by Hugo and made for sharing."}
+  category={"Drinks"}
+  title={"Elderflower & mint iced tea"}
+  summary={"Cool mint, fragrant elderflower and a squeeze of summer. This alcohol-free take on Hugo is easy to make ahead when people are coming over."}
+  imageAlt={"Elderflower and mint iced tea with lime and ice cubes"}
+  prepTime={"PT15M"}
+  totalTime={"PT1H15M"}
+  ingredientNote={"Elderflower syrups vary in sweetness. Add yours a little at a time and taste as you go."}
+  tipTitle={"Make it ahead"}
+  tipText={"Brew the tea in the morning and keep it chilled. Add the lime, mint and ice to the glasses just before serving."}
+  image={hugoEistee}
+  meta={[{"icon":"clock","label":"Hands-on time","value":"15 minutes"},{"icon":"clock","label":"Chilling time","value":"about 1 hour"},{"icon":"users","label":"Makes","value":"4 glasses"}]}
+  ingredients={ingredients}
+  steps={steps}
+  stepIngredients={stepIngredients}
+  relatedItems={relatedContent.hugoEistee}
+>
+  <Fragment slot="intro">
+<p>This is what I make on warm afternoons when I want something a little more interesting than water. Familiar peppermint tea, elderflower, lime and plenty of ice — all the freshness of a Hugo, without the alcohol.</p>
+<h2>A jug for the table</h2>
+<p>Make a big jug ahead of time and bring it out for a family meal or an afternoon in the garden with friends. For a less sweet version, use a little less syrup and add a splash of sparkling water.</p>
+  </Fragment>
+<h2>The finishing touches</h2>
+<p>Add the ice and lime to the glasses just before pouring. Keep the mint for the final garnish, so everything arrives at the table cold and fresh.</p>
+<figure><OptimizedImage src={hugoEisteePreparation} alt="A glass jug of elderflower and mint iced tea with lime and ice cubes" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+<blockquote>The coffee can wait. It’s an iced-tea afternoon.</blockquote>
+</RecipeLayout>

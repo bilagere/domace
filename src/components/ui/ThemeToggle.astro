@@ -1,0 +1,21 @@
+---
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
+---
+
+<span class="theme-toggle" data-theme-control hidden>
+  <Button variant="text" class="theme-toggle__button" id="theme-toggle" ariaLabel="Dark mode" ariaPressed={false}>
+    <span class="theme-toggle__moon"><Icon name="moon" /></span>
+    <span class="theme-toggle__sun"><Icon name="sun" /></span>
+  </Button>
+</span>
+
+<style>
+  .theme-toggle[hidden] { display: none; }
+  .theme-toggle :global(.theme-toggle__button) { background: transparent; color: var(--color-text); min-height: var(--space-12); min-width: var(--space-12); padding: var(--space-3); }
+  .theme-toggle :global(.theme-toggle__button:hover) { color: var(--color-action); }
+  .theme-toggle__moon, .theme-toggle__sun { display: flex; }
+  .theme-toggle__sun { display: none; }
+  :global([data-theme="dark"]) .theme-toggle__moon { display: none; }
+  :global([data-theme="dark"]) .theme-toggle__sun { display: flex; }
+</style>

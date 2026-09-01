@@ -9,9 +9,11 @@ interface Props {
   external?: boolean;
   class?: string;
   ariaLabel?: string;
+  id?: string;
+  ariaPressed?: boolean;
 }
 
-const { href, type = "button", variant = "primary", icon = false, class: className, external = false, ariaLabel } = Astro.props;
+const { href, type = "button", variant = "primary", icon = false, class: className, external = false, ariaLabel, id, ariaPressed } = Astro.props;
 const classes = `button button--${variant} ${className ?? ""}`;
 ---
 
@@ -21,7 +23,7 @@ const classes = `button button--${variant} ${className ?? ""}`;
     {icon && <Icon name="arrow-right" size={16} />}
   </a>
 ) : (
-  <button class={classes} type={type} aria-label={ariaLabel}>
+  <button class={classes} type={type} aria-label={ariaLabel} aria-pressed={ariaPressed} id={id}>
     <slot />
     {icon && <Icon name="arrow-right" size={16} />}
   </button>
@@ -44,10 +46,10 @@ const classes = `button button--${variant} ${className ?? ""}`;
     text-transform: uppercase;
     transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
   }
-  .button--primary { background: var(--color-action); color: var(--color-kalk); }
+  .button--primary { background: var(--color-action); color: var(--color-on-action); }
   .button--primary:hover { background: var(--color-action-hover); }
   .button--secondary { border-color: var(--color-action); color: var(--color-action); }
-  .button--secondary:hover { background: var(--color-action); color: var(--color-kalk); }
+  .button--secondary:hover { background: var(--color-action); color: var(--color-on-action); }
   .button--text { color: var(--color-action); min-height: auto; padding: 0; }
   .button--text:hover { color: var(--color-action-hover); }
 </style>

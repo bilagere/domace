@@ -13,63 +13,63 @@ import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel
 
 export const recipes = {
   focaccia: {
-    title: "Focaccia",
-    excerpt: "Außen knusprig, innen luftig – ein unkompliziertes Brot für den Familientisch.",
-    category: "Brot & Gebäck",
+    title: "Sourdough focaccia",
+    excerpt: "A crisp golden crust, a soft, airy middle, and every reason to gather around the table.",
+    category: "Baking",
     image: focaccia,
-    href: "/genuss/focaccia",
+    href: "/kitchen/sourdough-focaccia",
     publishedAt: "2026-07-30",
   },
   hugoEistee: {
-    title: "Hugo-Eistee",
-    excerpt: "Eine alkoholfreie Erfrischung mit Holunderblüte, Limette und Minze.",
-    category: "Spaßgetränke",
+    title: "Elderflower & mint iced tea",
+    excerpt: "Inspired by Hugo: elderflower, lime and mint in a refreshing iced tea, without the alcohol.",
+    category: "Drinks",
     image: hugoEistee,
-    href: "/genuss/hugo-eistee",
+    href: "/kitchen/elderflower-mint-iced-tea",
     publishedAt: "2026-07-30",
   },
   zimtschnecken: {
-    title: "Zimtschnecken",
-    excerpt: "Weiche Zimtschnecken für Kaffeepause, Besuch und gemütliche Nachmittage.",
-    category: "Brot & Gebäck",
+    title: "Soft cinnamon rolls",
+    excerpt: "Soft spirals of cinnamon, made for slow afternoons, a fresh cup of coffee and someone to share them with.",
+    category: "Baking",
     image: zimtschnecken,
-    href: "/genuss/zimtschnecken",
+    href: "/kitchen/sourdough-cinnamon-rolls",
     publishedAt: "2026-07-30",
   },
   boeufStroganoff: {
-    title: "Boeuf Stroganoff",
-    excerpt: "Zartes Rindfleisch in cremiger Sauce – ein wärmendes Familiengericht für besondere Alltagstage.",
-    category: "Familienküche",
+    title: "Beef stroganoff",
+    excerpt: "Tender beef in a rich, creamy sauce. A comforting family meal that makes an ordinary evening feel special.",
+    category: "Cooking",
     image: stroganoffTitle,
-    href: "/genuss/boeuf-stroganoff",
+    href: "/kitchen/beef-stroganoff",
     publishedAt: "2026-07-30",
   },
 } satisfies Record<string, PublishedContent>;
 
 const journalArticle = {
-  title: "Nicht leiser, aber leichter.",
-  excerpt: "Sieben Gewohnheiten, die den Familienalltag spürbar ruhiger machen.",
-  category: "Zusammen",
+  title: "Gentler Family Life",
+  excerpt: "These seven habits bring a little more rhythm, less pressure and more room to enjoy family life.",
+  category: "Family",
   image: quieterFamilyLife,
-  href: "/ordnen/familienleben-ruhiger",
+  href: "/journal/gentle-family-life",
   publishedAt: "2026-08-05",
 } satisfies PublishedContent;
 
 const kitchenArticle = {
-  title: "Meine Küchenlieblinge",
-  excerpt: "Sieben langlebige Küchenhelfer, die sich bei uns im Alltag bewährt haben.",
-  category: "Ordnen",
+  title: "Kitchen Essentials",
+  excerpt: "No trendy gadgets, no cupboard clutter. Just seven things we’ve used for years and would happily choose all over again.",
+  category: "Kitchen",
   image: kitchenFavorites,
-  href: "/ordnen/kuechenutensilien",
+  href: "/journal/kitchen-essentials",
   publishedAt: "2026-08-09",
 } satisfies PublishedContent;
 
 const sourdoughArticle = {
-  title: "Unser täglich Brot",
-  excerpt: "Warum Sauerteig unkompliziert und alltagstauglich sein darf.",
-  category: "Genießen",
+  title: "No-Fuss Sourdough",
+  excerpt: "A simpler approach to sourdough, made for real life and the pleasure of homemade bread.",
+  category: "Kitchen",
   image: sourdoughBread,
-  href: "/ankommen/unser-taeglich-brot",
+  href: "/journal/simple-sourdough-guide",
   publishedAt: "2026-08-11",
 } satisfies PublishedContent;
 

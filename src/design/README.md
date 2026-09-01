@@ -4,6 +4,12 @@ Das Designsystem übersetzt den Styleguide in wiederverwendbare Entscheidungen. 
 
 ## Grundlagen
 
+### Redaktionelle Sprache
+
+- Englische Texte verwenden American English (z. B. pants, favorite, realized, center, organize).
+- Die familiären Bezeichnungen Papa, Mama, Oma und Opa bleiben bewusst erhalten; nicht durch Dad, Mom, Grandma oder Grandpa ersetzen.
+- Metrische Angaben (g, ml, l, cm und °C) bleiben auch in englischen Rezepten unverändert.
+
 | Bereich | Quelle | Verwendung |
 | --- | --- | --- |
 | Farbe | `--color-*` | Marken- und semantische Oberflächenfarben |
@@ -18,8 +24,20 @@ Das Designsystem übersetzt den Styleguide in wiederverwendbare Entscheidungen. 
 - `text` und `text-muted`: primäre und sekundäre Lesetexte.
 - `action`: interaktive Terracotta-Akzente.
 - `olive` und `pflaume`: ruhige, thematische Flächen und Kontraste.
-- `salbei`, `lehm`, `sonne` und `mauve`: ergänzende Kategorieakzente für Ankommen, Genießen, Ordnen und Zusammen; sie ersetzen nicht die Markenfarben.
+- `salbei`, `lehm`, `sonne` und `mauve`: ergänzende Kategorieakzente für Home, Kitchen, Rhythm und Family; sie ersetzen nicht die Markenfarben.
 - `border` und `divider`: zurückhaltende Rahmung und die charakteristische Trennlinie.
+
+### Englischer Relaunch – Farbstand 30.08.2026
+
+Die Markenfarben sind Kalk `#F3EFE6`, Espresso `#30251F`, Olive `#747A59`, Terracotta `#A64B2A`, Pflaume `#563B42` und Gold `#A68E68`. Die bestehenden Farbrollen, abgeleiteten Oberflächen und Hover-Farben bleiben unverändert. Ebenso bleiben Salbei `#B7C19C`, Lehm `#DC7A5F`, Mauve `#A38195` und Sonne `#DEA645` erhalten. Raster-Markenassets und App-Icons werden in diesem ersten Vorschau-Schritt nicht neu eingefärbt.
+
+## Heller und dunkler Modus
+
+`BaseLayout` setzt vor dem Rendern `data-theme` anhand der gespeicherten Auswahl (`domace-theme`, Local Storage) oder der Systemeinstellung. `ThemeToggle` im Header schaltet per zugänglichem Button mit `aria-pressed` um. Ohne JavaScript bleibt die Website hell und der Umschalter verborgen. Ist der Browserspeicher gesperrt, funktioniert der Wechsel weiterhin auf der aktuellen Seite.
+
+Die dunklen Werte stehen ausschließlich im Screen-Media-Block von `tokens.css`; Druckansichten behalten die helle Palette. Für Flächen und Schrift semantische Tokens verwenden. `color-on-action` ist die Schriftfarbe auf Aktionsflächen, `color-olive-ink` der lesbare Olive-Akzent, `color-surface-muted-rgb` steuert transparente Hero-Verläufe. Marken- und Kategorieflächen behalten ihre Farbidentität. Fotos werden nicht invertiert; nur die transparenten Logos verwenden `brand-image-filter`.
+
+Eingebettete Inhalte anderer Anbieter (insbesondere das erst nach Klick geladene beehiiv-Formular) liegen außerhalb des lokalen Stylesheets und übernehmen den Modus nicht automatisch.
 
 ## Layout-Primitiven
 

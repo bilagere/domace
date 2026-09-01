@@ -8,6 +8,7 @@ import NewsletterSignup from "../components/ui/NewsletterSignup.astro";
 import QuoteBanner from "../components/ui/QuoteBanner.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import TopicCard from "../components/ui/TopicCard.astro";
+import { journalCategories } from "../data/taxonomy";
 import { latestContent } from "../data/relatedContent";
 import hero from "../assets/images/hero_homepage.png";
 import together from "../assets/images/together.png";
@@ -29,26 +30,31 @@ const images = {
   quote,
 };
 
-const topics = [
-  { title: "Ankommen", subtitle: "Für ein Zuhause, das gut tut.", description: "Ideen für Zuhause, Garten und kleine Projekte mit Herz.", href: "/journal/ankommen", icon: "leaf" as const, image: images.arrive, tone: "salbei" as const },
-  { title: "Genießen", subtitle: "Für Mahlzeiten, die verbinden.", description: "Geschichten über saisonales Kochen, Brot und gutes Essen.", href: "/journal/geniessen", icon: "cooking-pot" as const, image: images.enjoy, tone: "lehm" as const },
-  { title: "Ordnen", subtitle: "Für einen Alltag, der leichter wird.", description: "Pläne, Routinen und einfache Systeme mit weniger Mental Load.", href: "/journal/ordnen", icon: "list-check" as const, image: images.organize, tone: "sonne" as const },
-  { title: "Zusammen", subtitle: "Für Beziehungen, die tragen.", description: "Familie, Partnerschaft und Gedanken, die den Alltag begleiten.", href: "/journal/zusammen", icon: "users" as const, image: images.together, tone: "mauve" as const },
-];
+const topicDetails = {
+  home: { subtitle: "For a home that feels lived in.", description: "All about the home, garden, small projects and the everyday work of making a house a home.", linkLabel: "Explore Home", icon: "leaf" as const, image: images.arrive, tone: "salbei" as const },
+  kitchen: { subtitle: "Food made for sharing.", description: "Family cooking, bread, seasonal food and the joy of gathering around a meal.", linkLabel: "Come to the Kitchen", icon: "cooking-pot" as const, image: images.enjoy, tone: "lehm" as const },
+  rhythm: { subtitle: "A little more ease, every day.", description: "Meal planning, ingredient prep and gentle routines that help our days run a little smoother.", linkLabel: "Find your rhythm", icon: "list-check" as const, image: images.organize, tone: "sonne" as const },
+  family: { subtitle: "The moments we share.", description: "Motherhood, relationships, rituals and traditions that bring us together.", linkLabel: "Explore Family", icon: "users" as const, image: images.together, tone: "mauve" as const },
+};
+const topics = journalCategories.map(({ category, label, href }) => ({
+  ...topicDetails[category], title: label, href, imageLinkLabel: `Explore ${label}`,
+}));
 
 ---
 
 <BaseLayout
-  title="Domaće | Zuhause beginnt im Alltag"
-  description="Ein Ort für Mütter, die sich weniger Druck und mehr Zeit für das wünschen, was wirklich zählt."
-  socialTitle="Domaće | Von Zuhause. Für Zuhause."
-  socialDescription="Ein digitales Zuhause für Familien, die ihren Alltag bewusster, einfacher und mit mehr Leichtigkeit gestalten möchten."
+  lang="en"
+  title="Domaće | European homemaking"
+  description="European homemaking, family food and ordinary moments worth remembering. Welcome to Domaće."
+  socialTitle="Domaće | European homemaking"
+  socialDescription="European homemaking, family food and ordinary moments worth remembering. Welcome to Domaće."
+  socialImageAlt="Domaće · European homemaking"
   footerGallery={[images.arrive, images.newsletter, images.enjoy]}
 >
   <section class="section latest-section" id="neu" aria-labelledby="newest-heading">
     <div class="section__heading-row">
-      <SectionHeading as="h1" id="newest-heading">Gutes für jeden Tag.</SectionHeading>
-      <Button href="/journal" variant="text" icon>Alle Beiträge ansehen</Button>
+      <SectionHeading as="h1" id="newest-heading">Come in. Stay a while.</SectionHeading>
+      <Button href="/journal" variant="text" icon>All stories</Button>
     </div>
     <div class="article-grid">
       {latestContent.map((post) => <ArticleCard {...post} />)}
@@ -57,42 +63,51 @@ const topics = [
 
   <div class="homepage-hero">
     <EditorialHero variant="homepage" showTitleIcon={false}
-      eyebrow="Mach es dir leichter"
-      title="Woran willst du dich später erinnern?"
-      description="Später wirst du dich hoffentlich nicht daran erinnern, wie ordentlich das Haus war oder ob die Fenster regelmäßig geputzt wurden. Aber du wirst dich daran erinnern, wie sich euer Zuhause angefühlt hat."
+      eyebrow="CROATIAN ROOTS · AUSTRIAN ALPS"
+      title={"A slower\nkind of family life."}
+
       image={images.hero}
-      imageAlt="Mutter sitzt mit zwei Kindern in einer blühenden Gartenwiese"
-      narrowContent
+      imageAlt="Wildflowers in a ceramic vase and a bowl of fruit on a wooden kitchen table"
       headingAs="h2"
-    />
+    >
+      <Fragment slot="description">
+        <p>I don't want to rush through these years.</p>
+        <p>So much of family life happens in ordinary moments: breakfast at the kitchen table, little hands helping with dinner, a walk through town, people gathering around food.</p>
+        <p>Domaće is my way of paying attention to them.</p>
+      </Fragment>
+    </EditorialHero>
   </div>
 
-  <section class="section topic-section" aria-label="Domaće Themen">
+  <section class="section topic-section" aria-label="Domaće topics">
     <div class="topic-grid">
       {topics.map((topic) => <TopicCard {...topic} />)}
     </div>
   </section>
 
   <section class="newsletter-feature" aria-label="Newsletter">
-    <MediaText image={images.newsletter} imageAlt="Kaffeetasse auf einem hellen Holztisch" ratio="media-40" variant="newsletter">
-      <NewsletterSignup compact title="Schönes für den Alltag." description="Erhalte regelmäßig neue Beiträge, Rezepte und Ideen für das gute Familienleben direkt in dein Postfach." />
+    <MediaText image={images.newsletter} imageAlt="A coffee cup on a light wooden table" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact eyebrow="LETTERS FROM HOME" title="A little note from my kitchen table." description="Recipes, seasonal ideas and small things that make family life feel a little easier. From our home to your inbox." />
     </MediaText>
   </section>
 
-  <section class="quote-feature" aria-label="Leitsatz">
-    <QuoteBanner image={images.quote} imageAlt="Warmes Zuhause in sanften Pflaumen- und Erdtönen">
-      Vielleicht braucht gutes Familienleben gar nicht mehr. Sondern weniger.
+  <section class="quote-feature" aria-label="Our philosophy">
+    <QuoteBanner image={images.quote} imageAlt="A warm home in soft plum and earthy tones">
+      A lived-in home<br />
+      is rarely a perfect one.<br />
+      And maybe that’s<br />
+      exactly the point.
     </QuoteBanner>
   </section>
 
   <section class="author-section">
-    <MediaText image={images.author} imageAlt="Porträt von Mara mit einer Tasse" reverse>
-      <SectionHeading eyebrow="Willkommen bei Domaće">Ich bin Mara.</SectionHeading>
+    <MediaText image={images.author} imageAlt="Portrait of Mara holding a cup" reverse>
+      <SectionHeading eyebrow="WELCOME TO DOMAĆE">My name is Mara.</SectionHeading>
       <div class="author-section__copy">
-        <p>Mama von zwei Mädchen, Ehefrau, Hausfrau, Gärtnerin, Bäckerin, Managerin, Genussmensch und noch vieles mehr. Domaće ist mein Herzensprojekt. Hier sammle ich Rezepte, Routinen, Ideen und kleine Rituale, die unseren Familienalltag leichter, schöner und entspannter machen.</p>
-        <p>Wenn auch du dir mehr Leichtigkeit im Alltag wünschst, bist du hier genau richtig. Ich freue mich, wenn du Teil der Domaće-Community wirst.</p>
+        <p>I’m a mother of two, a homemaker, an enthusiastic home cook and gardener — and usually in the middle of making, growing or planning something.</p>
+        <p>My family and I live in a small town in the Austrian Alps, but Croatia has always been part of my identity and what home means to me. It shows in the way I feed my family, gather loved ones around the table and share traditions with my children.</p>
+        <p>Domaće grew out of all of that. It’s a place for the recipes I want to remember, the things I’m learning about keeping a home, and bits and pieces of our life along the way.</p>
       </div>
-      <Button href="/willkommen" icon>Mehr über mich</Button>
+      <Button href="/about" icon>More about me</Button>
     </MediaText>
   </section>
 </BaseLayout>

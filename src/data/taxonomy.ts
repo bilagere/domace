@@ -1,5 +1,5 @@
-export type JournalCategory = "ankommen" | "geniessen" | "ordnen" | "zusammen";
-export type RecipeCategory = "familienkueche" | "brot-gebaeck" | "spassgetraenke" | "gastfreundschaft";
+export type JournalCategory = "home" | "kitchen" | "rhythm" | "family";
+export type RecipeCategory = "cooking" | "baking" | "drinks" | "entertaining";
 
 export type CategoryLink<Category extends string> = {
   label: string;
@@ -10,26 +10,26 @@ export type CategoryLink<Category extends string> = {
 
 export const mainNavigation = [
   { label: "Journal", href: "/journal" },
-  { label: "Genuss", href: "/genuss" },
-  { label: "Über Domaće", href: "/willkommen" },
+  { label: "Kitchen", href: "/kitchen" },
+  { label: "About Domaće", href: "/about" },
 ] as const;
 
 export const journalCategories = [
-  { label: "Ankommen", href: "/journal/ankommen", category: "ankommen", pageTitle: "Ankommen im Journal – Domaće" },
-  { label: "Genießen", href: "/journal/geniessen", category: "geniessen", pageTitle: "Genießen im Journal – Domaće" },
-  { label: "Ordnen", href: "/journal/ordnen", category: "ordnen", pageTitle: "Ordnen im Journal – Domaće" },
-  { label: "Zusammen", href: "/journal/zusammen", category: "zusammen", pageTitle: "Zusammen im Journal – Domaće" },
+  { label: "Kitchen", href: "/journal/kitchen", category: "kitchen", pageTitle: "Kitchen in the Journal – Domaće" },
+  { label: "Home", href: "/journal/home", category: "home", pageTitle: "Home in the Journal – Domaće" },
+  { label: "Rhythm", href: "/journal/rhythm", category: "rhythm", pageTitle: "Rhythm in the Journal – Domaće" },
+  { label: "Family", href: "/journal/family", category: "family", pageTitle: "Family in the Journal – Domaće" },
 ] as const satisfies ReadonlyArray<CategoryLink<JournalCategory>>;
 
 export const recipeCategories = [
-  { label: "Familienküche", href: "/genuss/familienkueche", category: "familienkueche", pageTitle: "Familienküche – Genuss – Domaće" },
-  { label: "Brot & Gebäck", href: "/genuss/brot-gebaeck", category: "brot-gebaeck", pageTitle: "Brot & Gebäck – Genuss – Domaće" },
-  { label: "Spaßgetränke", href: "/genuss/spassgetraenke", category: "spassgetraenke", pageTitle: "Spaßgetränke – Genuss – Domaće" },
-  { label: "Gastfreundschaft", href: "/genuss/gastfreundschaft", category: "gastfreundschaft", pageTitle: "Gastfreundschaft – Genuss – Domaće" },
+  { label: "Cooking", href: "/kitchen/cooking", category: "cooking", pageTitle: "Cooking – Kitchen – Domaće" },
+  { label: "Baking", href: "/kitchen/baking", category: "baking", pageTitle: "Baking – Kitchen – Domaće" },
+  { label: "Drinks", href: "/kitchen/drinks", category: "drinks", pageTitle: "Drinks – Kitchen – Domaće" },
+  { label: "Entertaining", href: "/kitchen/entertaining", category: "entertaining", pageTitle: "Entertaining – Kitchen – Domaće" },
 ] as const satisfies ReadonlyArray<CategoryLink<RecipeCategory>>;
 
 export const informationNavigation = [
-  { label: "Über Domaće", href: "/willkommen" },
-  { label: "Impressum", href: "/impressum" },
-  { label: "Datenschutz", href: "/datenschutz" },
+  { label: "About Domaće", href: "/about" },
+  { label: "Imprint", href: "/imprint" },
+  { label: "Privacy", href: "/privacy" },
 ] as const;

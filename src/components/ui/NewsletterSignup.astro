@@ -11,9 +11,9 @@ interface Props {
 }
 
 const {
-  eyebrow = "Post für dich",
-  title = "Schönes für den Alltag.",
-  description = "Erhalte regelmäßig neue Beiträge, Rezepte und Ideen direkt in dein Postfach.",
+  eyebrow = "LETTERS FROM HOME",
+  title = "A little note from my kitchen table.",
+  description = "Recipes, seasonal ideas and small things that make family life feel a little easier. From our home to your inbox.",
   compact = false,
 } = Astro.props;
 ---
@@ -27,11 +27,11 @@ const {
       <p>{description}</p>
     </div>
   </div>
-  {compact && <Badge label="Keine Post" caption="verpassen" />}
+  {compact && <Badge label="A LETTER" caption="FOR YOU" />}
   <div class="newsletter__form" data-newsletter-form>
     <div class="newsletter__gate" data-newsletter-gate>
-      <Button class="newsletter__load" ariaLabel="Newsletter-Anmeldung von beehiiv laden">Newsletter-Anmeldung öffnen</Button>
-      <p class="newsletter__privacy">Das Formular wird von beehiiv bereitgestellt und erst nach deinem Klick geladen. Dabei können Verbindungsdaten verarbeitet und ein Attributions-Cookie gesetzt werden. <a href="/datenschutz">Mehr zum Datenschutz</a>.</p>
+      <Button class="newsletter__load" ariaLabel="Count me in — load the beehiiv newsletter signup form">COUNT ME IN</Button>
+      <p class="newsletter__privacy">This form is provided by beehiiv and only loads after you click. Connection data may then be processed and an attribution cookie may be set. <a href="/privacy">Read our privacy policy</a>.</p>
     </div>
   </div>
   <script>
@@ -53,7 +53,7 @@ const {
       document.querySelectorAll<HTMLIFrameElement>(
         'iframe[src*="subscribe-forms.beehiiv.com"]',
       ).forEach((frame) => {
-        if (!frame.title) frame.title = "Newsletter-Anmeldung bei Domaće";
+        if (!frame.title) frame.title = "Domaće newsletter signup";
       });
     };
 
@@ -62,13 +62,13 @@ const {
     newsletterObserver.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => newsletterObserver.disconnect(), 10_000);
   </script>
-  {compact && <p class="newsletter__signature">Ich freue mich auf dich! xo, Mara</p>}
+  {compact && <p class="newsletter__signature">With love, Mara</p>}
 </section>
 
 <style>
   .newsletter { align-items: center; background: var(--color-surface-muted); border: 1px solid var(--color-border); display: grid; gap: var(--space-8); grid-template-columns: 1fr 1fr; padding: clamp(var(--space-6), 4vw, var(--space-12)); }
   .newsletter__copy { align-items: flex-start; display: flex; gap: var(--space-5); }
-  .newsletter__icon { color: var(--color-olive-dark); flex: 0 0 auto; }
+  .newsletter__icon { color: var(--color-olive-ink); flex: 0 0 auto; }
   .newsletter__eyebrow { color: var(--color-terracotta); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
   h2 { font-size: var(--text-xl); margin: var(--space-1) 0 var(--space-2); }
   .newsletter__form { min-height: 4.5rem; width: 100%; }
@@ -81,7 +81,7 @@ const {
   .newsletter--compact .newsletter__icon { display: none; }
   .newsletter--compact :global(.badge) { align-self: center; grid-area: badge; }
   .newsletter--compact .newsletter__form { grid-area: form; max-width: 34rem; min-height: 0; }
-  .newsletter__signature { align-items: center; color: var(--color-text); display: flex; font-family: var(--font-script); font-size: var(--text-lg); gap: var(--space-2); grid-area: signature; margin-top: var(--space-2); }
+  .newsletter__signature { color: var(--color-text-muted); font-family: inherit; font-size: var(--text-base); font-weight: var(--font-weight-regular); grid-area: signature; margin-top: var(--space-2); }
   @media (max-width: 42rem) {
     .newsletter { grid-template-columns: 1fr; }
     .newsletter--compact { display: block; }

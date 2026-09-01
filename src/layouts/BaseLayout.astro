@@ -14,6 +14,7 @@ import ogImageSource from "../assets/images/og-image.png";
 
 interface Props {
   title: string;
+  lang?: "de" | "en";
   description?: string;
   activePath?: string;
   footerGallery?: ImageMetadata[];
@@ -31,13 +32,14 @@ interface Props {
 
 const {
   title,
-  description = "Domaće – für das gute Familienleben.",
+  lang = "en",
+  description = "Domaće — European homemaking, family food and ordinary moments worth remembering.",
   activePath,
   footerGallery = [instagramOne, instagramTwo, instagramThree],
   footerFlush = false,
   noindex = false,
   socialImage = ogImageSource,
-  socialImageAlt = "Domaće – für das gute Familienleben",
+  socialImageAlt = "Domaće — European homemaking",
   socialType = "website",
   socialTitle = title,
   socialDescription = description,
@@ -70,7 +72,7 @@ const structuredDataJson = completeStructuredData
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -85,8 +87,49 @@ const structuredDataJson = completeStructuredData
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-v2.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#f6f2ec" />
+    <script is:inline>
+      (() => {
+        const key = "domace-theme";
+        const root = document.documentElement;
+        const system = window.matchMedia("(prefers-color-scheme: dark)");
+        let preference = null;
+        try {
+          const saved = localStorage.getItem(key);
+          if (saved === "light" || saved === "dark") preference = saved;
+        } catch { /* The toggle also works when browser storage is unavailable. */ }
+
+        const apply = () => {
+          const theme = preference ?? (system.matches ? "dark" : "light");
+          root.dataset.theme = theme;
+          document.querySelectorAll("#theme-toggle").forEach((button) => {
+            button.setAttribute("aria-pressed", String(theme === "dark"));
+          });
+          document.querySelectorAll("[data-theme-control]").forEach((control) => {
+            control.hidden = false;
+          });
+          const surface = getComputedStyle(root).getPropertyValue("--color-surface").trim();
+          if (surface) document.querySelector('meta[name="theme-color"]')?.setAttribute("content", surface);
+        };
+
+        // Set the theme before the body renders to avoid a light flash on navigation.
+        apply();
+        document.addEventListener("DOMContentLoaded", apply, { once: true });
+        document.addEventListener("click", (event) => {
+          if (!(event.target instanceof Element) || !event.target.closest("#theme-toggle")) return;
+          preference = root.dataset.theme === "dark" ? "light" : "dark";
+          try { localStorage.setItem(key, preference); } catch { /* Keep the in-page choice. */ }
+          apply();
+        });
+        system.addEventListener("change", () => { if (preference === null) apply(); });
+        window.addEventListener("storage", (event) => {
+          if (event.key !== key && event.key !== null) return;
+          preference = event.newValue === "light" || event.newValue === "dark" ? event.newValue : null;
+          apply();
+        });
+      })();
+    </script>
     <meta property="og:site_name" content="Domaće" />
-    <meta property="og:locale" content="de_CH" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "de_AT"} />
     <meta property="og:type" content={socialType} />
     <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={socialDescription} />
@@ -114,7 +157,7 @@ const structuredDataJson = completeStructuredData
     ></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+    <a class="skip-link" href="#main-content">{lang === "en" ? "Skip to main content" : "Zum Hauptinhalt springen"}</a>
     <SiteHeader activePath={activePath} />
     <main id="main-content"><slot /></main>
     <SiteFooter gallery={footerGallery} flush={footerFlush} />

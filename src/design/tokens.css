@@ -1,14 +1,14 @@
 /* Domaće design language, derived from the supplied style guide. */
 :root {
-  --color-kalk: #f6f2ec;
+  --color-kalk: #f3efe6;
   --color-kalk-strong: #ece4da;
-  --color-espresso: #2e231d;
-  --color-olive: #7e8668;
+  --color-espresso: #30251f;
+  --color-olive: #747a59;
   --color-olive-dark: #596049;
-  --color-terracotta: #a94023;
+  --color-terracotta: #a64b2a;
   --color-terracotta-dark: #84331b;
-  --color-pflaume: #503a47;
-  --color-gold: #a79068;
+  --color-pflaume: #563b42;
+  --color-gold: #a68e68;
 
   /* Category accents complement the brand palette without replacing it. */
   --color-salbei: #b7c19c;
@@ -26,6 +26,11 @@
   --color-action: var(--color-terracotta);
   --color-action-hover: var(--color-terracotta-dark);
   --color-focus: var(--color-olive-dark);
+  --color-on-action: var(--color-kalk);
+  --color-olive-ink: var(--color-olive-dark);
+  --color-surface-muted-rgb: 241 233 224;
+  --brand-image-filter: none;
+  color-scheme: light;
 
   /* Brand fonts are bundled locally through the installed Fontsource packages. */
   --font-display: "Bodoni Moda Variable", "Bodoni Moda", "Iowan Old Style", "Baskerville", Georgia, serif;
@@ -33,9 +38,11 @@
   --font-script: "Segoe Script", "Bradley Hand", cursive;
 
   --text-xs: 0.6875rem;
+  --text-brand-tagline: 0.7em;
   --text-sm: 0.8125rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;
+  --text-card-title: clamp(1.4rem, 1.65vw, 1.75rem);
   --text-xl: clamp(1.5rem, 2.1vw, 2rem);
   --text-page-title: clamp(2rem, 3.3vw, 3.5rem);
   --text-2xl: clamp(2.25rem, 4.6vw, 4.75rem);
@@ -49,9 +56,11 @@
   --font-weight-bold: 700;
 
   --leading-tight: 1.04;
+  --leading-card-title: 1.15;
   --leading-normal: 1.55;
   --leading-relaxed: 1.7;
   --tracking-caps: 0.1em;
+  --tracking-brand-tagline: 0.18em;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -81,4 +90,24 @@
   --control-height: 2.8rem;
   --z-content: 1;
   --z-overlay: 2;
+}
+
+/* Theme overrides apply on screen only: recipes always print in the light palette. */
+@media screen {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-surface: #211b18;
+    --color-surface-raised: #302722;
+    --color-surface-muted: #29211e;
+    --color-surface-muted-rgb: 41 33 30;
+    --color-text: var(--color-kalk);
+    --color-text-muted: #d0c3b7;
+    --color-border: #625148;
+    --color-terracotta: #e6a085;
+    --color-terracotta-dark: #f0b79f;
+    --color-on-action: var(--color-espresso);
+    --color-focus: var(--color-salbei);
+    --color-olive-ink: var(--color-salbei);
+    --brand-image-filter: brightness(0) invert(1) sepia(0.15);
+  }
 }

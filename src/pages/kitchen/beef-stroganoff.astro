@@ -1,0 +1,63 @@
+---
+import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import { relatedContent } from "../../data/relatedContent";
+import stroganoffTitle from "../../assets/images/genuss/stroganoff-titel.png";
+import stroganoffFamilyTable from "../../assets/images/genuss/stroganoff-familientisch.png";
+import stroganoffEmpty from "../../assets/images/genuss/stroganoff-leer.png";
+const ingredients = [
+  "600 g beef",
+  "400 g button mushrooms",
+  "1 onion",
+  "100 g pickled gherkins",
+  "250 ml beef stock",
+  "250 ml cream",
+  "50 g crème fraîche",
+  "3 tbsp pickle brine",
+  "2 tbsp mustard",
+  "1 tbsp brown sugar",
+  "2 tbsp clarified butter for frying",
+  "Sweet paprika, salt and freshly ground black pepper"
+];
+const steps = [
+  "Cut the beef into thin strips across the grain. Slice the mushrooms, cut the onion into thin half-moons and the gherkins into narrow strips.",
+  "Heat a large frying pan until very hot. Add some of the clarified butter and sear the beef in batches for just one to two minutes each. Remove, season lightly with salt and set aside.",
+  "Add the remaining clarified butter to the pan. Fry the onion and mushrooms over a medium-high heat until the mushrooms are nicely browned. Season with paprika, salt and pepper.",
+  "Stir in the mustard and brown sugar, then deglaze with the beef stock. Add the cream, crème fraîche, pickle brine and gherkins, and let the sauce reduce gently for a few minutes.",
+  "Return the beef to the pan and warm it briefly in the sauce. Do not let the stroganoff boil vigorously: gentle heat keeps the beef tender and the sauce creamy.",
+  "Taste and adjust with salt, pepper and a little extra pickle brine if needed. Serve with rice, ribbon pasta or mashed potatoes."
+];
+const stepIngredients = [[0,1,2,3],[10,11],[],[4,5,6,7,8,9],[],[]];
+---
+<RecipeLayout
+  lang={"en"}
+  pageTitle={"Beef stroganoff – Domaće"}
+  description={"Tender beef, browned mushrooms and pickled gherkins in a creamy sauce. A comforting family dinner, ready in 45 minutes."}
+  category={"Cooking"}
+  title={"Beef stroganoff"}
+  summary={"Tender beef, browned mushrooms and a creamy sauce with just a little tang. A family dinner that feels special, on the table in less than an hour."}
+  imageAlt={"Creamy beef stroganoff with mushrooms and pickled gherkins"}
+  prepTime={"PT20M"}
+  cookTime={"PT25M"}
+  totalTime={"PT45M"}
+  ingredientNote={"Cut the beef across the grain and sear it briefly in small batches. This helps it stay tender and brown rather than release liquid and steam."}
+  tipTitle={"Keep the heat gentle"}
+  tipText={"Once the crème fraîche and beef are in the pan, heat the stroganoff gently. A vigorous boil can toughen the meat and split the sauce."}
+  image={stroganoffTitle}
+  meta={[{"icon":"clock","label":"Prep time","value":"20 minutes"},{"icon":"clock","label":"Cooking time","value":"25 minutes"},{"icon":"users","label":"Makes","value":"4 servings"}]}
+  ingredients={ingredients}
+  steps={steps}
+  stepIngredients={stepIngredients}
+  relatedItems={relatedContent.boeufStroganoff}
+>
+  <Fragment slot="intro">
+<p>Rich, creamy and just sharp enough from the pickles, stroganoff is a dish I’m always happy to come back to. The beef only needs a quick sear, so dinner comes together sooner than you might expect.</p>
+<figure><OptimizedImage src={stroganoffFamilyTable} alt="Beef stroganoff served at the family table" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+<h2>A good dinner, without the long evening in the kitchen</h2>
+<p>Have everything cut and ready before you heat the pan. Once you start cooking, things move quickly. Put the rice or pasta on alongside it, and dinner is well on its way.</p>
+  </Fragment>
+<h2>Something for all that sauce</h2>
+<p>Ribbon pasta catches the creamy sauce beautifully. Rice keeps things a little lighter; mashed potatoes make it especially comforting. When I have more time, or feel like making a little extra effort, I serve it with buttered spätzle. A simple cucumber or green salad brings something fresh to the table.</p>
+<figure><OptimizedImage src={stroganoffEmpty} alt="An almost empty bowl of beef stroganoff" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+<blockquote>Approved by the smallest people at the table.</blockquote>
+</RecipeLayout>

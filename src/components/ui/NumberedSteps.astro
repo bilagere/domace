@@ -6,7 +6,7 @@ interface Props {
   stepIngredients?: number[][];
   note?: string;
 }
-const { title = "Zubereitung", steps, ingredients = [], stepIngredients = [], note } = Astro.props;
+const { title = "Method", steps, ingredients = [], stepIngredients = [], note } = Astro.props;
 ---
 
 <section class="numbered-steps">
@@ -19,7 +19,7 @@ const { title = "Zubereitung", steps, ingredients = [], stepIngredients = [], no
     return (
       <li>
         {ingredientsForStep.length > 0 && (
-          <div class="numbered-steps__ingredients" aria-label="Zutaten für diesen Schritt">
+          <div class="numbered-steps__ingredients" aria-label="Ingredients for this step">
             <ul>
               {ingredientsForStep.map((ingredient) => <li>{ingredient}</li>)}
             </ul>

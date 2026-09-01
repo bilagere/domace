@@ -12,22 +12,22 @@ const currentYear = new Date().getFullYear();
   <div class="site-footer__main">
     <div class="site-footer__brand">
       <img class="site-footer__mark" src="/images/logo_c.png" alt="Domaće" width="510" height="753" />
-      <p>Domaće ist ein Ort für alle, die das gute Familienleben lieben. Danke, dass du hier bist.</p>
-      <div class="site-footer__social" aria-label="Domaće auf Social Media und per E-Mail">
-        <a href="https://www.instagram.com/domace.studio?igsh=MTM1cXU0YTUzYno5Yg==" aria-label="Domaće auf Instagram"><Icon name="instagram" size={16} /></a>
-        <a href="https://www.pinterest.com/domacestudio/" aria-label="Domaće auf Pinterest"><Icon name="pin" size={16} /></a>
-        <a href="mailto:hallo@domace.studio" aria-label="E-Mail an hallo@domace.studio"><Icon name="mail" size={16} /></a>
+      <p>From our home to yours.</p>
+      <div class="site-footer__social" aria-label="Domaće on social media and email">
+        <a href="https://www.instagram.com/domace.studio?igsh=MTM1cXU0YTUzYno5Yg==" aria-label="Domaće on Instagram"><Icon name="instagram" size={16} /></a>
+        <a href="https://www.pinterest.com/domacestudio/" aria-label="Domaće on Pinterest"><Icon name="pin" size={16} /></a>
+        <a href="mailto:hallo@domace.studio" aria-label="Email hallo@domace.studio"><Icon name="mail" size={16} /></a>
       </div>
     </div>
     <nav aria-label="Journal"><p class="site-footer__label">Journal</p><ul>{journalCategories.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
-    <nav aria-label="Genuss"><p class="site-footer__label">Genuss</p><ul>{recipeCategories.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
-    <nav aria-label="Informationen"><p class="site-footer__label">Informationen</p><ul>{informationNavigation.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
+    <nav aria-label="Kitchen"><p class="site-footer__label">Kitchen</p><ul>{recipeCategories.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
+    <nav aria-label="Information"><p class="site-footer__label">Information</p><ul>{informationNavigation.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul></nav>
     {gallery.length > 0 && (
       <div class="site-footer__instagram">
-        <p class="site-footer__label">Neues auf Instagram</p>
+        <p class="site-footer__label">Instagram</p>
         <div class="site-footer__gallery">
           {gallery.slice(0, 3).map((image, index) => (
-            <a class="site-footer__gallery-item" href="https://www.instagram.com/domace.studio?igsh=MTM1cXU0YTUzYno5Yg==" aria-label={`Instagram-Beitrag ${index + 1} ansehen`}>
+            <a class="site-footer__gallery-item" href="https://www.instagram.com/domace.studio?igsh=MTM1cXU0YTUzYno5Yg==" aria-label={`View Instagram post ${index + 1}`}>
               <OptimizedImage
                 class="site-footer__gallery-image"
                 src={image}
@@ -41,7 +41,7 @@ const currentYear = new Date().getFullYear();
       </div>
     )}
   </div>
-  <div class="site-footer__bottom"><span>© {currentYear} Domaće</span><span><Icon name="heart" size={15} /> Für das gute Familienleben.</span></div>
+  <div class="site-footer__bottom"><span>© {currentYear} Domaće · European homemaking</span></div>
 </footer>
 
 <style>
@@ -49,7 +49,7 @@ const currentYear = new Date().getFullYear();
   .site-footer--flush { margin-top: 0; }
   .site-footer__main { display: grid; column-gap: var(--space-8); grid-template-columns: 14rem repeat(3, max-content) 18rem; justify-content: space-between; margin: 0 auto; max-width: var(--content-width); padding: var(--space-12) var(--page-gutter) var(--space-6); }
   .site-footer__brand { align-content: start; display: grid; grid-template-columns: auto 1fr; gap: var(--space-3) var(--space-4); }
-  .site-footer__mark { align-self: start; grid-row: span 2; height: 3rem; width: auto; }
+  .site-footer__mark { filter: var(--brand-image-filter); align-self: start; grid-row: span 2; height: 3rem; width: auto; }
   .site-footer p { font-size: var(--text-sm); margin: 0; }
   .site-footer__label { color: var(--color-terracotta); font-size: var(--text-xs) !important; font-weight: 700; letter-spacing: var(--tracking-caps); margin-bottom: var(--space-3) !important; text-transform: uppercase; }
   ul { list-style: none; margin: 0; padding: 0; } li + li { margin-top: var(--space-1); }

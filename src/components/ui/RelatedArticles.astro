@@ -11,7 +11,7 @@ const { items } = Astro.props;
 ---
 
 <div class="related-articles">
-  <SectionHeading eyebrow="Lust auf mehr?">Das könnte dir auch gefallen.</SectionHeading>
+  <SectionHeading eyebrow="MORE TO EXPLORE">You might also like.</SectionHeading>
   <div class="related-articles__grid">
     {items.slice(0, 4).map((item) => <ArticleCard {...item} />)}
   </div>

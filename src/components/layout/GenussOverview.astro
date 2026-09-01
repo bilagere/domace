@@ -19,47 +19,49 @@ const activeTag = recipeCategories.find((tag) => tag.category === activeCategory
 ---
 
 <BaseLayout
-  title={activeTag?.pageTitle ?? "Genießen – Domaće"}
-  description="Einfache Rezepte, Brot, Gebäck und kleine Genussmomente für das gute Familienleben."
-  activePath="/genuss"
+  lang="en"
+  title={activeTag?.pageTitle ?? "Kitchen – Domaće"}
+  description="Family favorites, Croatian recipes, Alpine comfort food and everyday cooking. Good food made for sharing."
+  activePath="/kitchen"
 >
-  <PageSection label="Rezepte" spacing="compact">
+  <PageSection label="Recipes" spacing="compact">
     <FilterableCardGrid
       items={recipePreviews}
       categories={recipeCategories}
       activeCategory={activeCategory}
-      allHref="/genuss"
-      allPageTitle="Genießen – Domaće"
-      emptyMessage="In dieser Kategorie folgen bald die ersten Rezepte."
-      paginationLabel="Rezeptseiten"
-      previousLabel="Vorherige Rezeptseite"
-      nextLabel="Nächste Rezeptseite"
+      allHref="/kitchen"
+      allLabel="All recipes"
+      allPageTitle="Kitchen – Domaće"
+      emptyMessage="Something good is on its way. Explore the other recipes while you’re here."
+      paginationLabel="Recipe pages"
+      previousLabel="Previous"
+      nextLabel="Next"
     />
   </PageSection>
 
   <EditorialHero
     variant="homepage"
     showTitleIcon={false}
-    eyebrow="Aus der Küche"
-    title={`Was kommt heute
-auf den Tisch?`}
+    eyebrow="FROM MY KITCHEN"
+    title="Come and see what’s cooking."
     image={heroEnjoy}
-    imageAlt="Frisch zubereitetes Essen auf einem warm gedeckten Tisch"
+    imageAlt="Freshly prepared food on a warmly set table"
   >
     <Fragment slot="description">
-      <p>Kochen muss nicht kompliziert sein. Hier findest du alltagstaugliche Rezepte mit guten Zutaten, wenig Stress und ganz viel Geschmack – für gemeinsame Mahlzeiten, an die man sich gerne erinnert.</p>
+      <p>Family favorites, recipes from my Croatian roots, Alpine comfort food, bread from the oven and plenty of everyday cooking. Nothing too precious. Just good food made for sharing.</p>
+      <p><strong>Pull up a chair.</strong></p>
     </Fragment>
   </EditorialHero>
 
-  <section class="quote-feature" aria-label="Leitsatz">
-    <QuoteBanner image={quote} imageAlt="Frisch gebackenes Brot in warmer, natürlicher Atmosphäre">
-      Manche Erinnerungen riechen<br />nach frisch gebackenem Brot.
+  <section class="quote-feature" aria-label="A thought to share">
+    <QuoteBanner image={quote} imageAlt="Freshly baked bread in a warm, natural setting">
+      The food we grow up with<br />stays with us for life.
     </QuoteBanner>
   </section>
 
   <section class="newsletter-feature" aria-label="Newsletter">
-    <MediaText image={newsletter} imageAlt="Ein warmer Gruß aus der Domaće-Küche" ratio="media-40" variant="newsletter">
-      <NewsletterSignup compact eyebrow="Gruß aus der Küche" title="Rezepte & Ideen für deinen Alltag." description="Erhalte regelmäßig neue Lieblingsrezepte, saisonale Ideen und kleine Genussmomente direkt in dein Postfach" />
+    <MediaText image={newsletter} imageAlt="A warm welcome from the Domaće kitchen" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact />
     </MediaText>
   </section>
 </BaseLayout>

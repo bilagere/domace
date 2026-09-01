@@ -5,5 +5,5 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://domace.studio',
-  integrations: [sitemap({ filter: (page) => page !== 'https://domace.studio/newsletter-bestaetigt/' })],
+  integrations: [sitemap({ filter: (page) => page !== 'https://domace.studio/subscription-confirmed/' })],
 });

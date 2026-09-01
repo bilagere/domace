@@ -1,0 +1,69 @@
+---
+import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import { relatedContent } from "../../data/relatedContent";
+import zimtschneckenTitle from "../../assets/images/genuss/zimtschnecken-titel.png";
+import zimtschneckenPlate from "../../assets/images/genuss/zimtschnecken-teller.png";
+import zimtschneckenFrosting from "../../assets/images/genuss/zimtschnecken-frosting.png";
+const ingredients = [
+  "370 g wheat flour, Type 550",
+  "170 ml milk",
+  "1 egg",
+  "75 g softened butter",
+  "60 g sugar",
+  "½ tsp salt",
+  "180 g active wheat sourdough starter",
+  "100 g softened butter for the filling",
+  "80 g sugar for the filling",
+  "1½ tsp cinnamon",
+  "Pecans to taste, roughly chopped",
+  "100 g cream cheese, or 50 g sour cream and 50 g crème fraîche",
+  "50 g powdered sugar",
+  "Vanilla to taste"
+];
+const steps = [
+  "Mix and knead the flour, milk, egg, starter and sugar together. Add the salt and butter last, then knead everything for about ten minutes until the dough is soft and supple.",
+  "Shape the dough into a ball, cover and leave at room temperature until it has grown considerably. The timing depends on your starter’s activity and the room temperature — watch the dough rather than the clock.",
+  "Grease a baking dish with a little butter. Roll the dough into a large rectangle on a lightly floured surface and spread with the softened butter.",
+  "Mix the sugar and cinnamon, then scatter evenly over the butter. Sprinkle the chopped pecans on top.",
+  "Using a pizza cutter, cut the topped dough into twelve strips of roughly equal width. Roll each strip into a spiral and place in the prepared dish, leaving a little space between them. This takes a little longer than slicing one large roll, but gives you beautifully even cinnamon rolls.",
+  "Cover the shaped rolls and leave to rise overnight at room temperature. By morning, they should be visibly risen and feel airy.",
+  "Preheat the oven to 180°C, conventional heat (top and bottom heat). Bake for 30–35 minutes, until golden brown.",
+  "For the frosting, stir either the cream cheese or the sour cream and crème fraîche together with the powdered sugar and vanilla until smooth. Spread over the rolls while they are still warm and serve straight away."
+];
+const stepIngredients = [[0,1,2,3,4,5,6],[],[7],[8,9,10],[],[],[],[11,12,13]];
+---
+<RecipeLayout
+  lang={"en"}
+  pageTitle={"Overnight sourdough cinnamon rolls – Domaće"}
+  description={"Soft overnight sourdough cinnamon rolls with pecans and vanilla frosting. Shape them in the evening and bake them fresh in the morning."}
+  category={"Baking"}
+  title={"Overnight sourdough cinnamon rolls"}
+  summary={"A little work in the evening, warm cinnamon rolls in the morning. Soft sourdough spirals with pecans and creamy vanilla frosting."}
+  imageAlt={"Freshly baked cinnamon rolls with pecans"}
+  prepTime={"PT30M"}
+  cookTime={"PT35M"}
+  ingredientNote={"Use your starter when it has visibly risen and is full of small bubbles. It needs to be active enough to raise the dough overnight."}
+  tipTitle={"Ready for the morning"}
+  tipText={"Shape the rolls the evening before and leave them covered at room temperature. In the morning, they go straight into the preheated oven, then warm onto the breakfast table."}
+  ingredientNoteTitle={"Start with an active starter"}
+  image={zimtschneckenTitle}
+  meta={[{"icon":"clock","label":"Hands-on time","value":"about 30 minutes"},{"icon":"clock","label":"Baking time","value":"30–35 minutes"},{"icon":"users","label":"Makes","value":"12 rolls"}]}
+  ingredients={ingredients}
+  steps={steps}
+  stepIngredients={stepIngredients}
+  relatedItems={relatedContent.zimtschnecken}
+>
+  <Fragment slot="intro">
+<p>Cinnamon rolls are my idea of a good reason to put the coffee on. The scent fills the house, and someone usually finds their way into the kitchen before the dish is even out of the oven.</p>
+<figure><OptimizedImage src={zimtschneckenPlate} alt="A cinnamon roll with pecans on a plate" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+<h2>A little work tonight, something good tomorrow</h2>
+<p>Shape the rolls the evening before and leave them covered overnight at room temperature. The next morning, all that’s left is to bake them — and bring them to the breakfast table while they’re still warm.</p>
+  </Fragment>
+<h2>Make the filling your own</h2>
+<p>Walnuts or hazelnuts work just as well as pecans. A finely grated apple makes the filling especially moist, while a pinch of cardamom adds a little extra warmth.</p>
+<figure><OptimizedImage src={zimtschneckenFrosting} alt="Vanilla frosting being spread over freshly baked cinnamon rolls" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+<h2>For baking the same day</h2>
+<p>For a quicker version, use just 140 g starter and add 4 g fresh yeast. Stir the yeast into 1½ tbsp water with a little of the sugar, then add it to the dough. Once shaped, leave the rolls to rise again until visibly puffed up, then bake as described.</p>
+<blockquote>Whoever takes the last one makes the next batch.</blockquote>
+</RecipeLayout>

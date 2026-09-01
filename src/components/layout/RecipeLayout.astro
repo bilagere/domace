@@ -20,6 +20,7 @@ import newsletter from "../../assets/images/newsletter-geniessen.png";
 
 interface MetaItem { icon: "clock" | "users" | "leaf"; label: string; value?: string; }
 interface Props {
+  lang?: "de" | "en";
   pageTitle: string;
   description: string;
   category: string;
@@ -46,6 +47,7 @@ interface Props {
 }
 
 const {
+  lang = "en",
   pageTitle,
   description,
   category,
@@ -60,7 +62,7 @@ const {
   totalTime,
   ingredients,
   ingredientNote,
-  ingredientNoteTitle = "Zutaten-Tipp",
+  ingredientNoteTitle = "Ingredient notes",
   tipTitle,
   tipText,
   safetyTipTitle,
@@ -70,7 +72,7 @@ const {
   relatedItems,
   instagramUrl = "https://www.instagram.com/domace.studio/",
 } = Astro.props;
-const recipeYield = meta.find((item) => item.label === "Ergibt")?.value;
+const recipeYield = meta.find((item) => item.label === "Ergibt" || item.label === "Makes")?.value;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const pinImage = image
   ? await getImage({ src: image, width: 1000, format: "jpg", quality: 82 })
@@ -104,9 +106,10 @@ const structuredData = {
 };---
 
 <BaseLayout
+  lang={lang}
   title={pageTitle}
   description={description}
-  activePath="/genuss"
+  activePath="/kitchen"
   socialImage={image}
   socialImageAlt={imageAlt}
   socialType="article"
@@ -130,22 +133,22 @@ const structuredData = {
     />
   </Container>
 
-  <section class="recipe-tools" aria-label="Rezeptaktionen">
+  <section class="recipe-tools" aria-label="Recipe actions">
     <Container>
-      <Button class="print-recipe">Rezept drucken</Button>
-      <Button href={pinterestUrl} variant="secondary" external>Rezept pinnen</Button>
-      <Button href="/genuss" variant="text" icon>Mehr aus der Domaće-Küche</Button>
+      <Button class="print-recipe">Print recipe</Button>
+      <Button href={pinterestUrl} variant="secondary" external>Save to Pinterest</Button>
+      <Button href="/kitchen" variant="text" icon>More from the kitchen</Button>
     </Container>
   </section>
 
-  <section class="recipe-body" aria-label={`${title} Rezept`}>
+  <section class="recipe-body" aria-label={`${title} recipe`}>
 
     <ContentWithSidebar asidePosition="start">
       <Fragment slot="aside">
         <div id="zutaten">
           <IngredientList items={ingredients} />
         </div>
-        <SidebarPanel eyebrow="Gut zu wissen" tone="lehm">
+        <SidebarPanel eyebrow="Good to know" tone="lehm">
           {ingredientNote && (
             <section class="recipe-tip">
               <h2>{ingredientNoteTitle}</h2>
@@ -183,17 +186,17 @@ const structuredData = {
   </section>
 
 
-  <section class="instagram-feature" aria-label="Dialog auf Instagram">
+  <section class="instagram-feature" aria-label="Join the conversation on Instagram">
     <InstagramDiscussion href={instagramUrl} />
   </section>
 
   <section class="newsletter-feature" aria-label="Newsletter">
-    <MediaText image={newsletter} imageAlt="Ein warmer Gruß aus der Domaće-Küche" ratio="media-40" variant="newsletter">
-      <NewsletterSignup compact eyebrow="Gruß aus der Küche" title="Rezepte & Ideen für deinen Alltag." description="Erhalte regelmäßig neue Lieblingsrezepte, saisonale Ideen und kleine Genussmomente direkt in dein Postfach" />
+    <MediaText image={newsletter} imageAlt="A warm welcome from the Domaće kitchen" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact />
     </MediaText>
   </section>
 
-  <PageSection spacing="compact" label="Lust auf mehr" class="related-content">
+  <PageSection spacing="compact" label="More to explore" class="related-content">
     <RelatedArticles items={relatedItems} />
   </PageSection>
 

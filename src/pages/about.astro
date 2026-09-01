@@ -15,55 +15,41 @@ import newsletter from "../assets/images/newsletter-feature.png";
 import quote from "../assets/images/quote-about.png";
 
 const values = [
-  { icon: "heart-handshake" as const, label: "Ehrliche Gedanken" },
-  { icon: "salad" as const, label: "Einfache Rezepte" },
-  { icon: "sparkles" as const, label: "Praktische Ideen" },
-  { icon: "party-popper" as const, label: "Kleine Rituale" },
-  { icon: "users" as const, label: "Ein gutes Familienleben" },
+  { icon: "heart-handshake" as const, label: "Honest thoughts" },
+  { icon: "salad" as const, label: "Everyday recipes" },
+  { icon: "sparkles" as const, label: "Practical ideas" },
+  { icon: "party-popper" as const, label: "Family traditions" },
+  { icon: "users" as const, label: "A lived-in home" },
 ];
 
 const facts = [
-  "Mama von zwei wunderbaren Mädchen",
-  "Backe fast täglich Brot oder Gebäck",
-  "Kaffee in der Hand, Baby auf der Hüfte, Ideen im Kopf",
-  "Ein Spaziergang im Wald löst mehr Probleme als eine Stunde am Handy.",
-  "Liebhaberin von geordneten Schubladen und vollen Blumentöpfen",
-  "Plane gerne, lasse aber auch Raum für Spontanes",
-  "Am glücklichsten bin ich, wenn alle gemeinsam am Tisch sitzen und es nach frisch gekochtem Essen duftet.",
-  "Ein voller Vorratsschrank gibt mir mehr Ruhe als ein voller Kleiderschrank.",
-  "Ich freue mich über Gäste, die länger bleiben als geplant.",
+  "Coffee first. Preferably while it’s still hot.",
+  "There is almost always dough rising somewhere in the kitchen.",
+  "A full pantry makes me disproportionately happy.",
+  "I’ll choose a walk in the woods over an hour on my phone any day.",
+  "I make plans for everything and regularly change them.",
+  "Guests who stay longer than planned are my kind of guests.",
+  "If you come for dinner, I’ll probably make too much.",
 ];
 ---
 
 <BaseLayout
-  title="Willkommen bei Domaće"
-  description="Die Geschichte hinter Domaće und der Mensch, der diesen Ort mit Leben füllt."
-  activePath="/willkommen"
+  lang="en"
+  title="About Domaće"
+  description="Meet Mara, the person behind Domaće. Croatian roots, life in the Austrian Alps, and a love of food, family and home."
+  activePath="/about"
 >
-  <EditorialHero
-    variant="homepage"
-    showTitleIcon={false}
-    narrowContent
-    eyebrow="Bevor du weiterliest"
-    title="Was wünsche ich mir für Familien?"
-    image={heroAbout}
-    imageAlt="Ein warmer Einblick in Maras Zuhause"
-  >
-    <Fragment slot="description">
-      <p>Ich glaube, dass Familienleben nicht perfekt sein muss, um wertvoll zu sein. Dass ein gemeinsames Essen wichtiger ist als ein makelloses Zuhause. Und dass kleine Veränderungen oft mehr bewirken als große Vorsätze.</p>
-    </Fragment>
-  </EditorialHero>
-
   <Container>
     <section class="story-section" aria-labelledby="story-title">
       <div class="story-section__media">
-        <OptimizedImage src={tableAtWindow} alt="Gedeckter Holztisch an einem hellen Fenster" widths={[480, 720, 960]} sizes="(max-width: 704px) 100vw, 36vw" />
+        <OptimizedImage src={tableAtWindow} alt="A wooden table set beside a bright window" widths={[480, 720, 960]} sizes="(max-width: 704px) 100vw, 36vw" />
       </div>
       <div class="story-section__copy">
-        <SectionHeading eyebrow="Warum es Domaće gibt" id="story-title">Aus dem echten Leben.</SectionHeading>
-        <p>Zwischen Menüplanung, Wäschebergen und großen Krokodilstränen habe ich oft nach einem Ort gesucht, der mich zum einen motiviert und mir gleichzeitig das Gefühl gibt: Ich bin nicht allein.</p>
-        <p>Ich wollte Tipps, die wirklich funktionieren. Rezepte, die nach Zuhause schmecken. Gedanken, die mir den Kopf freimachen und Inspiration für ein Familienleben, das sich gut anfühlt und nicht den Anspruch hat perfekt auszusehen.</p>
-        <p>Also habe ich angefangen, all das zu sammeln, auszuprobieren und weiterzugeben. Domaće ist das Ergebnis und eine Einladung an dich, dein Leben bewusster zu gestalten.</p>
+        <SectionHeading eyebrow="CROATIAN ROOTS · AUSTRIAN ALPS" id="story-title">What does domaće mean?</SectionHeading>
+        <p>In Croatian, <em>domaće</em> can mean homemade, homegrown or simply something that comes from home.</p>
+        <p>To me, it’s the food we make for the people we love, the traditions we carry with us and all the small things we do to make a house feel like ours.</p>
+        <p>That’s really where Domaće began. Somewhere between cooking for my family, raising two girls and figuring out how to make our days work, I started writing things down. Recipes worth keeping, routines that actually helped, traditions I wanted to pass on and thoughts I didn’t want to lose.</p>
+        <p>Over time, those notes became this place.</p>
         <ul class="value-list">
           {values.map((value) => (
             <li><Icon name={value.icon} size={28} /><span>{value.label}</span></li>
@@ -74,39 +60,52 @@ const facts = [
 
     <section class="author-story" aria-labelledby="author-title">
       <div class="author-story__copy">
-        <SectionHeading eyebrow="Über die Autorin" id="author-title">Ich bin Mara.</SectionHeading>
-        <p>Auf Domaće schreibe ich, Mara Lukić – Mama von zwei Mädchen, Ehefrau, Hausfrau, Genussmensch und noch vieles mehr.</p>
-        <p>Ich weiß, dass Mütter täglich Unglaubliches leisten – auch wenn vieles davon unsichtbar bleibt. Ich glaube, dass weniger mentale Last zu besseren Entscheidungen, mehr Struktur und gegenseitiger Unterstützung führt und dadurch Raum für das entsteht, was im Leben wirklich zählt: Nähe, Leichtigkeit und gemeinsame Erinnerungen.</p>
-        <p>Hier teile ich, was uns guttut, was wir lieben und was unseren Alltag leichter macht.</p>
-        <p>Oft sind es die kleinen, wiederkehrenden Dinge, die Halt geben: ein Essen, das allen schmeckt, ein Zuhause, in dem man ankommen kann, oder eine Routine, die den Kopf ein wenig freier macht.</p>
-        <p class="signature">Alles Liebe, Mara Lukić</p>
+        <SectionHeading eyebrow="THE PERSON BEHIND THE WORDS" id="author-title">My name is Mara.</SectionHeading>
+        <p>I’m a mother of two, homemaker, enthusiastic home cook and gardener. I grew up with Croatian food and traditions and now live with my family in a small town in the Austrian Alps.</p>
+        <p>I’m happiest when I’m making something. Dinner, bread, plans for the garden or a gathering with the people I love. I like old recipes, useful things, full pantries and homes that don’t mind showing signs of the people who live in them.</p>
+        <p>I plan a lot, improvise almost as much, and firmly believe that a good meal can fix a surprising number of things.</p>
+        <p class="signature">With love,<br />Mara</p>
       </div>
       <div class="author-story__media">
-        <OptimizedImage src={author} alt="Porträt von Mara mit einer Tasse" widths={[480, 720, 960]} sizes="(max-width: 704px) 100vw, 56vw" />
-        <aside class="facts-card" aria-label="Ein paar Fakten über Mara">
-          <p class="eyebrow">Ein paar Fakten über mich</p>
+        <OptimizedImage src={author} alt="Portrait of Mara holding a cup" widths={[480, 720, 960]} sizes="(max-width: 704px) 100vw, 56vw" />
+        <aside class="facts-card" aria-label="A few things about Mara">
+          <p class="eyebrow">A FEW THINGS ABOUT ME</p>
           <ul>{facts.map((fact) => <li><Icon name="heart" size={14} /><span>{fact}</span></li>)}</ul>
         </aside>
       </div>
     </section>
   </Container>
 
+  <EditorialHero
+    variant="homepage"
+    showTitleIcon={false}
+    narrowContent
+    eyebrow="HOME, AS WE LIVE IT"
+    title="The making of a home never really ends."
+    image={heroAbout}
+    imageAlt="A warm glimpse into Mara’s home"
+  >
+    <Fragment slot="description">
+      <p>There is always something cooking, growing, changing or needing to be done. Somewhere in between, traditions take shape, children grow up and an ordinary day becomes part of a family’s story.</p>
+    </Fragment>
+  </EditorialHero>
+
   <section class="newsletter-feature" aria-label="Newsletter">
-    <MediaText image={newsletter} imageAlt="Kaffeetasse auf einem hellen Holztisch" ratio="media-40" variant="newsletter">
-      <NewsletterSignup compact title="Lass uns in Verbindung bleiben." description="Erhalte regelmäßig neue Beiträge, Rezepte und Ideen für das gute Familienleben direkt in dein Postfach." />
+    <MediaText image={newsletter} imageAlt="A coffee cup on a light wooden table" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact />
     </MediaText>
   </section>
 
-  <section class="quote-feature" aria-label="Leitsatz">
-    <QuoteBanner image={quote} imageAlt="Warmes Zuhause in sanften Pflaumen- und Erdtönen" icon="heart" signature="Danke, dass du dabei bist.">
-      Domaće lebt von den Menschen, die hier lesen, teilen und sich austauschen.
+  <section class="quote-feature" aria-label="A thought to share">
+    <QuoteBanner image={quote} imageAlt="A warm home in soft plum and earth tones" icon="heart">
+      There’s always room<br />for one more at the table.
     </QuoteBanner>
   </section>
 </BaseLayout>
 
 <style>
   .eyebrow { color: var(--color-action); font-size: var(--text-xs); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-caps); text-transform: uppercase; }
-  .signature { font-family: var(--font-script); font-size: var(--text-lg); }
+  .signature { font-family: var(--font-sans); font-size: var(--text-base); }
   .story-section { display: grid; gap: var(--space-12); grid-template-columns: minmax(16rem, 36%) minmax(0, 1fr); padding-block: var(--space-12); }
   .story-section__media { min-height: 34rem; overflow: hidden; position: relative; }
   .story-section__media :global(picture) { inset: 0; position: absolute; }
@@ -117,7 +116,7 @@ const facts = [
   .value-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin-top: var(--space-8); padding: 0; }
   .value-list li { align-items: center; border-left: var(--divider-thickness) solid var(--color-border); display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-3); text-align: center; }
   .value-list li:first-child { border-left: 0; }
-  .value-list :global(svg) { color: var(--color-olive-dark); }
+  .value-list :global(svg) { color: var(--color-olive-ink); }
   .value-list span { font-size: var(--text-xs); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-caps); text-transform: uppercase; }
   .author-story { display: grid; grid-template-columns: 36% 64%; padding-bottom: var(--space-12); }
   .author-story__copy { align-self: center; padding: var(--space-10) var(--space-8) var(--space-10) 0; }
@@ -131,7 +130,7 @@ const facts = [
   .facts-card li { align-items: flex-start; display: flex; font-size: var(--text-sm); gap: var(--space-2); }
   .facts-card li + li { margin-top: var(--space-3); }
   .facts-card :global(svg) { color: var(--color-action); flex: 0 0 auto; margin-top: var(--space-1); }
-  .quote-feature { margin-top: var(--space-12); }
+  .quote-feature, .newsletter-feature { margin-top: var(--space-12); }
   @media (max-width: 64rem) {
     .value-list { grid-template-columns: repeat(3, 1fr); }
     .value-list li:nth-child(4) { border-left: 0; }

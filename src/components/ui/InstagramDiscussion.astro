@@ -12,20 +12,20 @@ interface Props {
   image?: ImageMetadata;
 }
 
-const { href, eyebrow = "Schon ausprobiert?", title = "Erzähl mir davon!", tone = "olive", image = instagramImage } = Astro.props;
+const { href, eyebrow = "MADE THIS?", title = "I’d love to hear about it.", tone = "olive", image = instagramImage } = Astro.props;
 ---
 
 <aside class:list={["instagram-discussion", `instagram-discussion--${tone}`]} aria-labelledby="instagram-discussion-title">
   <div class="instagram-discussion__copy">
     <p class="instagram-discussion__eyebrow">{eyebrow}</p>
     <h2 id="instagram-discussion-title">{title}</h2>
-    <Button href={href} variant="secondary" icon external>Auf Instagram mitreden</Button>
+    <Button href={href} variant="secondary" icon external>Join me on Instagram</Button>
   </div>
   <div class="instagram-discussion__media">
     <OptimizedImage
       class="instagram-discussion__image"
       src={image}
-      alt="Ein Domaće-Moment als Einladung zum Austausch auf Instagram"
+      alt="A moment from Domaće, shared on Instagram"
       widths={[640, 960, 1280, 1600]}
       sizes="(max-width: 768px) 100vw, 50vw"
     />

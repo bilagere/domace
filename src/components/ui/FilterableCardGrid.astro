@@ -22,7 +22,7 @@ const {
   categories,
   activeCategory,
   allHref,
-  allLabel = "Alle Beiträge",
+  allLabel = "All stories",
   allPageTitle,
   emptyMessage,
   paginationLabel,
@@ -43,7 +43,7 @@ const tags = [{ label: allLabel, href: allHref, category: undefined, pageTitle: 
   data-previous-label={previousLabel}
   data-next-label={nextLabel}
 >
-  <nav class="filterable-grid__categories" aria-label="Kategorien">
+  <nav class="filterable-grid__categories" aria-label="Categories">
     <ul class="filterable-grid__category-list">
       {tags.map((tag) => {
         const isActive = tag.category === activeCategory || (!tag.category && !activeCategory);

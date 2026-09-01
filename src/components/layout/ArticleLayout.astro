@@ -50,7 +50,7 @@ const {
   date,
   datePublished,
   readingTime,
-  overviewEyebrow = "Auf einen Blick",
+  overviewEyebrow = "IN THIS STORY",
   overviewItems,
   stickyQuickSummary = false,
   instagramHref = "https://www.instagram.com/domace.studio/",
@@ -72,18 +72,19 @@ const structuredData = {
     url: new URL("/", Astro.site).href,
   },
 };
-const socialImageAlt = image ? imageAlt : "Domaće – für das gute Familienleben";
-const normalizedCategory = category.toLocaleLowerCase("de");
-const categoryTone = normalizedCategory.includes("ankommen")
+const socialImageAlt = image ? imageAlt : "Domaće – European homemaking";
+const normalizedCategory = category.toLocaleLowerCase("en");
+const categoryTone = normalizedCategory.includes("home")
   ? "salbei"
-  : normalizedCategory.includes("ordnen")
+  : normalizedCategory.includes("rhythm")
     ? "sonne"
-    : normalizedCategory.includes("zusammen")
+    : normalizedCategory.includes("family")
       ? "mauve"
       : "lehm";
 ---
 
 <BaseLayout
+  lang="en"
   title={pageTitle}
   description={description}
   activePath={activePath}
@@ -111,9 +112,9 @@ const categoryTone = normalizedCategory.includes("ankommen")
     />
   </Container>
 
-  <section class="article-tools" aria-label="Weitere Journalbeiträge">
+  <section class="article-tools" aria-label="More journal stories">
     <Container>
-      <Button href="/journal" variant="text" icon>Mehr aus dem Domaće-Journal</Button>
+      <Button href="/journal" variant="text" icon>More from the journal</Button>
     </Container>
   </section>
 
@@ -134,29 +135,26 @@ const categoryTone = normalizedCategory.includes("ankommen")
     </ContentWithSidebar>
   </section>
 
-  <section class="instagram-feature" aria-label="Dialog auf Instagram">
+  <section class="instagram-feature" aria-label="Join the conversation on Instagram">
     <InstagramDiscussion
       href={instagramHref}
-      eyebrow="Wie ist das bei dir?"
-      title="Erzähl mir davon!"
+      eyebrow="WHAT WORKS FOR YOU?"
+      title="I’d love to hear your story."
       tone="plum"
       image={instagramJournalImage}
     />
   </section>
 
   <section class="newsletter-feature" aria-label="Newsletter">
-    <MediaText image={newsletterImage} imageAlt="Kaffeetasse auf einem hellen Holztisch" ratio="media-40" variant="newsletter">
+    <MediaText image={newsletterImage} imageAlt="A coffee cup on a light wooden table" ratio="media-40" variant="newsletter">
       <NewsletterSignup
         compact
-        eyebrow="Zwischen den Zeilen."
-        title="Worte, die gut tun."
-        description="Neue Geschichten, ehrliche Gedanken und Inspiration für ein Familienleben, das sich nach Zuhause anfühlt."
       />
     </MediaText>
   </section>
 
   {relatedItems.length > 0 && (
-    <PageSection spacing="compact" label="Weitere Beiträge">
+    <PageSection spacing="compact" label="More stories">
       <RelatedArticles items={relatedItems} />
     </PageSection>
   )}

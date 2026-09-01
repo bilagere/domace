@@ -4,13 +4,13 @@ import OptimizedImage from "./OptimizedImage.astro";
 import type { ImageMetadata } from "astro";
 type IconName = "users" | "leaf" | "cooking-pot" | "list-check" | "cake";
 type Tone = "salbei" | "lehm" | "sonne" | "mauve";
-interface Props { title: string; subtitle?: string; description: string; additionalDescription?: string; href: string; icon: IconName; image?: ImageMetadata; tone?: Tone; }
-const { title, subtitle, description, additionalDescription, href, icon, image, tone = "salbei" } = Astro.props;
+interface Props { linkLabel?: string; imageLinkLabel?: string; title: string; subtitle?: string; description: string; additionalDescription?: string; href: string; icon: IconName; image?: ImageMetadata; tone?: Tone; }
+const { linkLabel = "Explore", imageLinkLabel, title, subtitle, description, additionalDescription, href, icon, image, tone = "salbei" } = Astro.props;
 ---
 
 <article class:list={["topic-card", `topic-card--${tone}`]}>
   {image && (
-    <a class="topic-card__media" href={href} aria-label={`${title} entdecken`}>
+    <a class="topic-card__media" href={href} aria-label={imageLinkLabel ?? `Explore ${title}`}>
       <OptimizedImage
         class="topic-card__image"
         src={image}
@@ -28,7 +28,7 @@ const { title, subtitle, description, additionalDescription, href, icon, image, 
     {subtitle && <p class="topic-card__subtitle">{subtitle}</p>}
     <p>{description}</p>
     {additionalDescription && <p>{additionalDescription}</p>}
-    <a class="topic-card__link" href={href}>Mehr entdecken <span aria-hidden="true">→</span></a>
+    <a class="topic-card__link" href={href}>{linkLabel} <span aria-hidden="true">→</span></a>
   </div>
 </article>
 

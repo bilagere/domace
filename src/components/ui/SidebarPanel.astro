@@ -18,14 +18,14 @@ const { eyebrow, title, tone = "kalk" } = Astro.props;
   .sidebar-panel--olive { background: var(--color-olive-dark); color: var(--color-kalk); }
   .sidebar-panel--plum { background: var(--color-pflaume); color: var(--color-kalk); }
   .sidebar-panel--salbei, .sidebar-panel--lehm, .sidebar-panel--sonne, .sidebar-panel--mauve { border-left: var(--space-1) solid var(--panel-accent); color: var(--color-text); }
-  .sidebar-panel--salbei { --panel-accent: var(--color-salbei); background: color-mix(in srgb, var(--color-salbei) 32%, var(--color-kalk)); }
-  .sidebar-panel--lehm { --panel-accent: var(--color-lehm); background: color-mix(in srgb, var(--color-lehm) 24%, var(--color-kalk)); }
-  .sidebar-panel--sonne { --panel-accent: var(--color-sonne); background: color-mix(in srgb, var(--color-sonne) 24%, var(--color-kalk)); }
-  .sidebar-panel--mauve { --panel-accent: var(--color-mauve); background: color-mix(in srgb, var(--color-mauve) 24%, var(--color-kalk)); }
+  .sidebar-panel--salbei { --panel-accent: var(--color-salbei); background: color-mix(in srgb, var(--color-salbei) 32%, var(--color-surface)); }
+  .sidebar-panel--lehm { --panel-accent: var(--color-lehm); background: color-mix(in srgb, var(--color-lehm) 24%, var(--color-surface)); }
+  .sidebar-panel--sonne { --panel-accent: var(--color-sonne); background: color-mix(in srgb, var(--color-sonne) 24%, var(--color-surface)); }
+  .sidebar-panel--mauve { --panel-accent: var(--color-mauve); background: color-mix(in srgb, var(--color-mauve) 24%, var(--color-surface)); }
   .sidebar-panel__eyebrow { color: var(--color-terracotta); font-size: var(--text-xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
   .sidebar-panel--olive .sidebar-panel__eyebrow { color: var(--color-kalk-strong); }
   .sidebar-panel--plum .sidebar-panel__eyebrow { color: var(--color-gold); }
-  .sidebar-panel--salbei .sidebar-panel__eyebrow, .sidebar-panel--lehm .sidebar-panel__eyebrow, .sidebar-panel--sonne .sidebar-panel__eyebrow, .sidebar-panel--mauve .sidebar-panel__eyebrow { color: var(--color-espresso); }
+  .sidebar-panel--salbei .sidebar-panel__eyebrow, .sidebar-panel--lehm .sidebar-panel__eyebrow, .sidebar-panel--sonne .sidebar-panel__eyebrow, .sidebar-panel--mauve .sidebar-panel__eyebrow { color: var(--color-text); }
   h2 { font-size: var(--text-xl); margin-top: var(--space-2); }
   .sidebar-panel__content { margin-top: var(--space-4); }
   .sidebar-panel--olive :global(p), .sidebar-panel--plum :global(p) { color: inherit; }

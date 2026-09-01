@@ -6,20 +6,21 @@ import Button from "../components/ui/Button.astro";
 ---
 
 <BaseLayout
-  title="Seite nicht gefunden – Domaće"
-  description="Die gesuchte Seite konnte nicht gefunden werden."
+  lang="en"
+  title="Page not found – Domaće"
+  description="We couldn’t find this page. Head home to explore Domaće."
   noindex
 >
   <PageIntro
-    eyebrow="Fehler 404"
-    title="Hier ist gerade nichts."
-    description="Vielleicht wurde die Seite verschoben oder der Link führt an den falschen Ort. Auf der Startseite findest du zurück zu allen aktuellen Inhalten."
+    eyebrow="404 · PAGE NOT FOUND"
+    title="Let’s head home."
+    description="We couldn’t find this page. It may have moved, or the link might be out of date."
     align="center"
   />
   <PageSection width="narrow" spacing="generous">
     <div class="not-found">
-      <p>Mach es dir nicht unnötig schwer – ein Klick bringt dich wieder nach Hause.</p>
-      <Button href="/" icon>Zur Startseite</Button>
+      <p>There’s still plenty to discover.</p>
+      <Button href="/" icon>BACK TO HOME</Button>
     </div>
   </PageSection>
 </BaseLayout>

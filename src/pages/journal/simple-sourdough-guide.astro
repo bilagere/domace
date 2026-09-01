@@ -1,0 +1,97 @@
+---
+import ArticleLayout from "../../components/layout/ArticleLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import titleImage from "../../assets/images/journal/brot-backen/sauerteig-titel.png";
+import everydayImage from "../../assets/images/journal/brot-backen/sauerteig-alltag.png";
+import stressImage from "../../assets/images/journal/brot-backen/sauerteig-stress.png";
+import breadImage from "../../assets/images/journal/brot-backen/Sauerteig-brot.png";
+
+const articleOverview: Array<{ label: string; href: `#${string}` }> = [
+  { label: "Why I bake our bread", href: "#warum-ich-unser-brot-selbst-backe" },
+  { label: "When bread gets complicated", href: "#wieso-es-oft-unnoetig-kompliziert-wird" },
+  { label: "A little less fuss", href: "#sauerteig-ohne-stress" },
+  { label: "How it fits into our days", href: "#brotbacken-im-alltag" },
+  { label: "What you actually need", href: "#was-man-wirklich-braucht" },
+  { label: "The things that make us give up", href: "#warum-menschen-wieder-aufhoeren" },
+];
+---
+
+<ArticleLayout
+  pageTitle="The No-Fuss Guide to Sourdough | Domaće"
+  description="A simpler way to bake sourdough, with flexible timings, a small set of tools and room for family life."
+  activePath="/journal"
+  category="Kitchen"
+  title="The No-Fuss Guide to Sourdough"
+  summary="Good bread can fit around a busy home. A simple routine, generous windows of time and a little patience are a good place to start."
+  image={titleImage}
+  imageAlt="Active sourdough starter beside flour on a wooden kitchen table"
+  date="11 August 2026"
+  datePublished="2026-08-11"
+  readingTime="9 min read"
+  overviewItems={articleOverview}
+  stickyQuickSummary
+  instagramHref="https://www.instagram.com/reel/Db-U45_u-qM/?igsh=ZWVmOHd2Z2UxZTJn&amp;igsi=ZWVmOHd2Z2UxZTJn"
+  relatedItems={[]}
+>
+  <p>I’ve been baking our bread with sourdough since 2021. My routine has changed more than once along the way. Some loaves have failed spectacularly, and more than one starter has ended up on the compost heap.</p>
+  <p>What keeps me coming back is the moment a fresh loaf comes out of the oven: the crisp crust, the smell filling the room. The only thing better is a slice, still slightly warm, with butter and a spoonful of jam.</p>
+  <p>Perhaps this will be the little nudge you need to give it a try.</p>
+
+  <h2 id="warum-ich-unser-brot-selbst-backe">Why I bake our bread</h2>
+  <p><strong>It tastes better.</strong> Fresh bread, a crisp crust and a soft, moist middle. That’s the most immediate reason.</p>
+  <p><strong>I know what’s in it.</strong> Flour, water and salt are the foundations. When I fancy a change, I add walnuts, pumpkin seeds, sesame or whatever else sounds good.</p>
+  <p><strong>It costs less.</strong> A comparable loaf from our bakery costs me €5.50 for 500 g. In our house, that lasts about a day.</p>
+  <p><strong>There’s fresh bread when we need it.</strong> Quite apart from the cost, I don’t have the time or energy for a daily bakery trip. Once baking becomes part of the week, buying bread is one less thing to remember.</p>
+
+  <h2 id="wieso-es-oft-unnoetig-kompliziert-wird">When bread gets complicated</h2>
+  <p>Start reading about sourdough and you’ll soon find a long list of things you’re supposed to get exactly right. Feeding ratios. Water and dough temperatures. Carefully calculated rise times. Folds at precisely scheduled intervals.</p>
+  <p>There’s a place for all of that. If you enjoy the details and want to chase the perfect loaf, there is plenty to learn.</p>
+  <p>For me, though, bread had to fit into everyday life.</p>
+  <p>I don’t want to plan my afternoon around being home at 14:30 to fold dough. And I still want to bake when the kitchen is two degrees warmer than it was yesterday.</p>
+  <p>These days, I keep things fairly simple. I watch the dough rather than relying only on the clock, leave myself generous windows of time and use the fridge when the bread needs to wait for me.</p>
+  <p>Every loaf may not be perfect. But it’s good, fresh and homemade. That’s what I’m here for.</p>
+  <figure><OptimizedImage src={everydayImage} alt="A mother stretching bread dough while her child helps in the kitchen" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+
+  <h2 id="sauerteig-ohne-stress">A little less fuss</h2>
+  <p>My starter spends most of its time quietly in the fridge. When I want to bake, I take it out, feed it and wait for it to become active. Afterwards, it goes back into the fridge until next time.</p>
+  <p>After my second daughter was born, about two months passed without me using or feeding it. It was a little sulky by then, but still alive. It took around three days of attention to bring it back to its usual self.</p>
+  <p>At first, I gave sourdough far more anxious attention than it needed. My experience has been that a healthy starter is surprisingly resilient. It doesn’t need constant fussing or perfection at every feeding.</p>
+  <p>My loaves vary, too. Some rise taller; others spread a little. Sometimes the crust looks better than the crumb, sometimes the other way round. If it tastes good, I’m happy. I’m baking for my family, not an artisan bakery window.</p>
+
+  <h2 id="brotbacken-im-alltag">How it fits into our days</h2>
+  <p>Like many things at home, bread baking has gradually found its own routine. I follow it as closely as our days allow.</p>
+  <p>On a baking day, I take my starter out of the fridge before my first coffee. Her name is Gaia, by the way. Much like me, she gets a little time to warm up in the morning before I feed her.</p>
+  <p>By around midday, she has usually risen enough to use. I only mix the dough if I know I’ll be home for the next two hours. That’s when I give it several sets of stretches and folds, with rests in between, to build its gluten structure.</p>
+  <p>Then I leave it to get on with things.</p>
+  <p>A few hours later — usually between two and four for me — I come back and shape it. Into the proofing basket it goes, then into the fridge until I’m ready to bake. Sometimes that’s the next morning; sometimes it’s a few days later.</p>
+  <p>That’s what I like about sourdough. So much of the work happens on its own. A loaf that takes many hours doesn’t require me to spend all of them in the kitchen. The hands-on work is a handful of small tasks spread across the day.</p>
+  <p>Bread has become something that happens alongside family life, rather than something our day has to revolve around.</p>
+  <figure><OptimizedImage src={stressImage} alt="Dough in a proofing basket on a used worktop, with a mother and her children in the background" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+
+  <h2 id="was-man-wirklich-braucht">What you actually need</h2>
+  <p>There’s no shortage of bread-making equipment to buy. You need surprisingly little to begin.</p>
+  <p>The dough starts with four ingredients: flour, water, salt and an active sourdough starter. Add a large enough bowl and a kitchen scale, and you have what you need for those first few hours.</p>
+  <p>I bake in a cast-iron pot. It holds heat well and traps steam during the first part of baking, helping the crust develop. It’s part of the method I use. <a href="/journal/kitchen-essentials/#gusseisentopf">You’ll find my favorite pot and other well-used kitchen essentials here.</a></p>
+  <p>A proofing basket and dough scraper are useful, and I use both regularly. But they needn’t hold up your first attempt. A bowl lined with a well-floured tea towel can stand in for a basket, and your hands can do the work of a scraper to begin with.</p>
+  <p>Start with what you have. If baking becomes part of your routine, you’ll soon know which tools would actually make it easier.</p>
+
+  <h2 id="warum-menschen-wieder-aufhoeren">The things that make us give up</h2>
+  <p>Sourdough takes practice. But I think many people stop because of the pressure they put on themselves at the start. These are a few things I wish I’d worried about less.</p>
+  <h3>Overcomplicated recipes</h3>
+  <p>You can turn almost anything into a science. Sourdough is particularly good at inviting it.</p>
+  <p>People have been making bread for a very long time. Begin with a simple recipe. If you later want to experiment with flour, hydration, temperature and fermentation, wonderful. You don’t need to master them all before your first good loaf.</p>
+  <h3>Expecting too much, too soon</h3>
+  <p>Your first loaves probably won’t look like the towering sourdough on Instagram. They don’t have to. There’s still that first slice of your own bread, a little warm, with butter melting into it. That moment is reason enough to keep going.</p>
+  <h3>Worrying about the starter</h3>
+  <p>Say someone gave you a starter and you really did manage to lose it. The worst outcome? You ask for another little portion in a few weeks. It happens.</p>
+  <p>I’ve personally had the best experience starting my own. Those first days teach you how it looks, smells and changes after feeding. You get to know what’s normal for your starter from the beginning.</p>
+  <h3>Feeling you need to keep checking</h3>
+  <p>I did this too. Either I followed a recipe’s timings to the minute, or I hovered over the starter and dough, checking constantly for signs of life. Both were stressful. Neither made my bread better.</p>
+  <p>With practice, you learn to trust your starter and your own eyes. You recognize when it’s ready and when the dough needs longer. And you realize that bread rarely depends on getting the timing right to the minute.</p>
+  <h3>Another flat loaf</h3>
+  <p>Been there. You lift the lid, expecting a proud, rounded loaf, and find something rather more like a pancake.</p>
+  <p>There are a few things to consider. Was the starter active enough? Did the dough need longer, or had it gone too far? Did it have enough tension after shaping?</p>
+  <p>Change one thing next time and try again. Every loaf teaches you a little more. <a href="https://www.instagram.com/reel/Db-U45_u-qM/?igsh=ZWVmOHd2Z2UxZTJn&amp;igsi=ZWVmOHd2Z2UxZTJn" target="_blank" rel="noopener noreferrer">And if you’re stuck, get in touch. Perhaps we can work it out together.</a></p>
+  <figure><OptimizedImage src={breadImage} alt="Fresh sourdough bread with a crisp crust in an open cast-iron pot" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" /></figure>
+  <p>Ready to put all of this into practice? My everyday sourdough bread recipe is coming soon.</p>
+</ArticleLayout>

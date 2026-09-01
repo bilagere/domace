@@ -19,46 +19,49 @@ const activeTag = journalCategories.find((tag) => tag.category === activeCategor
 ---
 
 <BaseLayout
+  lang="en"
   title={activeTag?.pageTitle ?? "Journal – Domaće"}
-  description="Gedanken, Routinen und Inspiration für ein ruhigeres, verbundenes Familienleben."
+  description="Notes on home, family and everyday life. Practical ideas, familiar rituals and things I’m learning along the way."
   activePath="/journal"
 >
-  <PageSection label="Journalbeiträge" spacing="compact">
+  <PageSection label="Journal stories" spacing="compact">
     <FilterableCardGrid
       items={journalPreviews}
       categories={journalCategories}
       activeCategory={activeCategory}
       allHref="/journal"
+      allLabel="All stories"
       allPageTitle="Journal – Domaće"
-      emptyMessage="In diesem Bereich folgen bald die ersten Beiträge."
-      paginationLabel="Journalseiten"
-      previousLabel="Vorherige Journalseite"
-      nextLabel="Nächste Journalseite"
+      emptyMessage="There are no stories here just yet. In the meantime, make yourself at home in the rest of the journal."
+      paginationLabel="Journal pages"
+      previousLabel="Previous"
+      nextLabel="Next"
     />
   </PageSection>
 
   <EditorialHero
     variant="homepage"
     showTitleIcon={false}
-    eyebrow="Gedanken vom Küchentisch"
-    title="Was braucht deine Familie gerade wirklich?"
+    eyebrow="NOTES FROM THE KITCHEN TABLE"
+    title="For the life you’re actually living."
     image={heroJournal}
-    imageAlt="Ein heller Tisch am Fenster in ruhiger Atmosphäre"
+    imageAlt="A woman working at a laptop with a cup of coffee at her kitchen table"
   >
     <Fragment slot="description">
-      <p>Nicht jede Antwort passt zu jeder Familie. Hier findest du Gedanken, kleine Routinen und praktische Ideen, die dir helfen sollen, euren eigenen Weg zu finden. Nimm einfach das mit, was gerade zu euch passt.</p>
+      <p>Family life rarely comes with one right answer. This is where I share what I’m learning along the way — thoughts on home and family, rhythms that work for us, and practical ideas worth passing on.</p>
+      <p><strong>Take what works. Leave what doesn’t.</strong></p>
     </Fragment>
   </EditorialHero>
 
-  <section class="quote-feature" aria-label="Leitsatz">
-    <QuoteBanner image={quote} imageAlt="Warmes Zuhause in natürlichen Tönen">
-      Manche Gedanken brauchen keinen Rat.<br />Nur einen Ort, an dem sie bleiben dürfen.
+  <section class="quote-feature" aria-label="A thought to share">
+    <QuoteBanner image={quote} imageAlt="A warm home in natural tones">
+      Some thoughts are meant<br />to be shared, not solved.
     </QuoteBanner>
   </section>
 
   <section class="newsletter-feature" aria-label="Newsletter">
-    <MediaText image={newsletter} imageAlt="Kaffeetasse auf einem hellen Holztisch" ratio="media-40" variant="newsletter">
-      <NewsletterSignup compact eyebrow="Zwischen den Zeilen." title="Worte, die gut tun." description="Neue Geschichten, ehrliche Gedanken und Inspiration für ein Familienleben, das sich nach Zuhause anfühlt." />
+    <MediaText image={newsletter} imageAlt="A coffee cup on a light wooden table" ratio="media-40" variant="newsletter">
+      <NewsletterSignup compact />
     </MediaText>
   </section>
 </BaseLayout>

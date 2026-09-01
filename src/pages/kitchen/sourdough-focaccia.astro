@@ -1,0 +1,72 @@
+---
+import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import { relatedContent } from "../../data/relatedContent";
+import focacciaTitle from "../../assets/images/genuss/focaccia-titel.jpg";
+import focacciaDough from "../../assets/images/genuss/focaccia-teig.png";
+import focacciaFinal from "../../assets/images/genuss/focaccia-final.jpg";
+
+const ingredients = [
+  "400 g wheat flour, Type 550",
+  "300 g water",
+  "80 g active wheat sourdough starter (100% hydration — equal weights flour and water)",
+  "8 g salt",
+  "Plenty of olive oil for the dish, your hands and the surface",
+  "Toppings of your choice, such as rosemary, olives and sea salt",
+];
+const steps = [
+  "Add the flour, water, starter and salt to a mixing bowl. Knead just until everything comes together and no dry patches of flour remain. The dough will still be very soft, sticky and almost pourable.",
+  "During the first two hours, give the dough four sets of stretch-and-folds or coil folds. Wet your hands well before handling it. With each set, the dough will gain strength and hold its shape a little better.",
+  "Generously oil a large baking dish, approximately 40 × 27 cm. After the final fold, transfer the dough to the dish and drizzle plenty of olive oil over the top. It will look surprisingly small in the dish at first — give it time.",
+  "Cover with a damp tea towel and leave to rise overnight at room temperature. On a warm summer night, it may be ready by morning. In winter, it might need until midday.",
+  "The dough is ready when it has grown considerably, looks airy and has plenty of bubbles. Preheat the oven to 250°C, conventional heat (top and bottom heat).",
+  "Add your toppings. Generously oil your fingers, then gently press the toppings into the dough as you make deep dimples across the surface. You’ll see those characteristic big bubbles appear. If your toppings don’t include cheese, sprinkle salt over the top as well.",
+  "Put the dish in the oven and immediately reduce the temperature to 230°C. Bake for about 30 minutes, until deeply golden brown.",
+];
+const stepIngredients = [[0, 1, 2, 3], [], [4], [], [], [5], []];
+---
+
+<RecipeLayout
+  lang="en"
+  pageTitle="Sourdough focaccia – Domaće"
+  description="An airy overnight sourdough focaccia with a golden crust, plenty of olive oil and toppings to make your own."
+  category="Baking"
+  title="Sourdough focaccia"
+  summary="Golden at the edges, soft and full of air inside. An overnight focaccia, ready for whatever you feel like putting on top."
+  image={focacciaTitle}
+  imageAlt="Sliced focaccia with tomatoes and rosemary on a wooden table"
+  meta={[
+    { icon: "clock", label: "Hands-on time", value: "about 25 minutes" },
+    { icon: "clock", label: "Rising & baking", value: "overnight + about 30 minutes" },
+    { icon: "users", label: "Makes", value: "about 6 servings" },
+  ]}
+  prepTime="PT25M"
+  cookTime="PT30M"
+  ingredients={ingredients}
+  ingredientNoteTitle="A note on the dough"
+  ingredientNote="The dough will be very soft and almost pourable after mixing. Resist the urge to add more flour: the folds are what give it strength and structure."
+  tipTitle="Give it room to rise"
+  tipText="Place a wire rack over the baking dish, then drape the damp tea towel over the rack. This gives the dough room to rise without sticking to the cloth."
+  safetyTipTitle="Baking in glass"
+  safetyTipText="Check that your glass baking dish is suitable for the high oven temperature, and avoid sudden temperature changes."
+  steps={steps}
+  stepIngredients={stepIngredients}
+  relatedItems={relatedContent.focaccia}
+>
+  <Fragment slot="intro">
+    <p>This is a bread to make by watching the dough, rather than the clock. A brief mix, a few folds and an overnight rise at room temperature do most of the work. What starts as a small puddle of dough becomes something airy, bubbly and full of promise.</p>
+    <figure>
+      <OptimizedImage src={focacciaDough} alt="Hands dimpling airy, risen focaccia dough" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" />
+    </figure>
+    <h2>Made for the middle of the table</h2>
+    <p>There’s enough here for sandwiches for about six, or more if you’re serving it alongside a meal. We like it still a little warm, with soup, a salad or nothing at all. Just put it in the middle and let everyone help themselves.</p>
+    <h2>A little of what you love</h2>
+    <p>Sun-dried tomatoes, crumbled feta and pine nuts are a favorite combination. Rosemary, olives and sea salt are lovely when you want something simpler. Be generous with the olive oil — it’s part of both the flavor and that soft, rich crumb.</p>
+  </Fragment>
+  <h2>Through the seasons</h2>
+  <p>In summer, try small tomatoes and thyme. In autumn, thin slices of pumpkin and a few sage leaves. You can leave a section simply dressed with olive oil and a little salt for the children — though my eldest is mostly there for the pine nuts.</p>
+  <figure>
+    <OptimizedImage src={focacciaFinal} alt="Baked focaccia topped with tomatoes, onions and rosemary" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" />
+  </figure>
+  <blockquote>A whole tray rarely stays whole for long.</blockquote>
+</RecipeLayout>
