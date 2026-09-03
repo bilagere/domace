@@ -1,7 +1,7 @@
 ---
 import Button from "./Button.astro";
 import OptimizedImage from "./OptimizedImage.astro";
-import instagramImage from "../../assets/images/instagram.png";
+import instagramImage from "../../assets/images/cta-kitchen.png";
 import type { ImageMetadata } from "astro";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
   image?: ImageMetadata;
 }
 
-const { href, eyebrow = "MADE THIS?", title = "I’d love to hear about it.", tone = "olive", image = instagramImage } = Astro.props;
+const { href, eyebrow = "MADE THIS FOR YOUR TABLE?", title = "Tell me how it turned out.", tone = "olive", image = instagramImage } = Astro.props;
 ---
 
 <aside class:list={["instagram-discussion", `instagram-discussion--${tone}`]} aria-labelledby="instagram-discussion-title">
@@ -67,6 +67,10 @@ const { href, eyebrow = "MADE THIS?", title = "I’d love to hear about it.", to
     color: inherit;
     font-size: var(--text-2xl);
     margin: var(--space-1) 0 0;
+  }
+
+  .instagram-discussion--olive h2 {
+    font-style: italic;
   }
 
 
