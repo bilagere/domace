@@ -5,6 +5,7 @@ import focaccia from "../assets/images/genuss/focaccia-titel.jpg";
 import hugoEistee from "../assets/images/genuss/eistee-titel.png";
 import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
 import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
+import plumStreuselCake from "../assets/images/genuss/zwetschgen-streusel-kuchen.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
 import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel.png";
@@ -44,6 +45,14 @@ export const recipes = {
     href: "/kitchen/beef-stroganoff",
     publishedAt: "2026-07-30",
   },
+  plumStreuselCake: {
+    title: "Plum streusel cake",
+    excerpt: "A soft base, plenty of Zwetschgen and buttery streusel — in the smaller, round version we make at home.",
+    category: "Baking",
+    image: plumStreuselCake,
+    href: "/kitchen/plum-streusel-cake",
+    publishedAt: "2026-09-02",
+  },
 } satisfies Record<string, PublishedContent>;
 
 const journalArticle = {
@@ -81,6 +90,7 @@ const publishedContent = [
   recipes.zimtschnecken,
   recipes.boeufStroganoff,
   recipes.hugoEistee,
+  recipes.plumStreuselCake,
 ] satisfies PublishedContent[];
 
 export const recipePreviews: ArticlePreview[] = Object.values(recipes);
@@ -95,4 +105,5 @@ export const relatedContent = {
   zimtschnecken: [recipes.focaccia, recipes.boeufStroganoff, recipes.hugoEistee, journalArticle],
   boeufStroganoff: [recipes.focaccia, recipes.zimtschnecken, recipes.hugoEistee, journalArticle],
   hugoEistee: [recipes.focaccia, recipes.zimtschnecken, recipes.boeufStroganoff, journalArticle],
+  plumStreuselCake: [recipes.zimtschnecken, recipes.focaccia, recipes.hugoEistee, journalArticle],
 } satisfies Record<string, ArticlePreview[]>;

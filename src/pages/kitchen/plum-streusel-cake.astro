@@ -1,0 +1,76 @@
+---
+import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import { relatedContent } from "../../data/relatedContent";
+import plumStreuselCake from "../../assets/images/genuss/zwetschgen-streusel-kuchen.png";
+import plumStreuselMaking from "../../assets/images/genuss/zwetschgen-making.png";
+
+const ingredients = [
+  "120 g softened butter, plus a little for the pan",
+  "50 g sugar",
+  "1 egg",
+  "½ packet (4 g) vanilla sugar",
+  "150 g wheat flour",
+  "½ packet (8 g) baking powder",
+  "450–500 g Zwetschgen",
+  "180 g wheat flour for the streusel",
+  "125 g cold butter, cubed",
+  "100 g sugar for the streusel",
+  "½ packet (4 g) vanilla sugar for the streusel",
+  "A pinch of ground cinnamon or a little finely grated lemon zest",
+];
+
+const steps = [
+  "Preheat the oven to 180°C fan. Grease a 26 cm springform pan and line the base with parchment paper.",
+  "Beat the softened butter, sugar, egg and vanilla sugar until creamy. Mix the flour with the baking powder, add it to the bowl and stir just until a soft, sticky dough forms.",
+  "Spread the dough evenly over the base of the prepared pan. Damp fingers or the back of a lightly moistened spoon make this much easier.",
+  "Wash, halve and pit the Zwetschgen. Arrange them closely over the dough, cut side up.",
+  "Use your fingertips to work the flour, butter, sugar, vanilla sugar and cinnamon or lemon zest into coarse crumbs. Scatter evenly over the Zwetschgen.",
+  "Bake for 40–45 minutes, until the streusel is golden and the fruit is bubbling at the edges. Let the cake cool in the pan for about 15 minutes before releasing the ring.",
+];
+
+const stepIngredients = [[], [0, 1, 2, 3, 4, 5], [], [6], [7, 8, 9, 10, 11], []];
+---
+
+<RecipeLayout
+  lang="en"
+  pageTitle="Plum streusel cake – Domaće"
+  description="A round Zwetschgen cake with a soft base and buttery streusel, baked in a 26 cm springform pan."
+  category="Baking"
+  title="Plum streusel cake"
+  summary="A soft, simple base, plenty of Zwetschgen and buttery streusel. The smaller cake we make toward the end of summer."
+  image={plumStreuselCake}
+  imageAlt="Round Zwetschgen cake with golden streusel and one slice cut"
+  meta={[
+    { icon: "clock", label: "Hands-on time", value: "about 25 minutes" },
+    { icon: "clock", label: "Baking time", value: "40–45 minutes" },
+    { icon: "users", label: "Makes", value: "1 cake (26 cm)" },
+  ]}
+  prepTime="PT25M"
+  cookTime="PT45M"
+  totalTime="PT1H10M"
+  ingredients={ingredients}
+  ingredientNoteTitle="How many Zwetschgen?"
+  ingredientNote="450–500 g is enough to cover a 26 cm cake generously. The exact amount depends on the size of your Zwetschgen and how closely you arrange them."
+  tipTitle="An easier way with sticky dough"
+  tipText="The base is deliberately soft and sticky. Use damp fingers or a lightly moistened spoon to spread it evenly without adding extra flour."
+  steps={steps}
+  stepIngredients={stepIngredients}
+  relatedItems={relatedContent.plumStreuselCake}
+>
+  <Fragment slot="intro">
+    <p>Here in the Austrian Alps, late summer means Zwetschgen — small, deep-purple plums, sweet with just enough tartness left in them.</p>
+    <p>When our eldest daughter was born, she was given a Zwetschgen tree of her own. It has grown with her ever since. Towards the end of each summer, we pick its fruit and some of it inevitably ends up in this cake.</p>
+    <p>A soft, simple base, plenty of Zwetschgen and buttery streusel scattered over the top. Nothing elaborate, just the sort of cake I want on the kitchen table at this time of year.</p>
+    <p>The recipe started as a classic tray bake, but this is the version that has found its place in our kitchen: smaller, with fewer plums and baked in the springform pan I reach for all the time.</p>
+    <figure>
+      <OptimizedImage src={plumStreuselMaking} alt="Streusel being scattered over Zwetschgen in a springform pan" widths={[480, 720, 960]} sizes="(max-width: 768px) 100vw, 46rem" />
+    </figure>
+    <h2>Just right for a smaller table</h2>
+    <p>This smaller, round version is just enough for the kitchen table, with a few slices left for the next day. Serve it slightly warm, or with softly whipped cream once cooled.</p>
+  </Fragment>
+
+  <h2>Cinnamon or lemon?</h2>
+  <p>I usually add either a pinch of cinnamon or some finely grated lemon zest. Cinnamon is lovely as the days get cooler; lemon keeps the cake fresh and a little more summery.</p>
+  <blockquote>A cake for the last warm afternoons and the first cool ones.</blockquote>
+</RecipeLayout>
