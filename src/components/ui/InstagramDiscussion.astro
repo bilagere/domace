@@ -8,18 +8,19 @@ interface Props {
   href: string;
   eyebrow?: string;
   title?: string;
+  buttonLabel?: string;
   tone?: "olive" | "plum";
   image?: ImageMetadata;
 }
 
-const { href, eyebrow = "MADE THIS FOR YOUR TABLE?", title = "Tell me how it turned out.", tone = "olive", image = instagramImage } = Astro.props;
+const { href, eyebrow = "MADE THIS FOR YOUR TABLE?", title = "Tell me how it turned out.", buttonLabel = "Join me on Instagram", tone = "olive", image = instagramImage } = Astro.props;
 ---
 
 <aside class:list={["instagram-discussion", `instagram-discussion--${tone}`]} aria-labelledby="instagram-discussion-title">
   <div class="instagram-discussion__copy">
     <p class="instagram-discussion__eyebrow">{eyebrow}</p>
     <h2 id="instagram-discussion-title">{title}</h2>
-    <Button href={href} variant="secondary" icon external>Join me on Instagram</Button>
+    <Button href={href} variant="secondary" icon external>{buttonLabel}</Button>
   </div>
   <div class="instagram-discussion__media">
     <OptimizedImage
