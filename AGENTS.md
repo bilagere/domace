@@ -26,6 +26,16 @@
 - „Du/you“ nur verwenden, wenn es die Anleitung klarer macht, etwa bei einer Bedingung: „If your plums are very ripe, reduce the sugar slightly.“
 - Keine persönlichen Geschichten erfinden, um ein Rezept wärmer wirken zu lassen. Vorhandene Fakten, Mengen, Temperaturen, Zeiten und Arbeitsschritte bei reinen Perspektivkorrekturen erhalten.
 
+### Children – Public Names (alle englischsprachigen Inhalte)
+
+- Die beiden Töchter in öffentlich sichtbaren Domaće-Inhalten niemals mit ihren echten Namen nennen. Verbindliche öffentliche Namen: **Daisy = ältere Tochter**, **Rosie = jüngere Tochter**.
+- Diese Regel gilt für Blog- und Journalbeiträge, Rezepte mit Familienbezug, YouTube-Skripte und Voiceovers, Captions, Pinterest-Texte, Website-Texte, Metadaten und alle anderen öffentlich sichtbaren redaktionellen Inhalte auf Englisch.
+- Daisy und Rosie natürlich wie Namen verwenden. In öffentlichen Texten nicht erklären, dass es Spitznamen, Pseudonyme oder eine Datenschutzmaßnahme sind.
+- Bestehende konkrete Bezüge wie „my older daughter“, „my eldest“ oder „the older one“ bei eindeutiger Zuordnung durch Daisy ersetzen; „my younger daughter“, „my second daughter“, „the little one“ oder „the baby“ durch Rosie, wenn tatsächlich die jüngere Tochter gemeint ist. Historische Erzählungen beachten: Daisy kann darin selbst noch ein Baby sein.
+- Nicht mechanisch ersetzen: natürliche Sammelbezüge wie „the girls“, „my daughters“, „the kids“ und passende Pronomen erhalten. Keine Namen in generische Familienbezüge erzwingen.
+- Mehrdeutige Bezüge nicht erraten; unverändert lassen und zur Klärung melden. Keine Erlebnisse oder persönlichen Details ergänzen.
+- Echte Namen niemals erschließen, offenlegen, wiederherstellen oder veröffentlichen, auch wenn sie in Quellen, Notizen, Dateinamen, Transkripten, Metadaten oder älteren Entwürfen vorkommen. Solche Angaben nicht in öffentliche Texte, Alttexte, URLs oder ausgelieferte Dateinamen übernehmen.
+
 ## Projektstruktur
 
 ```text
