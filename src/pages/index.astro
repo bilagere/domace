@@ -33,8 +33,8 @@ const images = {
 const topicDetails = {
   home: { subtitle: "For a home that feels lived in.", description: "All about the home, garden, small projects and the everyday work of making a house a home.", linkLabel: "Explore Home", icon: "leaf" as const, image: images.arrive, tone: "salbei" as const },
   kitchen: { subtitle: "Food made for sharing.", description: "Family cooking, bread, seasonal food and the joy of gathering around a meal.", linkLabel: "Come to the Kitchen", icon: "cooking-pot" as const, image: images.enjoy, tone: "lehm" as const },
-  rhythm: { subtitle: "A little more ease, every day.", description: "Meal planning, ingredient prep and gentle routines that help our days run a little smoother.", linkLabel: "Find your rhythm", icon: "list-check" as const, image: images.organize, tone: "sonne" as const },
-  family: { subtitle: "The moments we share.", description: "Motherhood, relationships, rituals and traditions that bring us together.", linkLabel: "Explore Family", icon: "users" as const, image: images.together, tone: "mauve" as const },
+  rhythm: { subtitle: "A little more ease, every day.", description: "Meal planning, ingredient prep and gentle routines that help my days run a little smoother.", linkLabel: "Find your rhythm", icon: "list-check" as const, image: images.organize, tone: "sonne" as const },
+  family: { subtitle: "Shared moments.", description: "Motherhood, relationships, rituals and traditions that bring families together.", linkLabel: "Explore Family", icon: "users" as const, image: images.together, tone: "mauve" as const },
 };
 const topics = journalCategories.map(({ category, label, href }) => ({
   ...topicDetails[category], title: label, href, imageLinkLabel: `Explore ${label}`,
@@ -90,7 +90,7 @@ const topics = journalCategories.map(({ category, label, href }) => ({
     </MediaText>
   </section>
 
-  <section class="quote-feature" aria-label="Our philosophy">
+  <section class="quote-feature" aria-label="My philosophy">
     <QuoteBanner image={images.quote} imageAlt="A warm home in soft plum and earthy tones">
       A lived-in home<br />
       is rarely a perfect one.<br />

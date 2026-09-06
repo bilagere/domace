@@ -7,6 +7,25 @@
 - Priorität: wiederverwendbare Komponenten, semantisches HTML, Responsive Design, gute Lesbarkeit und eine warme, zurückhaltende Bildsprache.
 - Die Entwürfe in `design/mockups/` sind die dauerhafte visuelle Referenz. Nicht pixelgenau kopieren, sondern ihre Hierarchie, Abstände und Muster sauber in Komponenten übersetzen.
 
+## Autorinnenstimme für alle redaktionellen Inhalte
+
+- Domaće wird von einer Autorin aus ihrem realen Familienzuhause heraus geschrieben. Das Zuhause gehört „uns“; persönliche Erfahrung und redaktionelle Stimme gehören „ich“. Die Leserin oder der Leser bleibt eine eigenständige Person.
+- Für persönliche Meinungen, Empfehlungen, Erfahrungen, Vorlieben, Erkenntnisse und eigene Handlungen immer die erste Person Singular verwenden: „ich“, „mir“, „mein“ beziehungsweise „I“, „me“, „my“.
+- „Wir“, „uns“, „unser“ beziehungsweise „we“, „us“, „our“ ausschließlich für die tatsächliche Familie, den Haushalt oder eindeutig gemeinsame Handlungen verwenden. Echte Familienbezüge wie „our kitchen“, „our home“ und gemeinsam eingenommene Mahlzeiten bleiben erhalten.
+- Kein redaktionelles oder pauschales „wir“ für Autorin und Leserschaft, Menschen oder Mütter allgemein verwenden. Keine gemeinsamen Erfahrungen, Probleme oder Vorlieben der Leserschaft voraussetzen.
+- Direkte Leseransprache nur dort verwenden, wo sie natürlich und hilfreich ist, insbesondere in Rezeptanleitungen und praktischen Hinweisen; nicht übermäßig einsetzen.
+- Beim Prüfen bestehender Texte jedes „wir/uns/unser“ und „we/us/our“ einschließlich gebeugter Formen und Kontraktionen im Kontext prüfen: reale Familienbezüge behalten, individuelle Erfahrung oder Empfehlung in den Singular setzen, sonst bei Bedarf ohne persönliches Pronomen formulieren.
+- Keine Familiengewohnheiten, Erfahrungen, Vorlieben, Traditionen oder persönlichen Details erfinden. Bedeutung und Fakten erhalten; die Perspektivkorrektur ist kein Auftrag zur inhaltlichen Neufassung.
+- Diese Regel gilt für Artikel, Rezepte, Einleitungen, Auszüge, Metadaten, CTAs und alle sonstigen redaktionellen Texte.
+
+### Zusätzliche Regel für Rezepte
+
+- Rezepteinleitungen dürfen „ich/I“ für persönlichen Kontext und „unser/our“ für echte Familienbezüge verwenden.
+- Zubereitungsschritte normalerweise direkt und neutral im Imperativ formulieren: „Heat the oven to 180°C.“, „Add the flour and mix until combined.“, „Let the cake cool before serving.“ Die Ich-Perspektive der Autorin ist kein Anlass, praktische Anweisungen in persönliche Erzählungen umzuwandeln.
+- Keine unnötigen gemeinsamen Handlungen mit der Leserschaft formulieren, etwa „We add the flour…“, „Now we're going to bake…“ oder „Next, we'll prepare…“.
+- „Du/you“ nur verwenden, wenn es die Anleitung klarer macht, etwa bei einer Bedingung: „If your plums are very ripe, reduce the sugar slightly.“
+- Keine persönlichen Geschichten erfinden, um ein Rezept wärmer wirken zu lassen. Vorhandene Fakten, Mengen, Temperaturen, Zeiten und Arbeitsschritte bei reinen Perspektivkorrekturen erhalten.
+
 ## Projektstruktur
 
 ```text

@@ -47,7 +47,7 @@ export const recipes = {
   },
   plumStreuselCake: {
     title: "Plum streusel cake",
-    excerpt: "A soft base, plenty of Zwetschgen and buttery streusel — in the smaller, round version we make at home.",
+    excerpt: "A soft base, plenty of Zwetschgen and buttery streusel — in the smaller, round version I make at home.",
     category: "Baking",
     image: plumStreuselCake,
     href: "/kitchen/plum-streusel-cake",
@@ -66,7 +66,7 @@ const journalArticle = {
 
 const kitchenArticle = {
   title: "Kitchen Essentials",
-  excerpt: "No trendy gadgets, no cupboard clutter. Just seven things we’ve used for years and would happily choose all over again.",
+  excerpt: "No trendy gadgets, no cupboard clutter. Just seven things I’ve used for years and would happily choose all over again.",
   category: "Kitchen",
   image: kitchenFavorites,
   href: "/journal/kitchen-essentials",
