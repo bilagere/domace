@@ -6,6 +6,7 @@ import hugoEistee from "../assets/images/genuss/eistee-titel.png";
 import zimtschnecken from "../assets/images/genuss/zimtschnecken-titel.png";
 import stroganoffTitle from "../assets/images/genuss/stroganoff-titel.png";
 import plumStreuselCake from "../assets/images/genuss/zwetschgen-streusel-kuchen.png";
+import makkaroni from "../assets/images/genuss/makkaroni.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
 import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel.png";
@@ -13,6 +14,14 @@ import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel
 
 
 export const recipes = {
+  aelplerMakkaroni: {
+    title: "Älpler Makkaroni",
+    excerpt: "Think of it as Alpine mac and cheese: macaroni and potatoes in a creamy Bergkäse sauce, topped with golden onions and bacon.",
+    category: "Cooking",
+    image: makkaroni,
+    href: "/kitchen/aelpler-makkaroni",
+    publishedAt: "2026-09-07",
+  },
   focaccia: {
     title: "Sourdough focaccia",
     excerpt: "A crisp golden crust, a soft, airy middle, and every reason to gather around the table.",
@@ -83,6 +92,7 @@ const sourdoughArticle = {
 } satisfies PublishedContent;
 
 const publishedContent = [
+  recipes.aelplerMakkaroni,
   sourdoughArticle,
   kitchenArticle,
   journalArticle,

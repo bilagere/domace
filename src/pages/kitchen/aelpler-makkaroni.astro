@@ -1,0 +1,52 @@
+---
+import RecipeLayout from "../../components/layout/RecipeLayout.astro";
+import { recipes } from "../../data/relatedContent";
+import makkaroni from "../../assets/images/genuss/makkaroni.png";
+
+const ingredients = [
+  "2 onions",
+  "2 garlic cloves",
+  "400 g waxy potatoes",
+  "150 g diced bacon",
+  "500 ml vegetable broth",
+  "250 ml cream",
+  "250 g macaroni",
+  "60 g strong, aged Bergkäse (Alpine mountain cheese), grated",
+  "Salt & black pepper to taste",
+];
+const steps = [
+  "Peel the onions, garlic, and potatoes. Slice the onions into rings, thinly slice the garlic, and dice the potatoes.",
+  "Cook the bacon, onions, and garlic in a skillet until the onions are golden and the bacon is lightly crisp. Transfer to a plate and set aside.",
+  "Bring the vegetable broth and cream to a boil in a saucepan. Add the potatoes and macaroni, cover, and simmer over low heat for about 10 minutes, until the macaroni is al dente.",
+  "Stir in the grated Bergkäse until melted and creamy. Season with salt and black pepper to taste. Divide among plates and top with the bacon and onion mixture.",
+];
+---
+
+<RecipeLayout
+  lang="en"
+  pageTitle="Älpler Makkaroni – Domaće"
+  description="Alpine macaroni with potatoes, Bergkäse and cream, topped with golden onions and bacon. A comforting dinner for four, ready in about 35 minutes."
+  category="Cooking"
+  title="Älpler Makkaroni"
+  image={makkaroni}
+  imageAlt="Two plates of creamy macaroni and potatoes topped with golden onions and bacon, with apple sauce on the side"
+  summary="Think of it as Alpine mac and cheese: macaroni and potatoes in a creamy Bergkäse sauce, topped with golden onions and bacon."
+  totalTime="PT35M"
+  meta={[{ icon: "clock", label: "Total time", value: "35 minutes" }, { icon: "users", label: "Makes", value: "4 servings" }]}
+  ingredients={ingredients}
+  steps={steps}
+  stepIngredients={[[0, 1, 2], [3], [4, 5, 6], [7, 8]]}
+  ingredientNote="I use a strong, aged Bergkäse, an Alpine mountain cheese with plenty of flavor. If you can’t find it, Gruyère is a good substitute."
+  tipTitle="Make it your own"
+  tipText="The onions are worth taking your time with. Let them cook until deeply golden for plenty of flavor and a little crispness around the edges."
+  safetyTipTitle="Keep an eye on the pot"
+  safetyTipText="The pasta and potatoes cook together, so give them an occasional stir and add a splash of stock if the sauce gets too thick."
+  relatedItems={[recipes.boeufStroganoff, recipes.focaccia]}
+>
+  <Fragment slot="intro">
+    <p>There’s a reason Älpler Makkaroni is traditionally served with apple sauce. A spoonful alongside the savory pasta might seem unexpected, but it cuts through the richness beautifully.</p>
+    <p>It’s an uncomplicated dish, made from the kind of ingredients that keep well in a pantry and come together in one pot. I like mine with plenty of browned onions on top and the apple sauce right there on the plate.</p>
+  </Fragment>
+  <h2>Macaroni and potatoes, cooked together</h2>
+  <p>The macaroni and potatoes cook in the broth and cream before the cheese is stirred in. Prepare the onion and bacon topping in a separate frying pan, then add it just before serving.</p>
+</RecipeLayout>
