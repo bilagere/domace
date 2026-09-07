@@ -93,8 +93,10 @@ const publishedContent = [
   recipes.plumStreuselCake,
 ] satisfies PublishedContent[];
 
-export const recipePreviews: ArticlePreview[] = Object.values(recipes);
-export const journalPreviews: ArticlePreview[] = [sourdoughArticle, kitchenArticle, journalArticle];
+export const recipePreviews: ArticlePreview[] = Object.values(recipes)
+  .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+export const journalPreviews: ArticlePreview[] = [sourdoughArticle, kitchenArticle, journalArticle]
+  .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 
 export const latestContent: ArticlePreview[] = publishedContent
   .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt))
