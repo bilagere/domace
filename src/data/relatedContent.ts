@@ -93,7 +93,7 @@ const sourdoughArticle = {
 } satisfies PublishedContent;
 
 const growingWorldArticle = {
-  title: "The World Beyond Our Home",
+  title: "Beyond Our Home",
   image: growingWorldImage,
   excerpt: "Daisy is about to start playgroup. As her world grows, I look back on the ordinary moments of her first three years.",
   category: "Family",
