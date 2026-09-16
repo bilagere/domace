@@ -10,6 +10,7 @@ import makkaroni from "../assets/images/genuss/makkaroni.png";
 import quieterFamilyLife from "../assets/images/journal/leiser-leichter/leiser-lauter-titel.png";
 import kitchenFavorites from "../assets/images/journal/kuechenlieblinge/mara-kocht.png";
 import sourdoughBread from "../assets/images/journal/brot-backen/sauerteig-titel.png";
+import growingWorldImage from "../assets/images/journal/getting-bigger/backpack-entryway.png";
 
 
 
@@ -91,7 +92,17 @@ const sourdoughArticle = {
   publishedAt: "2026-08-11",
 } satisfies PublishedContent;
 
+const growingWorldArticle = {
+  title: "The World Beyond Our Home",
+  image: growingWorldImage,
+  excerpt: "Daisy is about to start playgroup. As her world grows, I look back on the ordinary moments of her first three years.",
+  category: "Family",
+  href: "/journal/her-world-is-getting-a-little-bigger",
+  publishedAt: "2026-09-15",
+} satisfies PublishedContent;
+
 const publishedContent = [
+  growingWorldArticle,
   recipes.aelplerMakkaroni,
   sourdoughArticle,
   kitchenArticle,
@@ -105,7 +116,7 @@ const publishedContent = [
 
 export const recipePreviews: ArticlePreview[] = Object.values(recipes)
   .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-export const journalPreviews: ArticlePreview[] = [sourdoughArticle, kitchenArticle, journalArticle]
+export const journalPreviews: ArticlePreview[] = [growingWorldArticle, sourdoughArticle, kitchenArticle, journalArticle]
   .toSorted((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 
 export const latestContent: ArticlePreview[] = publishedContent

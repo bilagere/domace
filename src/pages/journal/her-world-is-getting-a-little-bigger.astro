@@ -1,0 +1,75 @@
+---
+import ArticleLayout from "../../components/layout/ArticleLayout.astro";
+import OptimizedImage from "../../components/ui/OptimizedImage.astro";
+import titleImage from "../../assets/images/journal/getting-bigger/backpack-entryway.png";
+import walkingImage from "../../assets/images/journal/getting-bigger/daisy-walking.png";
+import { journalPreviews } from "../../data/relatedContent";
+
+const title = "The World Beyond Our Home";
+const summary = "Daisy is about to start playgroup. As her world grows beyond home and family, I look back on the ordinary moments of her first three years.";
+---
+
+<ArticleLayout
+  pageTitle={title + " | Domaće"}
+  description={summary}
+  activePath="/journal"
+  category="Family"
+  title={title}
+  summary={summary}
+  image={titleImage}
+  imageAlt="A small lavender backpack on a wooden bench beside the open front door"
+  date="15 September 2026"
+  datePublished="2026-09-15"
+  readingTime="4 min read"
+  overviewItems={[
+    "A first morning away from home",
+    "Looking back on three years",
+    "Watching her world grow",
+  ]}
+  relatedItems={journalPreviews.filter((item) => item.href !== "/journal/her-world-is-getting-a-little-bigger")}
+>
+<p>Daisy just turned three. In a few days she’ll start playgroup.</p>
+
+<p>It’s only a few mornings a week. A small group of children, a few hours away from home. Nothing particularly unusual for a three-year-old.</p>
+
+<p>For me, though, it feels like the beginning of something new.</p>
+
+<p>Until now, Daisy has always been with us or with family. She has spent her first three years surrounded by people she knows well. At home with me, with Papa, with her grandparents, aunts and uncles. There has never been a morning when I dropped her off somewhere and walked away. Soon, there will be.</p>
+
+<p>I think what gets me is not really the leaving part. It’s the thought that her world is starting to become a little bigger than “just us”. There will be people I don’t know as well as she does. Songs and words she learns somewhere else. Little stories from her morning that I wasn’t there to see. Maybe a friend whose name starts appearing at our dinner table. Things that belong to her before they belong to us.</p>
+
+<p>And I know that this is exactly how it should be.<br />I want her world to grow. She is curious and welcoming and so interested in everything around her. I can already imagine her walking through that door, eager to learn new things and get to know her peers.</p>
+
+<p>Still, I catch myself looking at these past three years in awe.<br />I’ve dreamt of her long before I laid eyes on my little girl. The path to becoming a Mama - her Mama - was rocky and full of tears. For so long, I was waiting for this life to begin. And now, somehow, three years of it are already behind us.</p>
+
+<p>When I have wished for something for so long, part of me wants to hold on to it once it is finally mine. But childhood doesn’t stand still, no matter how much I sometimes wish it would.</p>
+
+<p>So much of life with small children feels permanent while I am living it. Feeling drained after another night of breastfeeding. Constantly wearing something stained with spit-up. The never-ending worries. Being needed, touched and climbed on all day long. Finding random toys in every corner of the house. Someone following me from room to room while I try to get things done. Answering a million questions before breakfast. Going almost everywhere together. Building my days around naps and meals. And those small hands that still reach for mine without thinking.</p>
+
+<p>Did I mention being tired? So, so tired.</p>
+
+<p>These are the things that fill our days so completely that it is hard to imagine they won’t always be there. I create routines because I need them. And somewhere along the way, those routines simply become my life.</p>
+
+<p>Then one day, something changes. Not all at once. There is no clear line between one chapter and the next. There is just a little backpack waiting by the door.</p>
+
+<figure>
+  <OptimizedImage
+    src={walkingImage}
+    alt="Daisy walking down a sunlit autumn path with her lavender backpack"
+    widths={[480, 720, 960]}
+    sizes="(max-width: 768px) 100vw, 46rem"
+  />
+</figure>
+
+<p>I have spent much of the last three years building our life around home and family. I chose to be here for these years, and I am deeply grateful that I could. There were very long days and nights involved. Unexpectedly difficult days and plenty of ordinary ones. But looking back now, it is the ordinary parts I already know I will miss most.</p>
+
+<p>Not because I want to keep everything as it is. I can’t wait to meet the girl Daisy is becoming. I want to hear the things she has to tell me when she comes home. I want her to have places she loves that have nothing to do with me.</p>
+
+<p>Maybe that is one of the strange things about raising children.<br />I spend years making their world feel safe and familiar, and then, little by little, I watch them make it bigger.</p>
+
+<p>Our days at home won’t disappear when playgroup starts. She will still come running into the kitchen. There will still be toys under the table and half-eaten apples left in places where half-eaten apples have no business being. Rosie is still little, and our home will continue to be full of all the things that come with this season of life.</p>
+
+<p>But something will be different. There will be a few hours each week that are hers. And perhaps that is why this small change feels bigger than it looks from the outside.</p>
+
+<p>Three years ago, her whole world fit inside ours.<br />Now she is beginning to build a little world of her own.<br />And I have the privilege of watching it grow.</p>
+</ArticleLayout>
